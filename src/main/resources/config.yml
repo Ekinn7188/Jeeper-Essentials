@@ -1,5 +1,6 @@
 #discord
 Discord Link: https://discord.gg/wpMMgQhV4v
+Discord Message: <#b8a567>Join our discord server! <#856f2d><discord>
 Discord Bot Token: Classified
 Punishment Channel ID: 0
 
@@ -23,14 +24,6 @@ Dont Move Message: '&cDont move or teleportation is &4canceled'
 Teleport Countdown: '&cTeleporting to <location> in: &4<time>'
 Teleport Canceled: '&cTeleport &4canceled&c!'
 Teleport Success: '&aSuccessfully teleported to <dark_green><location></dark_green>!'
-
-#combat
-Combat Time In Seconds: '10'
-Combat Timer: '&cYou will untagged in &4<time>&c seconds'
-Not Combat Tagged: '&cYou''re no longer combat tagged'
-Command In Combat: '&cYou cant send commands when you''re combat tagged!'
-Enter Safezone In Combat Title: '&4No Entry'
-Enter Safezone In Combat Subtitle: '&cYou cant enter safezones while in combat!'
 
 #spawn
 Spawn Set: '&aSpawn point set!'
@@ -64,11 +57,6 @@ Player Doesnt Exist: '&4<player>&c doesn''t exist!'
 Player Hasnt Logged In: '&4<player>&c has never logged in before!'
 Player Is Offline: '&4<player>&c is offline!'
 
-#npc
-Npc Selected: <name>&a has been selected!
-No Npcs: '&cYou need to create an npc first!'
-Metadata Message: '&aYour metadata has been generated in shopkeeper.yml, index <index>!'
-
 #tab
 Tablist Header:
   First Line: <#b8a567>&l⛏ &r<#b8a567>[&r<#7c3e12>&lDirtlands&r<#b8a567>] &l■
@@ -78,25 +66,9 @@ Tablist Footer:
   Second Line: <#d1c59f>⚔ <onlineplayers>/<maxplayers> Online ☠
 Player Tab Style: '<prefix><#7c3e12><player> '
 
-#economy
-Money Gained Actionbar: '&3+<money> &bExpensive Diamonds &o(You Have &3<balance>&b)'
-Money Set Actionbar: '&bYour Balance Has Been Set To &3<money>'
-Money Lost Actionbar: '&3-<money> &bExpensive Diamonds &o(You Have &3<balance>&b)'
-Cant Afford Message: '&cYou can''t afford this!'
-Player Doesnt Have Enough Money: '&c<player> doesn''t have enough money for this action'
-Baltop Header: '<#b8a567>&m----------&r <#7c3e12>Baltop <#b8a567>&m-</#b8a567>&r <#7c3e12>Page</#7c3e12> <#856f2d><page><#7c3e12>/</#7c3e12><pages> <#b8a567>&m----------'
-Baltop Names: '<#b8a567>(#<position>) <#856f2d><name>: <#7c3e12><balance>'
-Player Balance: '&3<player>&b has &3<balance>&b expensive diamonds'
-Balance: '&3You&b have &3<balance>&b expensive diamonds'
-
-
 #afk
 Player AFK: '&3<player>&b is now AFK'
 Player Not AFK: '&3<player>&b is no longer AFK'
-
-#word filter
-Word Filter: ["Nigger", "Nigga", "Chink", "Coon", "Jap", "Kys", "Kill yourself", "Fag", "Faggot", "Retard", "Retarded"]
-Chat Blocked: "&c&lHey! &r&cYour message hasn't been sent due to a blocked word. &4(&c<word>&4)"
 
 #rules
 Rules:
