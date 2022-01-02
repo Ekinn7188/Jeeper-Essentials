@@ -72,6 +72,9 @@ commands:
     aliases: [unbanip, ip-unban, un-ipban, pardon-ip, unipban]
   history:
     description: shows the punishment history of a player
+  discord:
+    description: gives an invite to the discord server
+    aliases: disc
 permissions:
   jeeper.setspawn:
     description: allows use of the setspawn command
