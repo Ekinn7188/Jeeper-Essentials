@@ -1,0 +1,112 @@
+//file:noinspection GroovyAssignabilityCheck
+plugins {
+    id 'java'
+    id "com.github.johnrengelman.shadow" version "7.0.0"
+    id 'nu.studer.jooq' version '6.0.1'
+    id "org.flywaydb.flyway" version "8.0.5"
+    id "xyz.jpenilla.run-paper" version "1.0.6"
+}
+
+group 'jeeper.essentials'
+
+shadowJar{
+    archiveFileName = "${project.name}.jar"
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    maven { url "https://papermc.io/repo/repository/maven-public/" }
+    maven {
+        name = "sonatype-oss-snapshots"
+        url = "https://oss.sonatype.org/content/repositories/snapshots/"
+    }
+    maven { url "https://repo.codemc.io/repository/maven-snapshots/" }
+}
+
+dependencies {
+    //minecraft
+    compileOnly 'io.papermc.paper:paper-api:1.17.1-R0.1-SNAPSHOT'
+    compileOnly 'net.luckperms:api:5.3'
+    implementation "net.kyori:adventure-text-minimessage:4.2.0-SNAPSHOT"
+    implementation 'org.reflections:reflections:0.10.2'
+    implementation 'jeeper.utils:PaperPluginUtils:0.1.1'
+    implementation 'net.wesjd:anvilgui:1.5.3-SNAPSHOT'
+
+    //database
+    implementation 'org.jooq:jooq:3.15.5'
+    compileOnly 'org.xerial:sqlite-jdbc:3.36.0.3'
+    implementation 'org.flywaydb:flyway-core:8.3.0'
+    implementation 'ch.qos.logback:logback-classic:1.2.10'
+    jooqGenerator 'org.xerial:sqlite-jdbc:3.36.0.3'
+
+    //discord
+    implementation 'net.dv8tion:JDA:5.0.0-alpha.2'
+
+    //other
+    implementation 'org.apache.directory.studio:org.apache.commons.io:2.4'
+    compileOnly 'org.apache.logging.log4j:log4j-api:2.17.0'
+    compileOnly 'org.apache.logging.log4j:log4j-core:2.17.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+flyway {
+    url = "jdbc:sqlite:${buildDir}/generate-source.db"
+//    locations = ['classpath:db/migration']
+}
+
+jooq {
+    configurations {
+        main {
+            generationTool {
+                jdbc {
+                    driver = 'org.sqlite.JDBC'
+                    url = "jdbc:sqlite:${buildDir}/generate-source.db"
+                }
+                generator {
+                    database {
+                        name = 'org.jooq.meta.sqlite.SQLiteDatabase'
+                        excludes = 'flyway_schema_history|sqlite_master|sqlite_sequence'
+                    }
+                    //                generate {}
+                    target {
+                        packageName = 'essentials.db'
+//                        directory = '/database'
+                    }
+                }
+            }
+        }
+    }
+}
+
+tasks {
+    runServer {
+        // Configure the Minecraft version for our task.
+        // This is the only required configuration besides applying the plugin.
+        // Your plugin's jar (or shadowJar if present) will be used automatically.
+        minecraftVersion("1.17.1")
+    }
+}
+
+task cleanGenerateSourceDB(type: Delete) {
+    delete "${buildDir}/generate-source.db"
+}
+
+flywayMigrate.dependsOn(cleanGenerateSourceDB)
+generateJooq.dependsOn(flywayMigrate)
+classes.dependsOn(generateJooq)
+
+task cleanServer(type: Delete) {
+    delete "${projectDir}/essentials.db"
+    delete "${projectDir}/run/usercache.json"
+    delete "${projectDir}/run/plugins/Jeeper-Essentials/dirtlands.db"
+    delete "${projectDir}/run/plugins/Jeeper-Essentials/config.yml"
+    delete files("${projectDir}/run/world/playerdata")
+}
+
+task emptyConfig(type: Delete) {
+    delete "${projectDir}/run/plugins/Jeeper-Essentials/config.yml"
+}
