@@ -21,6 +21,7 @@ public enum Permission {
     WARN("jeeper.warn"),
     BAN_IP("jeeper.ipban"),
     MEMORY("jeeper.memory"),
+    BACK("jeeper.back"),
     HISTORY("jeeper.history");
 
     private final String name;

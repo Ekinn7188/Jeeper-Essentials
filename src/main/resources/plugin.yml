@@ -75,6 +75,8 @@ commands:
   discord:
     description: gives an invite to the discord server
     aliases: disc
+  back:
+    description: teleports a player back to their last location
 permissions:
   jeeper.setspawn:
     description: allows use of the setspawn command
@@ -138,4 +140,7 @@ permissions:
     default: op
   jeeper.history:
     description: used to view punishment history
+    default: op
+  jeeper.back:
+    description: used to teleport a player back to their last location
     default: op

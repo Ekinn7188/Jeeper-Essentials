@@ -91,6 +91,10 @@ Rules:
 #memory
 Memory Usage: '<#b8a567>Memory Usage: <#7c3e12><memory> mb <#b8a567>/ <#7c3e12><max> gb'
 
+#back
+Back Message: '<#b8a567>Teleported to previous location!'
+Cant Back: '<#b8a567>Previous location not found'
+
 #punishments
 Punishment Header: '<#b8a567>[&r<#7c3e12>&lDirtlands&r<#b8a567>]'
 Ban Broadcast: '&4<player> &chas been banned for &4<reason>&c. (<time>)'
