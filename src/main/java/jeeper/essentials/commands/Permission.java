@@ -1,28 +1,30 @@
 package jeeper.essentials.commands;
 
 public enum Permission {
-    NICKNAME("jeeper.nickname"),
-    ESSENTIALS("jeeper.essentials"),
+    AFK("jeeper.afk"),
+    BACK("jeeper.back"),
+    BAN("jeeper.ban"),
+    BAN_IP("jeeper.ipban"),
     BROADCAST("jeeper.broadcast"),
-    SETWARP("jeeper.warps.set"),
-    SETSPAWN("jeeper.setspawn"),
-    SETHOME("jeeper.sethome"),
-    DELETEWARP("jeeper.warps.delete"),
-    CLEARCHAT("jeeper.chat.clear"),
-    MUTECHAT("jeeper.chat.mute"),
     BYPASSCHAT("jeeper.chat.bypass"),
     CHATCOLOR("jeeper.chat.color"),
-    AFK("jeeper.afk"),
+    CLEARCHAT("jeeper.chat.clear"),
     COOLDOWN("jeeper.cooldown"),
-    SUDO("jeeper.sudo"),
-    BAN("jeeper.ban"),
+    DELETEWARP("jeeper.warps.delete"),
+    ESSENTIALS("jeeper.essentials"),
+    HISTORY("jeeper.history"),
     KICK("jeeper.kick"),
-    MUTE("jeeper.mute"),
-    WARN("jeeper.warn"),
-    BAN_IP("jeeper.ipban"),
     MEMORY("jeeper.memory"),
-    BACK("jeeper.back"),
-    HISTORY("jeeper.history");
+    MUTE("jeeper.mute"),
+    MUTECHAT("jeeper.chat.mute"),
+    NICKNAME("jeeper.nickname"),
+    PLUGIN("jeeper.plugin"),
+    SETHOME("jeeper.sethome"),
+    SETSPAWN("jeeper.setspawn"),
+    SETWARP("jeeper.warps.set"),
+    SUDO("jeeper.sudo"),
+    TPS("jeeper.tps"),
+    WARN("jeeper.warn");
 
     private final String name;
 

@@ -90,6 +90,8 @@ Rules:
 
 #memory
 Memory Usage: '<#b8a567>Memory Usage: <#7c3e12><memory> mb <#b8a567>/ <#7c3e12><max> gb'
+#tps
+Tps Message: '<#b8a567>Server TPS from last 1m, 5m, 15m: [<#7c3e12><1m><#b8a567>,</#b8a567> <5m><#b8a567>,</#b8a567> <15m><#b8a567>]'
 
 #back
 Back Message: '<#b8a567>Teleported to previous location!'

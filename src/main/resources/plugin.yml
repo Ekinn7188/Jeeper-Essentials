@@ -8,19 +8,24 @@ main: jeeper.essentials.Main
 commands:
   setspawn:
     description: Set the world spawn!
+    permission: jeeper.setspawn
   spawn:
     description: Teleports you to spawn!
   essentials:
     description: essentials command that branches out to other plugin-related commands
+    permission: jeeper.essentials
   nickname:
     description: gives the player a nickname!
+    permission: jeeper.nickname
     aliases: nick
   warp:
     description: Teleports the player to a warp!
   setwarp:
     description: Create a warp!
+    permission: jeeper.warps.set
   delwarp:
     description: Delete a warp!
+    permission: jeeper.warps.delete
   warps:
     description: List all the warps!
   home:
@@ -33,50 +38,70 @@ commands:
     description: List all your homes!
   broadcast:
     description: Lets the user broadcast a message!
+    permission: jeeper.broadcast
   clearchat:
     description: Clears the chat!
+    permission: jeeper.chat.clear
     aliases: cc
   mutechat:
     description: Mutes the chat!
+    permission: jeeper.chat.mute
   chatcolor:
     description: sets the default color of the player's chat!
+    permission: jeeper.chat.color
     aliases: color
   afk:
     description: puts a player in AFK mode
+    permission: jeeper.afk
   realname:
     description: gets a player's real name
   sudo:
     description: allows the user to run commands as another player
+    permission: jeeper.sudo
   rules:
     description: shows the rules of the server
   ban:
     description: bans a player
+    permission: jeeper.ban
   kick:
     description: kicks a player
+    permission: jeeper.kick
   mute:
     description: mutes a player
+    permission: jeeper.mute
   warn:
     description: warns a player
+    permission: jeeper.warn
   memory:
     description: shows the memory usage of the server
+    permission: jeeper.memory
   unban:
     description: unbans a player
+    permission: jeeper.ban
     aliases: pardon
   unmute:
     description: unmutes a player
+    permission: jeeper.mute
   ip-ban:
     description: bans an IP address
+    permission: jeeper.ipban
     aliases: [ipban, banip, ban-ip]
   unban-ip:
     description: unbans an IP address
+    permission: jeeper.ipban
     aliases: [unbanip, ip-unban, un-ipban, pardon-ip, unipban]
   history:
     description: shows the punishment history of a player
+    permission: jeeper.history
   discord:
     description: gives an invite to the discord server
     aliases: disc
   back:
     description: teleports a player back to their last location
+    permission: jeeper.back
+  tps:
+    description: shows the current tps of the server
+    permission: jeeper.tps
 permissions:
   jeeper.setspawn:
     description: allows use of the setspawn command
@@ -143,4 +168,7 @@ permissions:
     default: op
   jeeper.back:
     description: used to teleport a player back to their last location
+    default: op
+  jeeper.tps:
+    description: used to view the tps of the server
     default: op

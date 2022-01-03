@@ -69,7 +69,7 @@ public class Main extends JavaPlugin {
 
     }
 
-    protected static void initializeClasses(){
+    private void initializeClasses(){
         String packageName = Main.getPlugin().getClass().getPackage().getName();
         //load Listeners in net.dirtlands.listeners
         for(Class<?> listenerClass :new Reflections(packageName +".listeners").getSubTypesOf(Listener.class)) {
