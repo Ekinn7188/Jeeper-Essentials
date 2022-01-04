@@ -52,7 +52,7 @@ public class PunishmentHistory extends PluginCommand {
     @Override
     public void execute(CommandSender sender, String[] args) {
         if (args.length == 0) {
-            sender.sendMessage(MessageTools.parseText("&cCorrect Usage: /history {player}"));
+            sender.sendMessage(MessageTools.parseFromPath(config, "Correct Usage", Template.template("command", "/history {player}")));
             return;
         }
 

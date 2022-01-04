@@ -166,26 +166,24 @@ public class PunishmentTools {
             endTimeString = null;
         }
 
-        Main.getPlugin().getJDA().getGuilds().forEach(guild -> {
-            EmbedBuilder embedBuilder = new EmbedBuilder();
-            embedBuilder.setTitle("Player " + pastTensePunishment);
-            embedBuilder.addField("**Player**", punishedName, true);
-            embedBuilder.addField("**Punished By**", punisherName, true);
-            embedBuilder.addField("Reason: ", reason == null ? "none" : reason, false);
-            if (endTimeString != null) {
-                embedBuilder.addField("**Start Time:**", currentTimeString, true);
-                embedBuilder.addField("**End Time:**", endTimeString, true);
-            }
-
-            embedBuilder.setColor(punishmentColor);
-            embedBuilder.setThumbnail("https://minotar.net/helm/" + punishedName + "/64");
-            try {
+        try {
+            Main.getPlugin().getJDA().getGuilds().forEach(guild -> {
+                EmbedBuilder embedBuilder = new EmbedBuilder();
+                embedBuilder.setTitle("Player " + pastTensePunishment);
+                embedBuilder.addField("**Player**", punishedName, true);
+                embedBuilder.addField("**Punished By**", punisherName, true);
+                embedBuilder.addField("Reason: ", reason == null ? "none" : reason, false);
+                if (endTimeString != null) {
+                    embedBuilder.addField("**Start Time:**", currentTimeString, true);
+                    embedBuilder.addField("**End Time:**", endTimeString, true);
+                }
+                embedBuilder.setColor(punishmentColor);
+                embedBuilder.setThumbnail("https://minotar.net/helm/" + punishedName + "/64");
                 Objects.requireNonNull(guild.getTextChannelById(config.get().getLong("Punishment Channel ID"))).sendMessage(" ").setEmbeds(embedBuilder.build()).queue();
-            } catch (NullPointerException e) {
-                Bukkit.getLogger().info(LogColor.RED + "&cThe punishment channel has not been set up yet correctly. Check config.yml" + LogColor.RESET);
-            }
-
-        });
+            });
+        } catch (NullPointerException e) {
+            Bukkit.getLogger().info(LogColor.RED + "The punishment channel or bot has not been set up yet correctly. Check config.yml" + LogColor.RESET);
+        }
 
 
 

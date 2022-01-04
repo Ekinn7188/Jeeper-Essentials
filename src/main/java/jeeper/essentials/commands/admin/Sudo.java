@@ -27,7 +27,7 @@ public class Sudo extends PluginCommand {
     @Override
     public void execute(CommandSender sender, String[] args) {
         if (args.length <= 1) {
-            sender.sendMessage(MessageTools.parseText("&cUsage: /sudo {player} {command}"));
+            sender.sendMessage(MessageTools.parseFromPath(Main.getPlugin().config(), "Correct Usage", Template.template("command", "/sudo {player} {command}")));
             return;
         }
         Player player = Main.getPlugin().getServer().getPlayer(args[0]);

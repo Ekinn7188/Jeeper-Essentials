@@ -3,6 +3,7 @@ package jeeper.essentials.commands;
 import essentials.db.Tables;
 import jeeper.essentials.Main;
 import jeeper.utils.MessageTools;
+import jeeper.utils.config.ConfigSetup;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.Template;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
@@ -12,6 +13,7 @@ import org.bukkit.command.CommandSender;
 import java.util.*;
 
 public class RealName extends ChatColor {
+    private final ConfigSetup config = Main.getPlugin().config();
 
     @Override
     public String getName() {
@@ -32,8 +34,7 @@ public class RealName extends ChatColor {
                 .from(Tables.USERS).fetch().intoMap(Tables.USERS.USERUUID, Tables.USERS.USERNICKNAME);
 
         if (results.size() == 0) {
-            sender.sendMessage(MessageTools.parseText("&bThere are no players with the nickname <nickname>",
-                    Template.template("nickname", nickname)));
+            sender.sendMessage(MessageTools.parseFromPath(config, "Nickname Not In Use", Template.template("nickname", nickname)));
             return;
         }
 
@@ -61,13 +62,13 @@ public class RealName extends ChatColor {
                 }
             }
 
-            sender.sendMessage(MessageTools.parseText("&bPlayers with the nickname <nickname>: &3<players>",
+            sender.sendMessage(MessageTools.parseFromPath(config, "Players With Name",
                     Template.template("nickname", nickname),
                     Template.template("players", seperatedNames)));
             return;
         }
 
-        sender.sendMessage(MessageTools.parseText("&bPlayer with the nickname <nickname>: &3<player>",
+        sender.sendMessage(MessageTools.parseFromPath(config, "Players With Name",
                 Template.template("nickname", nickname),
                 Template.template("player", names.get(0))));
 

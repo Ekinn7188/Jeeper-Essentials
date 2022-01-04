@@ -24,7 +24,7 @@ public class Spawn extends PluginCommand {
                 .where(Tables.WARPS.WARPNAME.equalIgnoreCase("spawn")).fetchAny());
 
         if (spawn == null){
-            player.sendMessage(MessageTools.parseText("<red>Spawn doesn't exist yet! Make sure to set it with <dark_red>/setspawn</dark_red>!</red>"));
+            player.sendMessage(MessageTools.parseFromPath(Main.getPlugin().config(), "Spawn Doesnt Exist"));
             return;
         }
         Countdown.startCountdown(player, spawn, "spawn", Main.getPlugin());

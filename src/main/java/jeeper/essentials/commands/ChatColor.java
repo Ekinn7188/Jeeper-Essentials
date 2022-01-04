@@ -5,6 +5,7 @@ import jeeper.essentials.Main;
 import jeeper.utils.MessageTools;
 import jeeper.utils.config.ConfigSetup;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.Template;
 import org.bukkit.entity.Player;
 import org.jooq.DSLContext;
 
@@ -37,7 +38,7 @@ public class ChatColor extends PluginCommand {
             return;
         }
 
-        player.sendMessage(MessageTools.parseText("&cCorrect Usage: /chatcolor <color code>"));
+        player.sendMessage(MessageTools.parseFromPath(config, "Correct Usage", Template.template("command", "/chatcolor {color}")));
 
     }
 }

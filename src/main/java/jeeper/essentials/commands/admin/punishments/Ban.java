@@ -6,6 +6,7 @@ import jeeper.essentials.commands.PluginCommand;
 import jeeper.essentials.listeners.punishments.Punishment;
 import jeeper.utils.MessageTools;
 import jeeper.utils.config.ConfigSetup;
+import net.kyori.adventure.text.minimessage.Template;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -33,7 +34,7 @@ public class Ban extends PluginCommand {
     @Override
     public void execute(CommandSender sender, String[] args) {
         if (args.length == 0) {
-            sender.sendMessage(MessageTools.parseText("&cUsage: /ban {player}"));
+            sender.sendMessage(MessageTools.parseFromPath(config, "Correct Usage", Template.template("command", "/ban {player}")));
             return;
         }
 
@@ -50,7 +51,7 @@ public class Ban extends PluginCommand {
         if (args.length >= 2) {
             Punishments.consolePunishment(Punishment.BAN, sender, args);
         } else {
-            sender.sendMessage(MessageTools.parseText("&cUsage: /ban {player} {time | 0d0h0m} {reason}"));
+            sender.sendMessage(MessageTools.parseFromPath(config, "Correct Usage", Template.template("command", "/ban {player} {time | 0d0h0m} {reason}")));
         }
 
 

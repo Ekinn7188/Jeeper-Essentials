@@ -45,7 +45,7 @@ public class IpBan extends PluginCommand {
 
         var address = target.getAddress();
         if (address == null) {
-            sender.sendMessage(MessageTools.parseText("&cThere was an issue getting <player>'s IP address."));
+            sender.sendMessage(MessageTools.parseFromPath(Main.getPlugin().config(), "Issue Getting IP", Template.template("player", args[0])));
             return;
         }
 

@@ -59,7 +59,7 @@ public class SetWarp extends PluginCommand {
             player.sendMessage(MessageTools.parseFromPath(config, "Warp Created", Template.template("name", args[0])));
             return;
         }
-        player.sendMessage(MessageTools.parseText("<red>Correct usage: /setwarp {name} {permission (optional)}"));
+        player.sendMessage(MessageTools.parseFromPath(config, "Correct Usage", Template.template("command", "/setwarp {name} {permission (optional)}")));
     }
 
 }

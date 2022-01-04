@@ -44,7 +44,7 @@ public class Kick extends PluginCommand {
     @Override
     public void execute(CommandSender sender, String[] args) {
         if (args.length == 0) {
-            sender.sendMessage(MessageTools.parseText("&cUsage: /kick {player} {reason (optional)}"));
+            sender.sendMessage(MessageTools.parseFromPath(config, "Correct Usage", Template.template("command", "/kick {player} {reason (optional)}")));
             return;
         }
 

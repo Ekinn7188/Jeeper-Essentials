@@ -93,19 +93,22 @@ public class RevokePunishment {
         };
 
 
-
-        Main.getPlugin().getJDA().getGuilds().forEach(guild -> {
-            EmbedBuilder embedBuilder = new EmbedBuilder();
-            embedBuilder.setTitle(punishmentString);
-            embedBuilder.addField("Player", player.getName(), true);
-            embedBuilder.addField("Revoked By", sender instanceof Player ? sender.getName() : "Console", true);
-            embedBuilder.setColor(Color.CYAN);
-            embedBuilder.setThumbnail("https://minotar.net/helm/" + player.getName() + "/64");
-            try {
-                Objects.requireNonNull(guild.getTextChannelById(config.get().getLong("Punishment Channel ID"))).sendMessage(" ").setEmbeds(embedBuilder.build()).queue();
-            } catch (NullPointerException e) {
-                e.printStackTrace();
-            }
-        });
+        try {
+            Main.getPlugin().getJDA().getGuilds().forEach(guild -> {
+                EmbedBuilder embedBuilder = new EmbedBuilder();
+                embedBuilder.setTitle(punishmentString);
+                embedBuilder.addField("Player", player.getName(), true);
+                embedBuilder.addField("Revoked By", sender instanceof Player ? sender.getName() : "Console", true);
+                embedBuilder.setColor(Color.CYAN);
+                embedBuilder.setThumbnail("https://minotar.net/helm/" + player.getName() + "/64");
+                try {
+                    Objects.requireNonNull(guild.getTextChannelById(config.get().getLong("Punishment Channel ID"))).sendMessage(" ").setEmbeds(embedBuilder.build()).queue();
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
+            });
+        } catch (NullPointerException e) {
+            Bukkit.getLogger().info(LogColor.RED + "The punishment channel or bot has not been set up yet correctly. Check config.yml" + LogColor.RESET);
+        }
     }
 }
