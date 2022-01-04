@@ -56,6 +56,10 @@ public class Chat implements Listener {
         //chat cooldown
         String messageString = PlainTextComponentSerializer.plainText().serialize(e.message());
 
+        if (PlainTextComponentSerializer.plainText().serialize(MessageTools.parseText(messageString)).equals("")) {
+            return;
+        }
+
         if (!player.hasPermission(Permission.COOLDOWN.getName())) {
             if (cooldown.containsKey(player.getUniqueId())) {
                 Cooldown cooldownInfo = cooldown.get(player.getUniqueId());
