@@ -6,7 +6,6 @@ import jeeper.essentials.commands.PluginCommand;
 import jeeper.essentials.listeners.TeleportBack;
 import jeeper.utils.MessageTools;
 import jeeper.utils.config.ConfigSetup;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerTeleportEvent;
 
@@ -26,11 +25,9 @@ public class Back extends PluginCommand {
     @Override
     public void execute(Player player, String[] args) {
         if (TeleportBack.lastLocation.containsKey(player.getUniqueId())) {
-            Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), () -> {
-                player.teleport(TeleportBack.lastLocation.get(player.getUniqueId()), PlayerTeleportEvent.TeleportCause.COMMAND);
-                player.sendMessage(MessageTools.parseFromPath(config, "Back Message"));
-                TeleportBack.lastLocation.remove(player.getUniqueId());
-            }, 5L);
+            player.teleport(TeleportBack.lastLocation.get(player.getUniqueId()), PlayerTeleportEvent.TeleportCause.COMMAND);
+            player.sendMessage(MessageTools.parseFromPath(config, "Back Message"));
+            TeleportBack.lastLocation.remove(player.getUniqueId());
 
         } else {
             player.sendMessage(MessageTools.parseFromPath(config, "Cant Back"));
