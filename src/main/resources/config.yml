@@ -5,7 +5,7 @@ Discord Bot Token: Classified
 Punishment Channel ID: 0
 
 #chat
-Chat Style: <prefix><#7c3e12><player></#7c3e12><suffix> &a» &7<message>
+Chat Style: <prefix><#b8a567><player></#b8a567><suffix> <#856f2d>»</#856f2d> &7<message>
 Join Message: '<#b8a567>[<#856f2d>+</#856f2d>] <player>'
 First Join Message: '<#d1c59f><player> has joined for the first time! (#<number>)'
 Leave Message: '<#b8a567>[<#856f2d>-</#856f2d>] <player>'
