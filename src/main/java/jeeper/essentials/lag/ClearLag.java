@@ -64,6 +64,6 @@ public class ClearLag {
                     clearLag();
                 }, 400L);
             }, 600L);
-        }, 0L, 22800L);
+        }, 22800L, 22800L);
     }
 }
