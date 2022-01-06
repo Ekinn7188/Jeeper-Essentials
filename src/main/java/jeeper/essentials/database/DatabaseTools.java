@@ -28,6 +28,17 @@ public class DatabaseTools {
     }
 
     /**
+     * @param id A player's database id
+     * @return the UUID for a player or null if player is not in the database
+     */
+    public static String getUserUUID(int id) {
+        return dslContext.select(Tables.USERS.USERUUID).from(Tables.USERS)
+                .where(Tables.USERS.USERID.eq(id)).fetchOne(Tables.USERS.USERUUID);
+    }
+
+
+
+    /**
      * Return the userid stored in the database, using the player's UUID
      * @return the id stored, or -1 if it does not exist
      */

@@ -61,6 +61,13 @@ Player Hasnt Logged In: '<#856f2d><player><#b8a567> has never logged in before!'
 Player Is Offline: '<#856f2d><player><#b8a567> is offline!'
 Correct Usage: '<#b8a567>Usage: <#856f2d><command>'
 
+#ignore
+Ignore Success: '<#b8a567>You have successfully ignored <#856f2d><player></#856f2d>!'
+Ignore List: '<#b8a567>Your current ignored players: <#856f2d><ignored>'
+Ignoring Nobody: '<#b8a567>You are not ignoring anyone!'
+Player Not Ignored: '<#b8a567>You are not ignoring <#856f2d><player></#856f2d>!'
+Unignored: '<#b8a567>You have successfully unignored <#856f2d><player>'
+
 #clear lag
 Lag Time: '<#b8a567>Some entities will be cleared in <#856f2d><time></#856f2d>!'
 Lag Cleared: '<#856f2d>Entities cleared!'

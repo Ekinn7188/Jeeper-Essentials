@@ -101,8 +101,34 @@ public class Chat implements Listener {
             replacedText = replacedText.clickEvent(ClickEvent.openUrl(url));
         }
 
-        //send the message
-        Bukkit.broadcast(replacedText);
+        //get userid to deal with ignored players
+        int userid = DatabaseTools.getUserID(player.getUniqueId());
+        if (userid == -1){
+            DatabaseTools.addUser(player.getUniqueId());
+            userid = DatabaseTools.getUserID(player.getUniqueId());
+        }
+
+        //send message to all players who don't have sender ignored
+        for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
+
+            int receiverID = DatabaseTools.getUserID(onlinePlayer.getUniqueId());
+            if (receiverID == -1){
+                DatabaseTools.addUser(onlinePlayer.getUniqueId());
+                receiverID = DatabaseTools.getUserID(onlinePlayer.getUniqueId());
+            }
+
+            boolean ignored = dslContext.fetchExists(dslContext.select().from(Tables.IGNOREDPLAYERS)
+                    .where(Tables.IGNOREDPLAYERS.USERID.eq(receiverID), Tables.IGNOREDPLAYERS.IGNOREDPLAYERID.eq(userid)));
+
+            //if player isn't ignored, dont send message
+            if (!ignored) {
+                onlinePlayer.sendMessage(replacedText);
+            }
+        }
+
+        Bukkit.getLogger().info(PlainTextComponentSerializer.plainText().serialize(replacedText));
+
+
     }
 }
 

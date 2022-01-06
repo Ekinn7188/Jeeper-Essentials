@@ -105,6 +105,13 @@ commands:
   clearlag:
     description: clears the entities off the server
     permission: jeeper.clearlag
+  ignore:
+    description: ignores a player
+  unignore:
+    description: unignores a player
+  ignorelist:
+    description: shows the players that are ignored
+    aliases: [ignored, ignore-list]
 permissions:
   jeeper.setspawn:
     description: allows use of the setspawn command
