@@ -61,6 +61,10 @@ Player Hasnt Logged In: '<#856f2d><player><#b8a567> has never logged in before!'
 Player Is Offline: '<#856f2d><player><#b8a567> is offline!'
 Correct Usage: '<#b8a567>Usage: <#856f2d><command>'
 
+#clear lag
+Lag Time: '<#b8a567>Some entities will be cleared in <#856f2d><time></#856f2d>!'
+Lag Cleared: '<#856f2d>Entities cleared!'
+
 #tab
 Tablist Header:
   First Line: <#b8a567>&l⛏ &r<#b8a567>[&r<#7c3e12>&lDirtlands&r<#b8a567>] &l■

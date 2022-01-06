@@ -102,6 +102,9 @@ commands:
   tps:
     description: shows the current tps of the server
     permission: jeeper.tps
+  clearlag:
+    description: clears the entities off the server
+    permission: jeeper.clearlag
 permissions:
   jeeper.setspawn:
     description: allows use of the setspawn command
@@ -171,4 +174,7 @@ permissions:
     default: op
   jeeper.tps:
     description: used to view the tps of the server
+    default: op
+  jeeper.clearlag:
+    description: used to clear the entities off the server
     default: op

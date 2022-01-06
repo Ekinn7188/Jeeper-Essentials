@@ -3,6 +3,7 @@ package jeeper.essentials;
 import jeeper.essentials.commands.PluginCommand;
 import jeeper.essentials.commands.tab.PluginTabCompleter;
 import jeeper.essentials.database.SQLite;
+import jeeper.essentials.lag.ClearLag;
 import jeeper.essentials.log.LogColor;
 import jeeper.essentials.log.LogFilter;
 import jeeper.essentials.tabscoreboard.TabMenu;
@@ -40,6 +41,8 @@ public class Main extends JavaPlugin {
 
         runBot();
         TabMenu.updateTabLoop();
+
+        ClearLag.clearLagLoop();
     }
 
     @Override

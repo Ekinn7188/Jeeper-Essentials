@@ -9,6 +9,7 @@ public enum Permission {
     BYPASSCHAT("jeeper.chat.bypass"),
     CHATCOLOR("jeeper.chat.color"),
     CLEARCHAT("jeeper.chat.clear"),
+    CLEARLAG("jeeper.clearlag"),
     COOLDOWN("jeeper.cooldown"),
     DELETEWARP("jeeper.warps.delete"),
     ESSENTIALS("jeeper.essentials"),
