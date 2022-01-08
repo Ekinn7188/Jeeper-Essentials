@@ -102,20 +102,19 @@ public class PunishmentMenuListener implements Listener {
                                     .startsWith(DatabaseTools.stringToLocalDateTime(PlainTextComponentSerializer.plainText()
                                             .serialize(lore.get(3)).substring(7))))
                     ).execute();
-
-            Main.getPlugin().getJDA().getGuilds().forEach(guild -> {
-                EmbedBuilder embedBuilder = new EmbedBuilder();
-                embedBuilder.setTitle(punishmentType + " Removed From History");
-                embedBuilder.addField("Player", player.getName(), true);
-                embedBuilder.addField("Revoked By", e.getWhoClicked().getName(), true);
-                embedBuilder.setColor(Color.BLUE);
-                embedBuilder.setThumbnail("https://minotar.net/helm/" + player.getName() + "/64");
-                try {
+            try {
+                Main.getPlugin().getJDA().getGuilds().forEach(guild -> {
+                    EmbedBuilder embedBuilder = new EmbedBuilder();
+                    embedBuilder.setTitle(punishmentType + " Removed From History");
+                    embedBuilder.addField("Player", player.getName(), true);
+                    embedBuilder.addField("Revoked By", e.getWhoClicked().getName(), true);
+                    embedBuilder.setColor(Color.BLUE);
+                    embedBuilder.setThumbnail("https://minotar.net/helm/" + player.getName() + "/64");
                     Objects.requireNonNull(guild.getTextChannelById(config.get().getLong("Punishment Channel ID"))).sendMessage(" ").setEmbeds(embedBuilder.build()).queue();
-                } catch (NullPointerException exception) {
-                    exception.printStackTrace();
-                }
-            });
+                });
+            } catch (NullPointerException exception) {
+                Bukkit.getLogger().info(LogColor.RED + "The punishment channel or bot has not been set up yet correctly. Check config.yml" + LogColor.RESET);
+            }
 
 
 

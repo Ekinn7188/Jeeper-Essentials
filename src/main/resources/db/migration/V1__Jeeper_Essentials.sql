@@ -34,4 +34,11 @@ CREATE TABLE punishments (
                        PunishmentEnd       DATETIME                      DEFAULT NULL  -- null if permanent ban/warn
 );
 
+CREATE TABLE reports (
+                       ReportID            INTEGER       PRIMARY KEY     AUTOINCREMENT,
+                       ReporterID          INTEGER       NOT NULL        REFERENCES users(UserID),
+                       ReportedID          INTEGER       NOT NULL        REFERENCES users(UserID),
+                       ReportReason        VARCHAR(255)  NOT NULL,
+                       ReportDate          DATETIME      NOT NULL
+);
 

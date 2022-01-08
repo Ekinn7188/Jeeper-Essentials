@@ -25,6 +25,7 @@ public enum Permission {
     SETWARP("jeeper.warps.set"),
     SUDO("jeeper.sudo"),
     TPS("jeeper.tps"),
+    VIEW_REPORT("jeeper.reports.view"),
     WARN("jeeper.warn");
 
     private final String name;

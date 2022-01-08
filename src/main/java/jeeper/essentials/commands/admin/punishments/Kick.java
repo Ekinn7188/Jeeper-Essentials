@@ -77,21 +77,20 @@ public class Kick extends PluginCommand {
                     .execute();
             Bukkit.getLogger().warning(LogColor.RED+player.getName() + " has been kicked by " +
                     (sender.getName().equals("CONSOLE") ? sender.getName().toLowerCase() : sender.getName()) + (reason == null ? "" : " for " + reason)+LogColor.RESET);
-
-            Main.getPlugin().getJDA().getGuilds().forEach(guild -> {
-                EmbedBuilder embedBuilder = new EmbedBuilder();
-                embedBuilder.setTitle("Player kicked");
-                embedBuilder.addField("Player", player.getName(), true);
-                embedBuilder.addField("Punished By", sender instanceof Player ? sender.getName() : "Console", true);
-                embedBuilder.addField("Reason: ", reason == null ? "none" : reason, false);
-                embedBuilder.setColor(Color.ORANGE);
-                embedBuilder.setThumbnail("https://minotar.net/helm/" + player.getName() + "/64");
-                try {
+            try{
+                Main.getPlugin().getJDA().getGuilds().forEach(guild -> {
+                    EmbedBuilder embedBuilder = new EmbedBuilder();
+                    embedBuilder.setTitle("Player kicked");
+                    embedBuilder.addField("Player", player.getName(), true);
+                    embedBuilder.addField("Punished By", sender instanceof Player ? sender.getName() : "Console", true);
+                    embedBuilder.addField("Reason: ", reason == null ? "none" : reason, false);
+                    embedBuilder.setColor(Color.ORANGE);
+                    embedBuilder.setThumbnail("https://minotar.net/helm/" + player.getName() + "/64");
                     Objects.requireNonNull(guild.getTextChannelById(config.get().getLong("Punishment Channel ID"))).sendMessage(" ").setEmbeds(embedBuilder.build()).queue();
-                } catch (NullPointerException e) {
-                    e.printStackTrace();
-                }
-            });
+                });
+            } catch (NullPointerException exception) {
+                Bukkit.getLogger().info(LogColor.RED + "The punishment channel or bot has not been set up yet correctly. Check config.yml" + LogColor.RESET);
+            }
 
         } catch (AssertionError e) {
             sender.sendMessage(MessageTools.parseFromPath(config, "Player Is Offline", Template.template("player", args[0])));

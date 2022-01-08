@@ -3,6 +3,7 @@ Discord Link: https://discord.gg/wpMMgQhV4v
 Discord Message: <#b8a567>Join our discord server! <#856f2d><discord>
 Discord Bot Token: Classified
 Punishment Channel ID: 0
+Report Channel ID: 0
 
 #chat
 Chat Style: <prefix><#b8a567><player></#b8a567><suffix> <#856f2d>»</#856f2d> &7<message>
@@ -54,7 +55,7 @@ Nickname Not In Use: '<#b8a567>There are no players with the nickname <#856f2d><
 Players With Name: '<#b8a567>Players with the nickname <#856f2d><nickname></#856f2d>: <#856f2d><players>'
 
 #commands
-No Command Permission: '<#856f2d>You dont have permission to use this command!'
+No Command Permission: '&cYou dont have permission to use this command!'
 Player Only Command: '<#856f2d>You must be a player to execute this command!'
 Player Doesnt Exist: '<#856f2d><player><#b8a567> doesn''t exist!'
 Player Hasnt Logged In: '<#856f2d><player><#b8a567> has never logged in before!'
@@ -111,6 +112,11 @@ Tps Message: '<#b8a567>Server TPS from last 1m, 5m, 15m: [<#856f2d><1m><#b8a567>
 #back
 Back Message: '<#b8a567>Teleported to previous location!'
 Cant Back: '<#b8a567>Previous location not found'
+
+#report
+Report Message: '<#b8a567>Thanks for the help, we will investigate the problem as soon as possible'
+New Report: '<#b8a567><#856f2d>(#<number>) <reporter></#856f2d> has reported <#856f2d><reported></#856f2d> for <#856f2d><reason>'
+Report Yourself: '<#b8a567>You can''t report yourself!'
 
 #punishments
 Punishment Header: '<#b8a567>[&r<#7c3e12>&lDirtlands&r<#b8a567>]'

@@ -112,6 +112,11 @@ commands:
   ignorelist:
     description: shows the players that are ignored
     aliases: [ignored, ignore-list]
+  report:
+    description: reports a player
+  reports:
+    description: shows the reports
+    aliases: [report-list, view-reports, viewreports, reportlist]
 permissions:
   jeeper.setspawn:
     description: allows use of the setspawn command
@@ -184,4 +189,7 @@ permissions:
     default: op
   jeeper.clearlag:
     description: used to clear the entities off the server
+    default: op
+  jeeper.reports.view:
+    description: used to view reports
     default: op

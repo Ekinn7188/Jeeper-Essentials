@@ -181,7 +181,7 @@ public class PunishmentTools {
                 embedBuilder.setThumbnail("https://minotar.net/helm/" + punishedName + "/64");
                 Objects.requireNonNull(guild.getTextChannelById(config.get().getLong("Punishment Channel ID"))).sendMessage(" ").setEmbeds(embedBuilder.build()).queue();
             });
-        } catch (NullPointerException e) {
+        } catch (NullPointerException exception) {
             Bukkit.getLogger().info(LogColor.RED + "The punishment channel or bot has not been set up yet correctly. Check config.yml" + LogColor.RESET);
         }
 

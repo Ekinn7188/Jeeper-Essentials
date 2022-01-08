@@ -7,6 +7,7 @@ import jeeper.essentials.commands.Permission;
 import jeeper.essentials.commands.PluginCommand;
 import jeeper.essentials.database.DatabaseTools;
 import jeeper.essentials.listeners.punishments.Punishment;
+import jeeper.essentials.tools.GUITools;
 import jeeper.essentials.tools.ItemTools;
 import jeeper.essentials.tools.UUIDTools;
 import jeeper.utils.MessageTools;
@@ -82,22 +83,12 @@ public class PunishmentHistory extends PluginCommand {
 
         Inventory inv = Bukkit.createInventory(viewer, 54, MessageTools.parseText("<dark_red>" + player.getName() + "<red>'s Punishment History"));
 
-        for (int i = 0; i < 9; i++) {
-            inv.setItem(i, ItemTools.createGuiItem(Material.BLACK_STAINED_GLASS_PANE, Component.text(""), 1));
-            inv.setItem(i+45, ItemTools.createGuiItem(Material.BLACK_STAINED_GLASS_PANE, Component.text(""), 1));
-            if (i == 4) {
-                ItemStack playerHead = ItemTools.getHead(player);
-                inv.setItem(4, ItemTools.createGuiItem(playerHead, playerHead.getType(),
-                        MessageTools.parseText("&cPlayer &4<player>", Template.template("player", player.getName())),
-                        1));
-            }
-            if (i*9 <= 45) {
-                inv.setItem(i*9, ItemTools.createGuiItem(Material.BLACK_STAINED_GLASS_PANE, Component.text(""), 1));
-            }
-            if (i!=0 && i*9-1 <= 53) {
-                inv.setItem(i*9-1, ItemTools.createGuiItem(Material.BLACK_STAINED_GLASS_PANE, Component.text(""), 1));
-            }
-        }
+        GUITools.addBorder(inv, Material.BLACK_STAINED_GLASS_PANE);
+
+        ItemStack playerHead = ItemTools.getHead(player);
+        inv.setItem(4, ItemTools.createGuiItem(playerHead, playerHead.getType(),
+                MessageTools.parseText("&cPlayer &4<player>", Template.template("player", player.getName())),
+                1));
 
         for (PunishmentsRecord punishment : history) {
             inv.addItem(makeHistoryItem(player, punishment));
@@ -157,4 +148,6 @@ public class PunishmentHistory extends PluginCommand {
 
         return ItemTools.createGuiItem(material, MessageTools.parseText(lightColor + punishmentType), 1, lore.toArray(new Component[0]));
     }
+
+
 }
