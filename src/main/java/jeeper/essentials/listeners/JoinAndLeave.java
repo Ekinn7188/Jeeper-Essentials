@@ -41,6 +41,13 @@ public class JoinAndLeave implements Listener {
         } else {
             e.joinMessage(MessageTools.parseFromPath(config, "Join Message", Template.template("player", e.getPlayer().displayName())));
         }
+
+        if (e.getPlayer().isOp()) {
+            int rows = dslContext.fetchCount(Tables.REPORTS);
+            if (rows > 0) {
+                e.getPlayer().sendMessage(MessageTools.parseFromPath(config, "Current Reports Join Message", Template.template("number", String.valueOf(rows))));
+            }
+        }
     }
 
     @EventHandler

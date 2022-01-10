@@ -117,6 +117,7 @@ Cant Back: '<#b8a567>Previous location not found'
 Report Message: '<#b8a567>Thanks for the help, we will investigate the problem as soon as possible'
 New Report: '<#b8a567><#856f2d>(#<number>) <reporter></#856f2d> has reported <#856f2d><reported></#856f2d> for <#856f2d><reason>'
 Report Yourself: '<#b8a567>You can''t report yourself!'
+Current Reports Join Message: '<#b8a567>There are <#856f2d><number></#856f2d> uninvestigated reports'
 
 #punishments
 Punishment Header: '<#b8a567>[&r<#7c3e12>&lDirtlands&r<#b8a567>]'
