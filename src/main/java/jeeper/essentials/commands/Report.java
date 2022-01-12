@@ -3,7 +3,6 @@ package jeeper.essentials.commands;
 import essentials.db.Tables;
 import jeeper.essentials.Main;
 import jeeper.essentials.database.DatabaseTools;
-import jeeper.essentials.log.LogColor;
 import jeeper.essentials.tools.UUIDTools;
 import jeeper.utils.MessageTools;
 import jeeper.utils.config.ConfigSetup;
@@ -93,7 +92,7 @@ public class Report extends PluginCommand {
                 }
             }
 
-            Bukkit.getLogger().info(LogColor.YELLOW + "[REPORT] Player " + reported.getName() + " has been reported by " + player.getName() + ". Reason: " + reason + LogColor.RESET);
+            Bukkit.getLogger().info("[REPORT] Player " + reported.getName() + " has been reported by " + player.getName() + ". Reason: " + reason);
 
             try {
                 Main.getPlugin().getJDA().getGuilds().forEach(guild -> {
@@ -107,7 +106,7 @@ public class Report extends PluginCommand {
                     Objects.requireNonNull(guild.getTextChannelById(config.get().getLong("Report Channel ID"))).sendMessage(" ").setEmbeds(embedBuilder.build()).queue();
                 });
             } catch (NullPointerException exception) {
-                Bukkit.getLogger().info(LogColor.RED + "The report channel or bot has not been set up yet correctly. Check config.yml" + LogColor.RESET);
+                Bukkit.getLogger().info("The report channel or bot has not been set up yet correctly. Check config.yml");
             }
 
         } else {

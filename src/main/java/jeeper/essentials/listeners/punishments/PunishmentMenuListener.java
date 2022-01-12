@@ -4,7 +4,6 @@ import essentials.db.Tables;
 import jeeper.essentials.Main;
 import jeeper.essentials.commands.admin.punishments.PunishmentHistory;
 import jeeper.essentials.database.DatabaseTools;
-import jeeper.essentials.log.LogColor;
 import jeeper.essentials.tools.UUIDTools;
 import jeeper.utils.config.ConfigSetup;
 import net.dv8tion.jda.api.EmbedBuilder;
@@ -113,12 +112,12 @@ public class PunishmentMenuListener implements Listener {
                     Objects.requireNonNull(guild.getTextChannelById(config.get().getLong("Punishment Channel ID"))).sendMessage(" ").setEmbeds(embedBuilder.build()).queue();
                 });
             } catch (NullPointerException exception) {
-                Bukkit.getLogger().info(LogColor.RED + "The punishment channel or bot has not been set up yet correctly. Check config.yml" + LogColor.RESET);
+                Bukkit.getLogger().info("The punishment channel or bot has not been set up yet correctly. Check config.yml");
             }
 
 
 
-            Bukkit.getLogger().warning(LogColor.RED + e.getWhoClicked().getName() + " has removed a " + PlainTextComponentSerializer.plainText().serialize(itemName).toLowerCase() + " from " + playerName + "'s punishment history." + LogColor.RESET);
+            Bukkit.getLogger().warning(e.getWhoClicked().getName() + " has removed a " + PlainTextComponentSerializer.plainText().serialize(itemName).toLowerCase() + " from " + playerName + "'s punishment history.");
 
             e.getWhoClicked().openInventory(PunishmentHistory.makeHistoryMenu(player, e.getWhoClicked()));
 

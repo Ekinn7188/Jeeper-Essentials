@@ -3,7 +3,6 @@ package jeeper.essentials.listeners.punishments;
 import essentials.db.Tables;
 import jeeper.essentials.Main;
 import jeeper.essentials.database.DatabaseTools;
-import jeeper.essentials.log.LogColor;
 import jeeper.utils.MessageTools;
 import jeeper.utils.config.ConfigSetup;
 import net.dv8tion.jda.api.EmbedBuilder;
@@ -153,9 +152,9 @@ public class PunishmentTools {
         String punisherName = (punisherID == -1 ? "Console" : Bukkit.getOfflinePlayer(UUID.fromString(punisherUUID)).getName());
         String ipString = (punishment.equals(Punishment.IP_BAN) ? " (" + punishedIP + ")" : "");
         if (reason == null) {
-            Bukkit.getLogger().warning(LogColor.RED + punisherName + " has " + pastTensePunishment + " " + punishedName + ipString + LogColor.RESET);
+            Bukkit.getLogger().warning(punisherName + " has " + pastTensePunishment + " " + punishedName + ipString);
         } else {
-            Bukkit.getLogger().warning(LogColor.RED + punisherName + " has " + pastTensePunishment + " " + punishedName + " for " + reason + ipString + LogColor.RESET);
+            Bukkit.getLogger().warning(punisherName + " has " + pastTensePunishment + " " + punishedName + " for " + reason + ipString);
         }
 
         String currentTimeString = DatabaseTools.localDateTimeToString(currentTime).replaceAll(":\\d\\d\\.\\d\\d\\d", "");
@@ -182,7 +181,7 @@ public class PunishmentTools {
                 Objects.requireNonNull(guild.getTextChannelById(config.get().getLong("Punishment Channel ID"))).sendMessage(" ").setEmbeds(embedBuilder.build()).queue();
             });
         } catch (NullPointerException exception) {
-            Bukkit.getLogger().info(LogColor.RED + "The punishment channel or bot has not been set up yet correctly. Check config.yml" + LogColor.RESET);
+            Bukkit.getLogger().info("The punishment channel or bot has not been set up yet correctly. Check config.yml");
         }
 
 

@@ -4,7 +4,6 @@ import jeeper.essentials.commands.PluginCommand;
 import jeeper.essentials.commands.tab.PluginTabCompleter;
 import jeeper.essentials.database.SQLite;
 import jeeper.essentials.lag.ClearLag;
-import jeeper.essentials.log.LogColor;
 import jeeper.essentials.log.LogFilter;
 import jeeper.essentials.tabscoreboard.TabMenu;
 import jeeper.utils.config.ConfigSetup;
@@ -66,8 +65,7 @@ public class Main extends JavaPlugin {
                     .enableIntents(GatewayIntent.GUILD_MEMBERS)
                     .build().awaitReady();
         } catch (LoginException | InterruptedException e) {
-            e.printStackTrace();
-            Bukkit.getLogger().info(LogColor.RED + "Failed to connect to Discord. Try checking your bot token in config.yml" + LogColor.RESET);
+            Bukkit.getLogger().info("Failed to connect to Discord. Try checking your bot token in config.yml");
         }
 
     }

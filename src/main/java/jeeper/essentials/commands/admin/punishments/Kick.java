@@ -6,7 +6,6 @@ import jeeper.essentials.commands.Permission;
 import jeeper.essentials.commands.PluginCommand;
 import jeeper.essentials.database.DatabaseTools;
 import jeeper.essentials.listeners.punishments.Punishment;
-import jeeper.essentials.log.LogColor;
 import jeeper.utils.MessageTools;
 import jeeper.utils.config.ConfigSetup;
 import net.dv8tion.jda.api.EmbedBuilder;
@@ -75,8 +74,8 @@ public class Kick extends PluginCommand {
                     .set(Tables.PUNISHMENTS.PUNISHMENTSTART, LocalDateTime.now())
                     .set(Tables.PUNISHMENTS.PUNISHMENTEND, LocalDateTime.now())
                     .execute();
-            Bukkit.getLogger().warning(LogColor.RED+player.getName() + " has been kicked by " +
-                    (sender.getName().equals("CONSOLE") ? sender.getName().toLowerCase() : sender.getName()) + (reason == null ? "" : " for " + reason)+LogColor.RESET);
+            Bukkit.getLogger().warning(player.getName() + " has been kicked by " +
+                    (sender.getName().equals("CONSOLE") ? sender.getName().toLowerCase() : sender.getName()) + (reason == null ? "" : " for " + reason));
             try{
                 Main.getPlugin().getJDA().getGuilds().forEach(guild -> {
                     EmbedBuilder embedBuilder = new EmbedBuilder();
@@ -89,7 +88,7 @@ public class Kick extends PluginCommand {
                     Objects.requireNonNull(guild.getTextChannelById(config.get().getLong("Punishment Channel ID"))).sendMessage(" ").setEmbeds(embedBuilder.build()).queue();
                 });
             } catch (NullPointerException exception) {
-                Bukkit.getLogger().info(LogColor.RED + "The punishment channel or bot has not been set up yet correctly. Check config.yml" + LogColor.RESET);
+                Bukkit.getLogger().info("The punishment channel or bot has not been set up yet correctly. Check config.yml");
             }
 
         } catch (AssertionError e) {

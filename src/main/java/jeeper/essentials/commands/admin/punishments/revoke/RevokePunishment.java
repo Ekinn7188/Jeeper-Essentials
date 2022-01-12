@@ -4,7 +4,6 @@ import essentials.db.Tables;
 import jeeper.essentials.Main;
 import jeeper.essentials.database.DatabaseTools;
 import jeeper.essentials.listeners.punishments.Punishment;
-import jeeper.essentials.log.LogColor;
 import jeeper.essentials.tools.UUIDTools;
 import jeeper.utils.MessageTools;
 import jeeper.utils.config.ConfigSetup;
@@ -68,7 +67,7 @@ public class RevokePunishment {
             return;
         }
 
-        Bukkit.getLogger().warning(LogColor.RED+(sender.getName().equals("CONSOLE") ? "Console" : sender.getName()) + " has revoked " + playerName + "'s " + punishment.getPunishment() + " punishment"+LogColor.RESET);
+        Bukkit.getLogger().warning((sender.getName().equals("CONSOLE") ? "Console" : sender.getName()) + " has revoked " + playerName + "'s " + punishment.getPunishment() + " punishment");
 
         punishRecord.forEach(p -> {
             p.setPunishmentend(LocalDateTime.now());
@@ -104,7 +103,7 @@ public class RevokePunishment {
                 Objects.requireNonNull(guild.getTextChannelById(config.get().getLong("Punishment Channel ID"))).sendMessage(" ").setEmbeds(embedBuilder.build()).queue();
             });
         } catch (NullPointerException e) {
-            Bukkit.getLogger().info(LogColor.RED + "The punishment channel or bot has not been set up yet correctly. Check config.yml" + LogColor.RESET);
+            Bukkit.getLogger().info("The punishment channel or bot has not been set up yet correctly. Check config.yml");
         }
     }
 }

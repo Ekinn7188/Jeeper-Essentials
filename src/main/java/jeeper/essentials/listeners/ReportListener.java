@@ -4,7 +4,6 @@ import essentials.db.Tables;
 import essentials.db.tables.records.ReportsRecord;
 import jeeper.essentials.Main;
 import jeeper.essentials.commands.admin.ViewReports;
-import jeeper.essentials.log.LogColor;
 import jeeper.utils.config.ConfigSetup;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.MessageChannel;
@@ -73,25 +72,21 @@ public class ReportListener implements Listener {
                 Main.getPlugin().getJDA().getGuilds().forEach(guild -> {
                     MessageChannel channel = guild.getTextChannelById(config.get().getLong("Report Channel ID"));
 
-                    MessageHistory.getHistoryFromBeginning(Objects.requireNonNull(channel)).queue(message -> {
-                        message.getRetrievedHistory().forEach(msg -> {
-                            msg.getEmbeds().forEach(embed -> {
-                                String title = embed.getTitle();
-                                if (title == null) {
-                                    return;
-                                }
-                                if (title.contains("Report #" + id) && !title.contains("INVESTIGATED")) {
-                                    EmbedBuilder builder = new EmbedBuilder(embed);
-                                    builder.setTitle("Report #" + id + " (INVESTIGATED)");
-                                    builder.setColor(Color.GREEN);
-                                    msg.editMessageEmbeds(builder.build()).queue();
-                                }
-                            });
-                        });
-                    });
+                    MessageHistory.getHistoryFromBeginning(Objects.requireNonNull(channel)).queue(message -> message.getRetrievedHistory().forEach(msg -> msg.getEmbeds().forEach(embed -> {
+                        String title = embed.getTitle();
+                        if (title == null) {
+                            return;
+                        }
+                        if (title.contains("Report #" + id) && !title.contains("INVESTIGATED")) {
+                            EmbedBuilder builder = new EmbedBuilder(embed);
+                            builder.setTitle("Report #" + id + " (INVESTIGATED)");
+                            builder.setColor(Color.GREEN);
+                            msg.editMessageEmbeds(builder.build()).queue();
+                        }
+                    })));
                 });
             } catch (NullPointerException exception) {
-                Bukkit.getLogger().info(LogColor.RED + "The report channel or bot has not been set up yet correctly. Check config.yml" + LogColor.RESET);
+                Bukkit.getLogger().info("The report channel or bot has not been set up yet correctly. Check config.yml");
             }
 
             e.setCurrentItem(new ItemStack(Material.AIR));
