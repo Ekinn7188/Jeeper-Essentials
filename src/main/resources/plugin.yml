@@ -1,6 +1,6 @@
 name: Jeeper-Essentials
 version: 1.0
-api-version: 1.17
+api-version: 1.18
 description: A plugin similar to the well-known Essentials plugin
 depend: [LuckPerms]
 author: Jeeper_

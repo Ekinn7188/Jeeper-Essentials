@@ -17,14 +17,13 @@ import org.jooq.Record1;
 
 import java.awt.*;
 import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Objects;
+import java.util.*;
 
 public class Report extends PluginCommand {
 
     private final ConfigSetup config = Main.getPlugin().config();
     private final DSLContext dslContext = Main.getPlugin().getDslContext();
+    private final HashMap<UUID, Long> cooldown = new HashMap<>();
 
     @Override
     public String getName() {
@@ -38,7 +37,6 @@ public class Report extends PluginCommand {
                 player.sendMessage(MessageTools.parseFromPath(config, "Report Yourself"));
                 return;
             }
-
 
             int reporterID = DatabaseTools.getUserID(player.getUniqueId());
 
@@ -57,6 +55,16 @@ public class Report extends PluginCommand {
             if (reportedID == -1) {
                 DatabaseTools.addUser(reported.getUniqueId());
                 reportedID = DatabaseTools.getUserID(reported.getUniqueId());
+            }
+            if (cooldown.containsKey(player.getUniqueId())) {
+                long secondsLeft = cooldown.get(player.getUniqueId()) + 60000 - System.currentTimeMillis();
+                if (secondsLeft > 0) {
+                    player.sendMessage(MessageTools.parseFromPath(config, "Command Cooldown", Template.template("time", secondsLeft / 1000 + " seconds")));
+                    return;
+                }
+                cooldown.remove(player.getUniqueId());
+            } else {
+                cooldown.put(player.getUniqueId(), System.currentTimeMillis());
             }
 
             String reason = String.join(" ", Arrays.copyOfRange(args, 1, args.length));

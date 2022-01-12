@@ -1,3 +1,24 @@
+#  ############################################################
+#  # +------------------------------------------------------+ #
+#  # |                   Jeep's Essentials                  | #
+#  # +------------------------------------------------------+ #
+#  ############################################################
+#
+#  Developed by: Jeeper_ (Jeeper#6808)
+#
+#  Color Choices:
+#    Hex Code Example: <#FFFFFF>text</#FFFFFF>
+#    Make sure to surround the text with its color and make sure it ends with a /!!
+#
+#    Minecraft Color Code Example: &aI'm typing in red!
+#    This website has all the codes! https://www.digminecraft.com/lists/color_list_pc.php
+#
+#    Extra info on text formatting: https://docs.adventure.kyori.net/minimessage.html#the-components
+#
+#
+#    ******* /essentials reload to reload files *******
+
+
 #discord
 Discord Link: https://discord.gg/wpMMgQhV4v
 Discord Message: <#b8a567>Join our discord server! <#856f2d><discord>
@@ -61,6 +82,7 @@ Player Doesnt Exist: '<#856f2d><player><#b8a567> doesn''t exist!'
 Player Hasnt Logged In: '<#856f2d><player><#b8a567> has never logged in before!'
 Player Is Offline: '<#856f2d><player><#b8a567> is offline!'
 Correct Usage: '<#b8a567>Usage: <#856f2d><command>'
+Command Cooldown: '<#b8a567>You can''t type this command for another <#856f2d><time></#856f2d>!'
 
 #ignore
 Ignore Success: '<#b8a567>You have successfully ignored <#856f2d><player></#856f2d>!'
@@ -121,7 +143,7 @@ Current Reports Join Message: '<#b8a567>There are <#856f2d><number></#856f2d> un
 
 #punishments
 Punishment Header: '<#b8a567>[&r<#7c3e12>&lDirtlands&r<#b8a567>]'
-Ban Broadcast: '<#856f2d><player><#b8a567> &chas been banned for <#856f2d><reason></#856f2d>. (<time>)'
+Ban Broadcast: '<#856f2d><player><#b8a567> was been banned for <#856f2d><reason></#856f2d>. (<time>)'
 Ban No Reason Broadcast: '<#856f2d><player><#b8a567> has been banned. (<time>)'
 IP Ban Broadcast: '<#856f2d><player><#b8a567> has been ip banned for <#856f2d><reason>#b8a567>.'
 IP Ban No Reason Broadcast: '<#856f2d><player><#b8a567> has been ip banned.'

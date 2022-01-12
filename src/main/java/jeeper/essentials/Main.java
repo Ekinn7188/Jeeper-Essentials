@@ -114,28 +114,6 @@ public class Main extends JavaPlugin {
         getConfig().options().copyDefaults();
         saveDefaultConfig();
 
-        String header = """
-                ############################################################
-                # +------------------------------------------------------+ #
-                # |                   Jeep's Essentials                  | #
-                # +------------------------------------------------------+ #
-                ############################################################
-                                
-                Developed by: Jeeper_ (Jeeper#6808)
-                                
-                Color Choices:
-                   Hex Code Example: <#FFFFFF>text</#FFFFFF>
-                   Make sure to surround the text with its color and make sure it ends with a /!!
-                                
-                   Minecraft Color Code Example: &aI'm typing in red!
-                   This website has all the codes! https://www.digminecraft.com/lists/color_list_pc.php
-                            
-                    Extra info on text formatting: https://docs.adventure.kyori.net/minimessage.html#the-components
-                                
-                                
-                ******* /essentials reload to reload files *******
-                """;
-
         /*
 
 
@@ -145,13 +123,12 @@ public class Main extends JavaPlugin {
         */
 
         config = new ConfigSetup("config", "Jeeper-Essentials");
-        config.get().options().header(header);
         config.readDefaults(this, "config.yml");
         config.get().options().copyDefaults(true);
-        config.get().options().copyHeader(true);
+        config.get().options().parseComments(true);
         config.save();
 
-        //if making another file, add it to /dirtlands reload
+        //if making another file, add it to /essentials reload
     }
 
     public DSLContext getDslContext(){
