@@ -2,7 +2,7 @@ package jeeper.essentials.commands;
 
 import jeeper.essentials.Main;
 import jeeper.utils.MessageTools;
-import jeeper.utils.config.ConfigSetup;
+import jeeper.utils.config.Config;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -13,7 +13,7 @@ import java.util.Optional;
 
 public abstract class PluginCommand implements CommandExecutor {
     abstract public String getName();
-    private static final ConfigSetup config = Main.getPlugin().config();
+    private static final Config config = Main.getPlugin().config();
 
     final public Optional<Permission> getPermission() {
         return Optional.ofNullable(getPermissionType());

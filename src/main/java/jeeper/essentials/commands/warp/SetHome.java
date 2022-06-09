@@ -8,15 +8,15 @@ import jeeper.essentials.database.DatabaseTools;
 import jeeper.essentials.tools.NumberAfterPermission;
 import jeeper.utils.LocationParser;
 import jeeper.utils.MessageTools;
-import jeeper.utils.config.ConfigSetup;
-import net.kyori.adventure.text.minimessage.Template;
+import jeeper.utils.config.Config;
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.jooq.DSLContext;
 
 public class SetHome extends PluginCommand {
 
-    private static final ConfigSetup config = Main.getPlugin().config();
+    private static final Config config = Main.getPlugin().config();
     DSLContext dslContext = Main.getPlugin().getDslContext();
 
     @Override
@@ -52,7 +52,7 @@ public class SetHome extends PluginCommand {
             if (record.value1().equals(args[0])) {
                 dslContext.update(Tables.HOMES).set(Tables.HOMES.HOMELOCATION, LocationParser.roundedLocationToString(loc))
                         .where(Tables.HOMES.USERID.eq(userID).and(Tables.HOMES.HOMENAME.eq(record.value1()))).execute();
-                player.sendMessage(MessageTools.parseFromPath(config, "Home Created", Template.template("name", homeName)));
+                player.sendMessage(MessageTools.parseFromPath(config, "Home Created", Placeholder.parsed("name", homeName)));
                 return;
             }
         }
@@ -60,9 +60,9 @@ public class SetHome extends PluginCommand {
         if (homesForUser.execute() < largestSetHomeSize) {
             dslContext.insertInto(Tables.HOMES).columns(Tables.HOMES.USERID, Tables.HOMES.HOMENAME, Tables.HOMES.HOMELOCATION)
                     .values(userID, homeName, LocationParser.roundedLocationToString(loc)).execute();
-            player.sendMessage(MessageTools.parseFromPath(config, "Home Created", Template.template("name", homeName)));
+            player.sendMessage(MessageTools.parseFromPath(config, "Home Created", Placeholder.parsed("name", homeName)));
             return;
         }
-        player.sendMessage(MessageTools.parseFromPath(config, "Too Many Homes", Template.template("number", String.valueOf(largestSetHomeSize))));
+        player.sendMessage(MessageTools.parseFromPath(config, "Too Many Homes", Placeholder.parsed("number", String.valueOf(largestSetHomeSize))));
     }
 }

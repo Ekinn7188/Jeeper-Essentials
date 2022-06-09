@@ -5,15 +5,15 @@ import jeeper.essentials.commands.Permission;
 import jeeper.essentials.commands.PluginCommand;
 import jeeper.essentials.listeners.punishments.Punishment;
 import jeeper.utils.MessageTools;
-import jeeper.utils.config.ConfigSetup;
-import net.kyori.adventure.text.minimessage.Template;
+import jeeper.utils.config.Config;
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.Objects;
 
 public class Mute extends PluginCommand {
-    ConfigSetup config = Main.getPlugin().config();
+    Config config = Main.getPlugin().config();
 
     @Override
     public String getName() {
@@ -33,7 +33,7 @@ public class Mute extends PluginCommand {
     @Override
     public void execute(CommandSender sender, String[] args) {
         if (args.length == 0) {
-            sender.sendMessage(MessageTools.parseFromPath(config, "Correct Usage", Template.template("command", "/mute {player}")));
+            sender.sendMessage(MessageTools.parseFromPath(config, "Correct Usage", Placeholder.parsed("command", "/mute {player}")));
             return;
         }
 
@@ -50,7 +50,7 @@ public class Mute extends PluginCommand {
         if (args.length >= 2) {
             Punishments.consolePunishment(Punishment.MUTE, sender, args);
         } else {
-            sender.sendMessage(MessageTools.parseFromPath(Main.getPlugin().config(), "Correct Usage", Template.template("command", "/mute {player} {time | 0d0h0m} {reason}")));
+            sender.sendMessage(MessageTools.parseFromPath(Main.getPlugin().config(), "Correct Usage", Placeholder.parsed("command", "/mute {player} {time | 0d0h0m} {reason}")));
         }
     }
 }

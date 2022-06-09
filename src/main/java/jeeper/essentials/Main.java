@@ -6,7 +6,8 @@ import jeeper.essentials.database.SQLite;
 import jeeper.essentials.lag.ClearLag;
 import jeeper.essentials.log.LogFilter;
 import jeeper.essentials.tabscoreboard.TabMenu;
-import jeeper.utils.config.ConfigSetup;
+import jeeper.utils.config.Config;
+import jeeper.utils.config.Config;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.requests.GatewayIntent;
@@ -26,7 +27,7 @@ import java.util.Objects;
 
 public class Main extends JavaPlugin {
     private static Main plugin;
-    private ConfigSetup config;
+    private Config config;
     private DSLContext dslContext;
     private JDA jda;
 
@@ -120,7 +121,7 @@ public class Main extends JavaPlugin {
 
         */
 
-        config = new ConfigSetup("config", "Jeeper-Essentials");
+        config = new Config("config", "Jeeper-Essentials");
         config.readDefaults(this, "config.yml");
         config.get().options().copyDefaults(true);
         config.get().options().parseComments(true);
@@ -132,7 +133,7 @@ public class Main extends JavaPlugin {
     public DSLContext getDslContext(){
         return dslContext;
     }
-    public ConfigSetup config() {
+    public Config config() {
         return config;
     }
     public static Main getPlugin() {

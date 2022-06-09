@@ -8,10 +8,10 @@ import jeeper.essentials.commands.admin.MuteChat;
 import jeeper.essentials.database.DatabaseTools;
 import jeeper.essentials.listeners.punishments.PunishmentTools;
 import jeeper.utils.MessageTools;
-import jeeper.utils.config.ConfigSetup;
+import jeeper.utils.config.Config;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
-import net.kyori.adventure.text.minimessage.Template;
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import net.luckperms.api.LuckPermsProvider;
 import net.luckperms.api.model.user.User;
@@ -28,7 +28,7 @@ import java.util.UUID;
 public class Chat implements Listener {
 
     DSLContext dslContext = Main.getPlugin().getDslContext();
-    private static final ConfigSetup config = Main.getPlugin().config();
+    private static final Config config = Main.getPlugin().config();
 
     private static final HashMap<UUID, Cooldown> cooldown = new HashMap<>();
 
@@ -65,7 +65,7 @@ public class Chat implements Listener {
                 Cooldown cooldownInfo = cooldown.get(player.getUniqueId());
                 long secondsLeft = cooldownInfo.getCooldown() + 2500 - System.currentTimeMillis();
                 if (secondsLeft > 0) {
-                    player.sendMessage(MessageTools.parseFromPath(config, "Sending Messages Too Fast", Template.template("message", messageString)));
+                    player.sendMessage(MessageTools.parseFromPath(config, "Sending Messages Too Fast", Placeholder.parsed("message", messageString)));
                     return;
                 }
             }
@@ -91,9 +91,9 @@ public class Chat implements Listener {
         String suffix = user.getCachedData().getMetaData().getSuffix();
 
         //compile everything into a message to send
-        Component replacedText = MessageTools.parseFromPath(config, "Chat Style", Template.template("prefix", MessageTools.parseText(prefix == null ? "" : prefix + " ")),
-                Template.template("player", e.getPlayer().displayName()), Template.template("suffix", MessageTools.parseText(suffix == null ? "" : " " + suffix)),
-                Template.template("message", message));
+        Component replacedText = MessageTools.parseFromPath(config, "Chat Style", Placeholder.component("prefix", MessageTools.parseText(prefix == null ? "" : prefix + " ")),
+                Placeholder.component("player", e.getPlayer().displayName()), Placeholder.component("suffix", MessageTools.parseText(suffix == null ? "" : " " + suffix)),
+                Placeholder.component("message", message));
 
 
         //get any urls and make them clickable

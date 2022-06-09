@@ -2,8 +2,8 @@ package jeeper.essentials.lag;
 
 import jeeper.essentials.Main;
 import jeeper.utils.MessageTools;
-import jeeper.utils.config.ConfigSetup;
-import net.kyori.adventure.text.minimessage.Template;
+import jeeper.utils.config.Config;
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -13,7 +13,7 @@ import java.util.List;
 
 public class ClearLag {
 
-    private static final ConfigSetup config = Main.getPlugin().config();
+    private static final Config config = Main.getPlugin().config();
 
     public static void clearLag() {
 
@@ -51,15 +51,15 @@ public class ClearLag {
         //19 minutes, then 1 minute warning will run inside the task, making it a total of 20 minutes
         Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getPlugin(), () -> {
             //1 minute message
-            Bukkit.broadcast(MessageTools.parseFromPath(config, "Lag Time", Template.template("time", "1 minute")));
+            Bukkit.broadcast(MessageTools.parseFromPath(config, "Lag Time", Placeholder.parsed("time", "1 minute")));
 
             //30 second message, wait 30 seconds
             Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), () -> {
-                Bukkit.broadcast(MessageTools.parseFromPath(config, "Lag Time", Template.template("time", "30 seconds")));
+                Bukkit.broadcast(MessageTools.parseFromPath(config, "Lag Time", Placeholder.parsed("time", "30 seconds")));
 
                 //10 second message, wait 20 seconds
                 Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), () -> {
-                    Bukkit.broadcast(MessageTools.parseFromPath(config, "Lag Time", Template.template("time", "10 seconds")));
+                    Bukkit.broadcast(MessageTools.parseFromPath(config, "Lag Time", Placeholder.parsed("time", "10 seconds")));
                     //now clear
                     clearLag();
                 }, 400L);

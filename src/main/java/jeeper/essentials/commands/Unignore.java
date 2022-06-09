@@ -3,14 +3,14 @@ package jeeper.essentials.commands;
 import essentials.db.Tables;
 import jeeper.essentials.Main;
 import jeeper.utils.MessageTools;
-import jeeper.utils.config.ConfigSetup;
-import net.kyori.adventure.text.minimessage.Template;
+import jeeper.utils.config.Config;
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.entity.Player;
 import org.jooq.DSLContext;
 
 public class Unignore extends PluginCommand {
 
-    private static final ConfigSetup config = Main.getPlugin().config();
+    private static final Config config = Main.getPlugin().config();
     private static final DSLContext dslContext = Main.getPlugin().getDslContext();
 
     @Override
@@ -34,12 +34,12 @@ public class Unignore extends PluginCommand {
                             .and(Tables.IGNOREDPLAYERS.USERID.eq(userID))).execute();
 
             if (deletedColumns > 0) {
-                player.sendMessage(MessageTools.parseFromPath(config, "Unignored", Template.template("player", args[0])));
+                player.sendMessage(MessageTools.parseFromPath(config, "Unignored", Placeholder.parsed("player", args[0])));
             } else {
-                player.sendMessage(MessageTools.parseFromPath(config, "Player Not Ignored", Template.template("player", args[0])));
+                player.sendMessage(MessageTools.parseFromPath(config, "Player Not Ignored", Placeholder.parsed("player", args[0])));
             }
         } else {
-            player.sendMessage(MessageTools.parseFromPath(config, "Correct Usage", Template.template("command", "/unignore <player>")));
+            player.sendMessage(MessageTools.parseFromPath(config, "Correct Usage", Placeholder.parsed("command", "/unignore <player>")));
         }
     }
 }

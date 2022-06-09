@@ -6,13 +6,13 @@ import jeeper.essentials.commands.PluginCommand;
 import jeeper.essentials.database.DatabaseTools;
 import jeeper.essentials.tools.Countdown;
 import jeeper.utils.MessageTools;
-import jeeper.utils.config.ConfigSetup;
-import net.kyori.adventure.text.minimessage.Template;
+import jeeper.utils.config.Config;
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.entity.Player;
 import org.jooq.DSLContext;
 
 public class Warp extends PluginCommand {
-    private static final ConfigSetup config = Main.getPlugin().config();
+    private static final Config config = Main.getPlugin().config();
     DSLContext dslContext = Main.getPlugin().getDslContext();
 
     @Override
@@ -29,7 +29,7 @@ public class Warp extends PluginCommand {
             String warpPermission = DatabaseTools.firstString(dslContext.select(Tables.WARPS.WARPPERMISSION).from(Tables.WARPS)
                     .where(Tables.WARPS.WARPNAME.equalIgnoreCase(args[0])).fetchAny());
             if (warpLocation == null || (warpPermission != null && !player.hasPermission(warpPermission))) {
-                player.sendMessage(MessageTools.parseFromPath(config, "Warp Doesnt Exist", Template.template("name", args[0])));
+                player.sendMessage(MessageTools.parseFromPath(config, "Warp Doesnt Exist", Placeholder.parsed("name", args[0])));
                 return;
             }
             Countdown.startCountdown(player, warpLocation, args[0], Main.getPlugin());

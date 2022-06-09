@@ -2,9 +2,9 @@ package jeeper.essentials.tabscoreboard;
 
 import jeeper.essentials.Main;
 import jeeper.utils.MessageTools;
-import jeeper.utils.config.ConfigSetup;
+import jeeper.utils.config.Config;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.minimessage.Template;
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import net.luckperms.api.LuckPermsProvider;
 import net.luckperms.api.model.user.User;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TabMenu {
-    static ConfigSetup config = Main.getPlugin().config();
+    static Config config = Main.getPlugin().config();
 
     public static void updateTabLoop() {
         Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.getPlugin(), TabMenu::updateTab, 0L, 600L);
@@ -42,12 +42,12 @@ public class TabMenu {
 
             if (Component.text(nameAsPlainText).equals(player.displayName())){
                 player.playerListName(MessageTools.parseFromPath(config, "Player Tab Style",
-                        Template.template("prefix", prefix == null ? Component.empty() : MessageTools.parseText(prefix)),
-                        Template.template("player", nameAsPlainText)));
+                        Placeholder.component("prefix", prefix == null ? Component.empty() : MessageTools.parseText(prefix)),
+                        Placeholder.parsed("player", nameAsPlainText)));
             } else {
                 player.playerListName(MessageTools.parseFromPath(config, "Player Tab Style",
-                        Template.template("prefix", prefix == null ? Component.empty() : MessageTools.parseText(prefix)),
-                        Template.template("player", player.displayName())));
+                        Placeholder.component("prefix", prefix == null ? Component.empty() : MessageTools.parseText(prefix)),
+                        Placeholder.component("player", player.displayName())));
             }
 
             //add prefix if one exists, then append the player name with some spaces for the network bars
@@ -77,7 +77,7 @@ public class TabMenu {
         }
 
         return MessageTools.parseText(builder.toString(),
-                Template.template("onlineplayers", String.valueOf(Bukkit.getOnlinePlayers().size())),
-                Template.template("maxplayers", String.valueOf(Bukkit.getServer().getMaxPlayers())));
+                Placeholder.parsed("onlineplayers", String.valueOf(Bukkit.getOnlinePlayers().size())),
+                Placeholder.parsed("maxplayers", String.valueOf(Bukkit.getServer().getMaxPlayers())));
     }
 }

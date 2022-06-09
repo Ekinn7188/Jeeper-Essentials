@@ -11,9 +11,9 @@ import jeeper.essentials.tools.GUITools;
 import jeeper.essentials.tools.ItemTools;
 import jeeper.essentials.tools.UUIDTools;
 import jeeper.utils.MessageTools;
-import jeeper.utils.config.ConfigSetup;
+import jeeper.utils.config.Config;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.minimessage.Template;
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
@@ -33,7 +33,7 @@ import java.util.UUID;
 
 public class PunishmentHistory extends PluginCommand {
     static DSLContext dslContext = Main.getPlugin().getDslContext();
-    static ConfigSetup config = Main.getPlugin().config();
+    static Config config = Main.getPlugin().config();
 
     @Override
     public String getName() {
@@ -53,7 +53,7 @@ public class PunishmentHistory extends PluginCommand {
     @Override
     public void execute(CommandSender sender, String[] args) {
         if (args.length == 0) {
-            sender.sendMessage(MessageTools.parseFromPath(config, "Correct Usage", Template.template("command", "/history {player}")));
+            sender.sendMessage(MessageTools.parseFromPath(config, "Correct Usage", Placeholder.parsed("command", "/history {player}")));
             return;
         }
 
@@ -87,7 +87,7 @@ public class PunishmentHistory extends PluginCommand {
 
         ItemStack playerHead = ItemTools.getHead(player);
         inv.setItem(4, ItemTools.createGuiItem(playerHead, playerHead.getType(),
-                MessageTools.parseText("&cPlayer &4<player>", Template.template("player", player.getName())),
+                MessageTools.parseText("&cPlayer &4<player>", Placeholder.parsed("player", player.getName())),
                 1));
 
         for (PunishmentsRecord punishment : history) {
@@ -129,17 +129,17 @@ public class PunishmentHistory extends PluginCommand {
 
         List<Component> lore = new ArrayList<>();
         lore.add(MessageTools.parseText(" "));
-        lore.add(MessageTools.parseText(lightColor + "Reason: "+ darkColor +"<reason>", Template.template("reason", reason == null ? "None" : reason)));
-        lore.add(MessageTools.parseText(lightColor + "Punished By: " + darkColor +"<punisher>", Template.template("punisher", punisherName)));
-        lore.add(MessageTools.parseText(lightColor + "Start: " + darkColor +"<start>", Template.template("start", start)));
+        lore.add(MessageTools.parseText(lightColor + "Reason: "+ darkColor +"<reason>", Placeholder.parsed("reason", reason == null ? "None" : reason)));
+        lore.add(MessageTools.parseText(lightColor + "Punished By: " + darkColor +"<punisher>", Placeholder.parsed("punisher", punisherName)));
+        lore.add(MessageTools.parseText(lightColor + "Start: " + darkColor +"<start>", Placeholder.parsed("start", start)));
         if (!punishment.getPunishmenttype().equals(Punishment.WARN.getPunishment()) && !punishment.getPunishmenttype().equals(Punishment.KICK.getPunishment())) {
             if (end == null) {
-                lore.add(MessageTools.parseText( "<red>End: <end>", Template.template("end", "Permanent")));
+                lore.add(MessageTools.parseText( "<red>End: <end>", Placeholder.parsed("end", "Permanent")));
             } else {
                 if (punishment.getPunishmentend().isAfter(LocalDateTime.now())) {
-                    lore.add(MessageTools.parseText("<red>End: <end>", Template.template("end", end)));
+                    lore.add(MessageTools.parseText("<red>End: <end>", Placeholder.parsed("end", end)));
                 } else {
-                    lore.add(MessageTools.parseText("<green>End: <end>", Template.template("end", end)));
+                    lore.add(MessageTools.parseText("<green>End: <end>", Placeholder.parsed("end", end)));
                 }
             }
         }

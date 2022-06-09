@@ -6,7 +6,7 @@ import jeeper.essentials.commands.PluginCommand;
 import jeeper.essentials.listeners.punishments.Punishment;
 import jeeper.essentials.listeners.punishments.PunishmentTools;
 import jeeper.utils.MessageTools;
-import net.kyori.adventure.text.minimessage.Template;
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -39,13 +39,13 @@ public class IpBan extends PluginCommand {
         Player target = Main.getPlugin().getServer().getPlayer(args[0]);
         if (target == null) {
             sender.sendMessage(MessageTools.parseFromPath(Main.getPlugin().config(), "Player Is Offline",
-                    Template.template("player", args[0])));
+                    Placeholder.parsed("player", args[0])));
             return;
         }
 
         var address = target.getAddress();
         if (address == null) {
-            sender.sendMessage(MessageTools.parseFromPath(Main.getPlugin().config(), "Issue Getting IP", Template.template("player", args[0])));
+            sender.sendMessage(MessageTools.parseFromPath(Main.getPlugin().config(), "Issue Getting IP", Placeholder.parsed("player", args[0])));
             return;
         }
 

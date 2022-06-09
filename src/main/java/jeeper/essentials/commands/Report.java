@@ -5,9 +5,9 @@ import jeeper.essentials.Main;
 import jeeper.essentials.database.DatabaseTools;
 import jeeper.essentials.tools.UUIDTools;
 import jeeper.utils.MessageTools;
-import jeeper.utils.config.ConfigSetup;
+import jeeper.utils.config.Config;
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.kyori.adventure.text.minimessage.Template;
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
@@ -20,7 +20,7 @@ import java.util.*;
 
 public class Report extends PluginCommand {
 
-    private final ConfigSetup config = Main.getPlugin().config();
+    private final Config config = Main.getPlugin().config();
     private final DSLContext dslContext = Main.getPlugin().getDslContext();
     private final HashMap<UUID, Long> cooldown = new HashMap<>();
 
@@ -58,7 +58,7 @@ public class Report extends PluginCommand {
             if (cooldown.containsKey(player.getUniqueId())) {
                 long secondsLeft = cooldown.get(player.getUniqueId()) + 60000 - System.currentTimeMillis();
                 if (secondsLeft > 0) {
-                    player.sendMessage(MessageTools.parseFromPath(config, "Command Cooldown", Template.template("time", secondsLeft / 1000 + " seconds")));
+                    player.sendMessage(MessageTools.parseFromPath(config, "Command Cooldown", Placeholder.parsed("time", secondsLeft / 1000 + " seconds")));
                     return;
                 }
                 cooldown.remove(player.getUniqueId());
@@ -85,10 +85,10 @@ public class Report extends PluginCommand {
             for (Player p : players) {
                 if (p.hasPermission("jeeper.reports.view") || p.isOp()) {
                     p.sendMessage(MessageTools.parseFromPath(config, "New Report",
-                            Template.template("number", reportNumberAsString),
-                            Template.template("reporter", player.getName()),
-                            Template.template("reported", args[0]),
-                            Template.template("reason", reason)));
+                            Placeholder.parsed("number", reportNumberAsString),
+                            Placeholder.parsed("reporter", player.getName()),
+                            Placeholder.parsed("reported", args[0]),
+                            Placeholder.parsed("reason", reason)));
                 }
             }
 
@@ -110,7 +110,7 @@ public class Report extends PluginCommand {
             }
 
         } else {
-            player.sendMessage(MessageTools.parseFromPath(config, "Correct Usage", Template.template("command", "/report {player} {reason}")));
+            player.sendMessage(MessageTools.parseFromPath(config, "Correct Usage", Placeholder.parsed("command", "/report {player} {reason}")));
         }
     }
 }

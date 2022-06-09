@@ -3,9 +3,9 @@ package jeeper.essentials.commands;
 import essentials.db.Tables;
 import jeeper.essentials.Main;
 import jeeper.utils.MessageTools;
-import jeeper.utils.config.ConfigSetup;
+import jeeper.utils.config.Config;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.minimessage.Template;
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
@@ -13,7 +13,7 @@ import org.bukkit.command.CommandSender;
 import java.util.*;
 
 public class RealName extends ChatColor {
-    private final ConfigSetup config = Main.getPlugin().config();
+    private final Config config = Main.getPlugin().config();
 
     @Override
     public String getName() {
@@ -34,7 +34,7 @@ public class RealName extends ChatColor {
                 .from(Tables.USERS).fetch().intoMap(Tables.USERS.USERUUID, Tables.USERS.USERNICKNAME);
 
         if (results.size() == 0) {
-            sender.sendMessage(MessageTools.parseFromPath(config, "Nickname Not In Use", Template.template("nickname", nickname)));
+            sender.sendMessage(MessageTools.parseFromPath(config, "Nickname Not In Use", Placeholder.parsed("nickname", nickname)));
             return;
         }
 
@@ -63,14 +63,14 @@ public class RealName extends ChatColor {
             }
 
             sender.sendMessage(MessageTools.parseFromPath(config, "Players With Name",
-                    Template.template("nickname", nickname),
-                    Template.template("players", seperatedNames)));
+                    Placeholder.parsed("nickname", nickname),
+                    Placeholder.component("players", seperatedNames)));
             return;
         }
 
         sender.sendMessage(MessageTools.parseFromPath(config, "Players With Name",
-                Template.template("nickname", nickname),
-                Template.template("player", names.get(0))));
+                Placeholder.parsed("nickname", nickname),
+                Placeholder.component("player", names.get(0))));
 
 
 

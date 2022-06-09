@@ -6,8 +6,8 @@ import jeeper.essentials.commands.AFK;
 import jeeper.essentials.database.DatabaseTools;
 import jeeper.essentials.tabscoreboard.TabMenu;
 import jeeper.utils.MessageTools;
-import jeeper.utils.config.ConfigSetup;
-import net.kyori.adventure.text.minimessage.Template;
+import jeeper.utils.config.Config;
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -18,7 +18,7 @@ import java.util.Objects;
 
 public class AfkMove implements Listener {
 
-    ConfigSetup config = Main.getPlugin().config();
+    Config config = Main.getPlugin().config();
 
     @EventHandler
     public void onMove(PlayerMoveEvent e) {
@@ -30,7 +30,7 @@ public class AfkMove implements Listener {
                     .fetch().getValue(0, Tables.USERS.USERNICKNAME);
             player.displayName(MessageTools.parseText(Objects.requireNonNullElseGet(nickname, player::getName)));
 
-            Bukkit.broadcast(MessageTools.parseFromPath(config, "Player Not AFK", Template.template("player", player.displayName())));
+            Bukkit.broadcast(MessageTools.parseFromPath(config, "Player Not AFK", Placeholder.component("player", player.displayName())));
             AFK.isAFK.put(player.getUniqueId(), false);
 
             TabMenu.updateTab();

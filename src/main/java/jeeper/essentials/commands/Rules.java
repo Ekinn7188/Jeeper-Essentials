@@ -2,11 +2,11 @@ package jeeper.essentials.commands;
 
 import jeeper.essentials.Main;
 import jeeper.utils.MessageTools;
-import jeeper.utils.config.ConfigSetup;
+import jeeper.utils.config.Config;
 import org.bukkit.command.CommandSender;
 
 public class Rules extends PluginCommand {
-    ConfigSetup config = Main.getPlugin().config();
+    Config config = Main.getPlugin().config();
 
     @Override
     public String getName() {

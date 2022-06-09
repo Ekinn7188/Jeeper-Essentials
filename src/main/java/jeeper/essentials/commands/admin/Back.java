@@ -5,12 +5,12 @@ import jeeper.essentials.commands.Permission;
 import jeeper.essentials.commands.PluginCommand;
 import jeeper.essentials.listeners.TeleportBack;
 import jeeper.utils.MessageTools;
-import jeeper.utils.config.ConfigSetup;
+import jeeper.utils.config.Config;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerTeleportEvent;
 
 public class Back extends PluginCommand {
-    public static final ConfigSetup config = Main.getPlugin().config();
+    public static final Config config = Main.getPlugin().config();
 
     @Override
     public String getName() {

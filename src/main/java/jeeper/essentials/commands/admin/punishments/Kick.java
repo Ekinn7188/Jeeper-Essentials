@@ -7,10 +7,10 @@ import jeeper.essentials.commands.PluginCommand;
 import jeeper.essentials.database.DatabaseTools;
 import jeeper.essentials.listeners.punishments.Punishment;
 import jeeper.utils.MessageTools;
-import jeeper.utils.config.ConfigSetup;
+import jeeper.utils.config.Config;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.minimessage.Template;
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -22,7 +22,7 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public class Kick extends PluginCommand {
-    ConfigSetup config = Main.getPlugin().config();
+    Config config = Main.getPlugin().config();
     DSLContext dslContext = Main.getPlugin().getDslContext();
 
     @Override
@@ -43,7 +43,7 @@ public class Kick extends PluginCommand {
     @Override
     public void execute(CommandSender sender, String[] args) {
         if (args.length == 0) {
-            sender.sendMessage(MessageTools.parseFromPath(config, "Correct Usage", Template.template("command", "/kick {player} {reason (optional)}")));
+            sender.sendMessage(MessageTools.parseFromPath(config, "Correct Usage", Placeholder.parsed("command", "/kick {player} {reason (optional)}")));
             return;
         }
 
@@ -61,7 +61,7 @@ public class Kick extends PluginCommand {
                 reason = String.join(" ", Arrays.copyOfRange(args, 1, args.length));
 
                 player.kick(MessageTools.parseFromPath(config, "Punishment Header").append(Component.newline())
-                        .append(MessageTools.parseFromPath(config, "Kick With Reason", Template.template("reason", reason))));
+                        .append(MessageTools.parseFromPath(config, "Kick With Reason", Placeholder.parsed("reason", reason))));
             }
 
             int punisherID = DatabaseTools.getUserID(sender instanceof Player ? String.valueOf(((Player) sender).getUniqueId()) : "Console");
@@ -92,7 +92,7 @@ public class Kick extends PluginCommand {
             }
 
         } catch (AssertionError e) {
-            sender.sendMessage(MessageTools.parseFromPath(config, "Player Is Offline", Template.template("player", args[0])));
+            sender.sendMessage(MessageTools.parseFromPath(config, "Player Is Offline", Placeholder.parsed("player", args[0])));
         }
 
 

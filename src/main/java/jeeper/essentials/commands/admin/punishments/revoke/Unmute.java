@@ -5,7 +5,7 @@ import jeeper.essentials.commands.Permission;
 import jeeper.essentials.commands.PluginCommand;
 import jeeper.essentials.listeners.punishments.Punishment;
 import jeeper.utils.MessageTools;
-import net.kyori.adventure.text.minimessage.Template;
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.command.CommandSender;
 
 public class Unmute extends PluginCommand {
@@ -28,7 +28,7 @@ public class Unmute extends PluginCommand {
     @Override
     public void execute(CommandSender sender, String[] args) {
         if (args.length == 0) {
-            sender.sendMessage(MessageTools.parseFromPath(Main.getPlugin().config(), "Correct Usage", Template.template("command", "/unmute {player}")));
+            sender.sendMessage(MessageTools.parseFromPath(Main.getPlugin().config(), "Correct Usage", Placeholder.parsed("command", "/unmute {player}")));
             return;
         }
         RevokePunishment.revoke(Punishment.MUTE, sender, args[0]);

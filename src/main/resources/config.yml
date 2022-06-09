@@ -96,6 +96,7 @@ Lag Time: '<#b8a567>Some entities will be cleared in <#856f2d><time></#856f2d>!'
 Lag Cleared: '<#856f2d>Entities cleared!'
 
 #tab
+#tab
 Tablist Header:
   First Line: <#b8a567>&l⛏ &r<#b8a567>[&r<#7c3e12>&lDirtlands&r<#b8a567>] &l■
   Second Line: ''
@@ -143,9 +144,9 @@ Current Reports Join Message: '<#b8a567>There are <#856f2d><number></#856f2d> un
 
 #punishments
 Punishment Header: '<#b8a567>[&r<#7c3e12>&lDirtlands&r<#b8a567>]'
-Ban Broadcast: '<#856f2d><player><#b8a567> was been banned for <#856f2d><reason></#856f2d>. (<time>)'
+Ban Broadcast: '<#856f2d><player><#b8a567> has been banned for <#856f2d><reason></#856f2d>. (<time>)'
 Ban No Reason Broadcast: '<#856f2d><player><#b8a567> has been banned. (<time>)'
-IP Ban Broadcast: '<#856f2d><player><#b8a567> has been ip banned for <#856f2d><reason>#b8a567>.'
+IP Ban Broadcast: '<#856f2d><player><#b8a567> has been ip banned for <#856f2d><reason><#b8a567>.'
 IP Ban No Reason Broadcast: '<#856f2d><player><#b8a567> has been ip banned.'
 Unban Not Banned: '<#856f2d><player><#b8a567> is not banned.'
 Player Unbanned: '<#856f2d><player><#b8a567> has been <#856f2d>unbanned</#856f2d>.'
@@ -156,10 +157,10 @@ Player Un IP Banned: '<#856f2d><player><#b8a567> has had their <#856f2d>ip unban
 Issue Getting IP: '<#856f2d>There was an issue getting <#856f2d><player></#856f2d>''s IP address.'
 Player Warned: '<#856f2d><player><#b8a567> has been <#856f2d>warned</#856f2d>.'
 Warn Message No Reason: |-
-  <#d1c59f>You have been warned. (Offence <#b8a567>#<offence></#b8a567>).
+  <#d1c59f>You have been warned. (Offense <#b8a567>#<offense></#b8a567>).
   On your <#b8a567>3rd</#b8a567> warning, you will be banned.
 Warn Message: |-
-  <#d1c59f>You have been warned for <#b8a567><reason></#b8a567>. (Offence <#b8a567>#<offence></#b8a567>).
+  <#d1c59f>You have been warned for <#b8a567><reason></#b8a567>. (Offence <#b8a567>#<offense></#b8a567>).
   On your <#b8a567>3rd</#b8a567> warning, you will be banned.
 Ban Message: |
   <#b8a567>You have been banned.

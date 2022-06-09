@@ -6,9 +6,9 @@ import jeeper.essentials.database.DatabaseTools;
 import jeeper.essentials.listeners.punishments.Punishment;
 import jeeper.essentials.tools.UUIDTools;
 import jeeper.utils.MessageTools;
-import jeeper.utils.config.ConfigSetup;
+import jeeper.utils.config.Config;
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.kyori.adventure.text.minimessage.Template;
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
@@ -23,7 +23,7 @@ import java.util.Objects;
 public class RevokePunishment {
 
     static DSLContext dslContext = Main.getPlugin().getDslContext();
-    static ConfigSetup config = Main.getPlugin().config();
+    static Config config = Main.getPlugin().config();
 
     /**
      * Revokes a punishment
@@ -34,7 +34,7 @@ public class RevokePunishment {
     public static void revoke(Punishment punishment, CommandSender sender, String playerName) {
         OfflinePlayer player = UUIDTools.checkNameAndUUID(sender, playerName);
         if (player == null) {
-            sender.sendMessage(MessageTools.parseFromPath(config, "Player Doesnt Exist", Template.template("player", playerName)));
+            sender.sendMessage(MessageTools.parseFromPath(config, "Player Doesnt Exist", Placeholder.parsed("player", playerName)));
             return;
         }
 
@@ -58,11 +58,11 @@ public class RevokePunishment {
 
         if (punishRecord.size() == 0) {
             if (punishment.equals(Punishment.BAN)) {
-                sender.sendMessage(MessageTools.parseFromPath(config, "Unban Not Banned", Template.template("player", playerName)));
+                sender.sendMessage(MessageTools.parseFromPath(config, "Unban Not Banned", Placeholder.parsed("player", playerName)));
             } else if (punishment.equals(Punishment.MUTE)) {
-                sender.sendMessage(MessageTools.parseFromPath(config, "Unmute Not Muted", Template.template("player", playerName)));
+                sender.sendMessage(MessageTools.parseFromPath(config, "Unmute Not Muted", Placeholder.parsed("player", playerName)));
             } else if (punishment.equals(Punishment.IP_BAN)) {
-                sender.sendMessage(MessageTools.parseFromPath(config, "Player Not IP Banned", Template.template("player", playerName)));
+                sender.sendMessage(MessageTools.parseFromPath(config, "Player Not IP Banned", Placeholder.parsed("player", playerName)));
             }
             return;
         }
@@ -75,11 +75,11 @@ public class RevokePunishment {
         });
 
         if (punishment.equals(Punishment.BAN)) {
-            sender.sendMessage(MessageTools.parseFromPath(config, "Player Unbanned", Template.template("player", playerName)));
+            sender.sendMessage(MessageTools.parseFromPath(config, "Player Unbanned", Placeholder.parsed("player", playerName)));
         } else if (punishment.equals(Punishment.IP_BAN)) {
-            sender.sendMessage(MessageTools.parseFromPath(config, "Player Un IP Banned", Template.template("player", playerName)));
+            sender.sendMessage(MessageTools.parseFromPath(config, "Player Un IP Banned", Placeholder.parsed("player", playerName)));
         }else {
-            sender.sendMessage(MessageTools.parseFromPath(config, "Player Unmuted", Template.template("player", playerName)));
+            sender.sendMessage(MessageTools.parseFromPath(config, "Player Unmuted", Placeholder.parsed("player", playerName)));
         }
 
         //a switch to get all string values of punishments

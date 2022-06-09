@@ -5,8 +5,8 @@ import jeeper.essentials.Main;
 import jeeper.essentials.database.DatabaseTools;
 import jeeper.essentials.tabscoreboard.TabMenu;
 import jeeper.utils.MessageTools;
-import jeeper.utils.config.ConfigSetup;
-import net.kyori.adventure.text.minimessage.Template;
+import jeeper.utils.config.Config;
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.entity.Player;
 import org.jooq.DSLContext;
@@ -15,7 +15,7 @@ import javax.annotation.Nullable;
 import java.util.UUID;
 
 public class Nickname extends PluginCommand {
-    private static final ConfigSetup config = Main.getPlugin().config();
+    private static final Config config = Main.getPlugin().config();
     static DSLContext dslContext = Main.getPlugin().getDslContext();
 
     @Override
@@ -34,7 +34,7 @@ public class Nickname extends PluginCommand {
             if (args[0].equals("reset")){
                 player.displayName(MessageTools.parseText(player.getName()));
                 changeNickname(null, player.getUniqueId());
-                player.sendMessage(MessageTools.parseFromPath(config, "Nickname Change", Template.template("name", player.getName())));
+                player.sendMessage(MessageTools.parseFromPath(config, "Nickname Change", Placeholder.parsed("name", player.getName())));
                 return;
             }
             if (PlainTextComponentSerializer.plainText().serialize(MessageTools.parseText(args[0])).equals("")) {
@@ -45,7 +45,7 @@ public class Nickname extends PluginCommand {
             String nickname = String.join(" ", args);
             player.displayName(MessageTools.parseText(nickname));
             changeNickname(nickname, player.getUniqueId());
-            player.sendMessage(MessageTools.parseFromPath(config,"Nickname Change", Template.template("name", MessageTools.parseText(nickname))));
+            player.sendMessage(MessageTools.parseFromPath(config,"Nickname Change", Placeholder.component("name", MessageTools.parseText(nickname))));
         }
     }
 

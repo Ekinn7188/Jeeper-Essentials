@@ -7,13 +7,13 @@ import jeeper.essentials.commands.PluginCommand;
 import jeeper.essentials.database.DatabaseTools;
 import jeeper.utils.LocationParser;
 import jeeper.utils.MessageTools;
-import jeeper.utils.config.ConfigSetup;
+import jeeper.utils.config.Config;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.jooq.DSLContext;
 
 public class SetSpawn extends PluginCommand {
-    private static final ConfigSetup config = Main.getPlugin().config();
+    private static final Config config = Main.getPlugin().config();
     DSLContext dslContext = Main.getPlugin().getDslContext();
 
     @Override

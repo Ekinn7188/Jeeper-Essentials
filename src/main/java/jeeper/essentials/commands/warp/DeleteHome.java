@@ -5,15 +5,15 @@ import jeeper.essentials.Main;
 import jeeper.essentials.commands.PluginCommand;
 import jeeper.essentials.database.DatabaseTools;
 import jeeper.utils.MessageTools;
-import jeeper.utils.config.ConfigSetup;
-import net.kyori.adventure.text.minimessage.Template;
+import jeeper.utils.config.Config;
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.jooq.DSLContext;
 
 public class DeleteHome extends PluginCommand {
 
-    private static final ConfigSetup config = Main.getPlugin().config();
+    private static final Config config = Main.getPlugin().config();
     DSLContext dslContext = Main.getPlugin().getDslContext();
 
     @Override
@@ -39,10 +39,10 @@ public class DeleteHome extends PluginCommand {
                 .where(Tables.HOMES.USERID.eq(userID).and(Tables.HOMES.HOMENAME.equalIgnoreCase(homeName))).fetchAny());
 
         if (home == null){
-            player.sendMessage(MessageTools.parseFromPath(config, "Home Doesnt Exist", Template.template("name", homeName)));
+            player.sendMessage(MessageTools.parseFromPath(config, "Home Doesnt Exist", Placeholder.parsed("name", homeName)));
             return;
         }
         dslContext.delete(Tables.HOMES).where(Tables.HOMES.USERID.eq(userID).and(Tables.HOMES.HOMENAME.equalIgnoreCase(home))).execute();
-        player.sendMessage(MessageTools.parseFromPath(config,"Home Deleted", Template.template("name", home)));
+        player.sendMessage(MessageTools.parseFromPath(config,"Home Deleted", Placeholder.parsed("name", home)));
     }
 }

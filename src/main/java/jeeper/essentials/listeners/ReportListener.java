@@ -4,7 +4,7 @@ import essentials.db.Tables;
 import essentials.db.tables.records.ReportsRecord;
 import jeeper.essentials.Main;
 import jeeper.essentials.commands.admin.ViewReports;
-import jeeper.utils.config.ConfigSetup;
+import jeeper.utils.config.Config;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.entities.MessageHistory;
@@ -28,7 +28,7 @@ import java.util.Objects;
 public class ReportListener implements Listener {
 
     private static final DSLContext dslContext = Main.getPlugin().getDslContext();
-    private static final ConfigSetup config = Main.getPlugin().config();
+    private static final Config config = Main.getPlugin().config();
 
     @EventHandler
     public void onMenuClick(InventoryClickEvent e) {

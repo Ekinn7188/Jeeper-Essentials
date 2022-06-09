@@ -5,7 +5,7 @@ import jeeper.essentials.Main;
 import jeeper.essentials.commands.admin.punishments.PunishmentHistory;
 import jeeper.essentials.database.DatabaseTools;
 import jeeper.essentials.tools.UUIDTools;
-import jeeper.utils.config.ConfigSetup;
+import jeeper.utils.config.Config;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
@@ -29,7 +29,7 @@ import java.util.regex.Pattern;
 
 public class PunishmentMenuListener implements Listener {
 
-    static ConfigSetup config = Main.getPlugin().config();
+    static Config config = Main.getPlugin().config();
     static DSLContext dslContext = Main.getPlugin().getDslContext();
 
     static Pattern timePattern = Pattern.compile("\\s[0-9]+?\\s");
@@ -66,7 +66,8 @@ public class PunishmentMenuListener implements Listener {
         }
 
         if (item.getType().equals(Material.RED_CONCRETE) || item.getType().equals(Material.ORANGE_CONCRETE)
-                || item.getType().equals(Material.YELLOW_CONCRETE) || item.getType().equals(Material.LIME_CONCRETE)) {
+                || item.getType().equals(Material.YELLOW_CONCRETE) || item.getType().equals(Material.LIME_CONCRETE)
+                || item.getType().equals(Material.GRAY_CONCRETE)) {
 
             ItemStack playerHead = inv.getItem(4);
             if (playerHead == null) {

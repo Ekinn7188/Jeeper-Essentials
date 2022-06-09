@@ -6,9 +6,9 @@ import jeeper.essentials.listeners.punishments.PunishmentTools;
 import jeeper.essentials.tools.ItemTools;
 import jeeper.essentials.tools.UUIDTools;
 import jeeper.utils.MessageTools;
-import jeeper.utils.config.ConfigSetup;
+import jeeper.utils.config.Config;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.minimessage.Template;
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
@@ -63,7 +63,7 @@ public class Punishments {
             }
             assert punished.getName() != null; //checked in checkNameAndUUID
             Inventory inventory = Bukkit.createInventory(viewer, 27, MessageTools.parseText("&c" + punishment.getPunishment() + " Player &4<player>",
-                    Template.template("player", punished.getName())));
+                    Placeholder.parsed("player", punished.getName())));
 
             for (int i = 0; i < inventory.getSize(); i++) {
                 inventory.setItem(i, ItemTools.createGuiItem(Material.LIGHT_GRAY_STAINED_GLASS_PANE, Component.empty(), 1));
@@ -71,7 +71,7 @@ public class Punishments {
 
             ItemStack playerHead = ItemTools.getHead(punished);
             inventory.setItem(4, ItemTools.createGuiItem(playerHead, playerHead.getType(),
-                    MessageTools.parseText("&c" + punishment.getPunishment() + " Player &4<player>", Template.template("player", punished.getName())),
+                    MessageTools.parseText("&c" + punishment.getPunishment() + " Player &4<player>", Placeholder.parsed("player", punished.getName())),
                     1));
 
             List<Component> lore = new ArrayList<>();
@@ -156,7 +156,7 @@ public class Punishments {
         return message;
     }
 
-    static ConfigSetup config = Main.getPlugin().config();
+    static Config config = Main.getPlugin().config();
     static Pattern timePattern = Pattern.compile("([0-9])+d([0-9])+h([0-9])+m", Pattern.CASE_INSENSITIVE);
 
     /**

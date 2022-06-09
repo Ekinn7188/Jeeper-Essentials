@@ -3,7 +3,7 @@ package jeeper.essentials.listeners;
 import jeeper.essentials.Main;
 import jeeper.essentials.commands.Permission;
 import jeeper.utils.MessageTools;
-import net.kyori.adventure.text.minimessage.Template;
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.event.EventHandler;
@@ -39,7 +39,7 @@ public class OverrideBukkit implements Listener {
             }
             String[] tps = Arrays.stream(Bukkit.getServer().getTPS()).map(x -> ((int)(x*100))/100.0).mapToObj(String::valueOf).toArray(String[]::new);
             sender.sendMessage(MessageTools.parseFromPath(Main.getPlugin().config(), "Tps Message",
-                    Template.template("1m", tps[0]), Template.template("5m", tps[1]), Template.template("15m", tps[2])));
+                    Placeholder.parsed("1m", tps[0]), Placeholder.parsed("5m", tps[1]), Placeholder.parsed("15m", tps[2])));
             return true;
         } else if (command.equalsIgnoreCase("/pl") || command.equalsIgnoreCase("/plugins") || command.equalsIgnoreCase("/bukkit:plugins") || command.equalsIgnoreCase("/bukkit:pl")) {
             if (sender.hasPermission(Permission.PLUGIN.getName())) {

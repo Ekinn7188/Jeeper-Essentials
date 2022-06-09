@@ -5,11 +5,11 @@ import jeeper.essentials.commands.Permission;
 import jeeper.essentials.commands.PluginCommand;
 import jeeper.essentials.tabscoreboard.TabMenu;
 import jeeper.utils.MessageTools;
-import jeeper.utils.config.ConfigSetup;
+import jeeper.utils.config.Config;
 import org.bukkit.command.CommandSender;
 
 public class Essentials extends PluginCommand {
-    private static final ConfigSetup config = Main.getPlugin().config();
+    private static final Config config = Main.getPlugin().config();
     @Override
     public String getName() {
         return "essentials";

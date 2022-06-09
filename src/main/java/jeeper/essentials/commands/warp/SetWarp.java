@@ -6,8 +6,8 @@ import jeeper.essentials.commands.Permission;
 import jeeper.essentials.commands.PluginCommand;
 import jeeper.utils.LocationParser;
 import jeeper.utils.MessageTools;
-import jeeper.utils.config.ConfigSetup;
-import net.kyori.adventure.text.minimessage.Template;
+import jeeper.utils.config.Config;
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.jooq.DSLContext;
@@ -15,7 +15,7 @@ import org.jooq.exception.DataAccessException;
 
 public class SetWarp extends PluginCommand {
 
-    private static ConfigSetup config = Main.getPlugin().config();
+    private static final Config config = Main.getPlugin().config();
     DSLContext dslContext = Main.getPlugin().getDslContext();
 
     @Override
@@ -41,7 +41,7 @@ public class SetWarp extends PluginCommand {
                         .where(Tables.WARPS.WARPNAME.equalIgnoreCase(args[0])).execute();
             }
 
-            player.sendMessage(MessageTools.parseFromPath(config, "Warp Created", Template.template("name", args[0])));
+            player.sendMessage(MessageTools.parseFromPath(config, "Warp Created", Placeholder.parsed("name", args[0])));
             return;
         }
         if (args.length == 2) {
@@ -56,10 +56,10 @@ public class SetWarp extends PluginCommand {
                         .where(Tables.WARPS.WARPNAME.equalIgnoreCase(args[0])).execute();
             }
 
-            player.sendMessage(MessageTools.parseFromPath(config, "Warp Created", Template.template("name", args[0])));
+            player.sendMessage(MessageTools.parseFromPath(config, "Warp Created", Placeholder.parsed("name", args[0])));
             return;
         }
-        player.sendMessage(MessageTools.parseFromPath(config, "Correct Usage", Template.template("command", "/setwarp {name} {permission (optional)}")));
+        player.sendMessage(MessageTools.parseFromPath(config, "Correct Usage", Placeholder.parsed("command", "/setwarp {name} {permission (optional)}")));
     }
 
 }

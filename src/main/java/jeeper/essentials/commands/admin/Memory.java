@@ -4,7 +4,7 @@ import jeeper.essentials.Main;
 import jeeper.essentials.commands.Permission;
 import jeeper.essentials.commands.PluginCommand;
 import jeeper.utils.MessageTools;
-import net.kyori.adventure.text.minimessage.Template;
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.command.CommandSender;
 
 public class Memory extends PluginCommand {
@@ -29,7 +29,7 @@ public class Memory extends PluginCommand {
         long memUsed = (r.totalMemory() - r.freeMemory()) / 1048576;
         long memMax = r.maxMemory() / 1073741824;
 
-        sender.sendMessage(MessageTools.parseFromPath(Main.getPlugin().config(), "Memory Usage", Template.template("memory", String.valueOf(memUsed)),
-                Template.template("max", String.valueOf(memMax))));
+        sender.sendMessage(MessageTools.parseFromPath(Main.getPlugin().config(), "Memory Usage", Placeholder.parsed("memory", String.valueOf(memUsed)),
+                Placeholder.parsed("max", String.valueOf(memMax))));
     }
 }

@@ -4,8 +4,8 @@ import essentials.db.Tables;
 import jeeper.essentials.Main;
 import jeeper.essentials.database.DatabaseTools;
 import jeeper.utils.MessageTools;
-import jeeper.utils.config.ConfigSetup;
-import net.kyori.adventure.text.minimessage.Template;
+import jeeper.utils.config.Config;
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.jooq.DSLContext;
@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.UUID;
 
 public class IgnoreList extends PluginCommand {
-    private static final ConfigSetup config = Main.getPlugin().config();
+    private static final Config config = Main.getPlugin().config();
     private static final DSLContext dslContext = Main.getPlugin().getDslContext();
 
     @Override
@@ -55,7 +55,7 @@ public class IgnoreList extends PluginCommand {
         }
 
         if (names.size() > 0) {
-            player.sendMessage(MessageTools.parseFromPath(config, "Ignore List", Template.template("ignored", String.join(", ", names))));
+            player.sendMessage(MessageTools.parseFromPath(config, "Ignore List", Placeholder.parsed("ignored", String.join(", ", names))));
         } else {
             player.sendMessage(MessageTools.parseFromPath(config, "Ignoring Nobody"));
         }

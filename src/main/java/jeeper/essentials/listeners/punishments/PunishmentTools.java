@@ -4,9 +4,9 @@ import essentials.db.Tables;
 import jeeper.essentials.Main;
 import jeeper.essentials.database.DatabaseTools;
 import jeeper.utils.MessageTools;
-import jeeper.utils.config.ConfigSetup;
+import jeeper.utils.config.Config;
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.kyori.adventure.text.minimessage.Template;
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import net.wesjd.anvilgui.AnvilGUI;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
@@ -28,7 +28,7 @@ import static java.lang.Integer.parseInt;
 
 public class PunishmentTools {
     static Pattern anvilTimePattern = Pattern.compile("([0-9]+)d\\s([0-9]+)h\\s([0-9]+)m", Pattern.CASE_INSENSITIVE);
-    static ConfigSetup config = Main.getPlugin().config();
+    static Config config = Main.getPlugin().config();
     static DSLContext dslContext = Main.getPlugin().getDslContext();
 
     protected static void timeMenu(Punishment punishment, OfflinePlayer punished, HumanEntity punisher, String reason) {
@@ -92,26 +92,26 @@ public class PunishmentTools {
         if (punishment.equals(Punishment.IP_BAN)) {
             if (reason == null) {
                 Bukkit.broadcast(MessageTools.parseFromPath(config, "IP Ban No Reason Broadcast",
-                        Template.template("player", punishedName), Template.template("time", getPunishmentEndString(endTime))));
+                        Placeholder.parsed("player", punishedName), Placeholder.parsed("time", getPunishmentEndString(endTime))));
             } else {
                 Bukkit.broadcast(MessageTools.parseFromPath(config, "IP Ban Broadcast",
-                        Template.template("player", punishedName), Template.template("reason", reason), Template.template("time", getPunishmentEndString(endTime))));
+                        Placeholder.parsed("player", punishedName), Placeholder.parsed("reason", reason), Placeholder.parsed("time", getPunishmentEndString(endTime))));
             }
         }if (punishment.equals(Punishment.BAN)) {
             if (reason == null) {
                 Bukkit.broadcast(MessageTools.parseFromPath(config, "Ban No Reason Broadcast",
-                        Template.template("player", punishedName), Template.template("time", getPunishmentEndString(endTime))));
+                        Placeholder.parsed("player", punishedName), Placeholder.parsed("time", getPunishmentEndString(endTime))));
             } else {
                 Bukkit.broadcast(MessageTools.parseFromPath(config, "Ban Broadcast",
-                        Template.template("player", punishedName), Template.template("reason", reason), Template.template("time", getPunishmentEndString(endTime))));
+                        Placeholder.parsed("player", punishedName), Placeholder.parsed("reason", reason), Placeholder.parsed("time", getPunishmentEndString(endTime))));
             }
         } else if (punishment.equals(Punishment.MUTE)) {
             if (reason.equals("")) {
                 sender.sendMessage(MessageTools.parseFromPath(config, "Mute Successful No Reason",
-                        Template.template("player", punishedName), Template.template("time", getPunishmentEndString(endTime))));
+                        Placeholder.parsed("player", punishedName), Placeholder.parsed("time", getPunishmentEndString(endTime))));
             } else {
                 sender.sendMessage(MessageTools.parseFromPath(config, "Mute Successful",
-                        Template.template("player", punishedName), Template.template("reason", reason), Template.template("time", getPunishmentEndString(endTime))));
+                        Placeholder.parsed("player", punishedName), Placeholder.parsed("reason", reason), Placeholder.parsed("time", getPunishmentEndString(endTime))));
             }
         }
 
@@ -218,13 +218,13 @@ public class PunishmentTools {
                     if (userWarns < 3) {
                         if (reason == null) {
                             player.sendMessage(MessageTools.parseFromPath(config, "Warn Message No Reason",
-                                    Template.template("player", punishedName),
-                                    Template.template("offence", String.valueOf(userWarns))));
+                                    Placeholder.parsed("player", punishedName),
+                                    Placeholder.parsed("offense", String.valueOf(userWarns))));
                             return;
                         }
                         player.sendMessage(MessageTools.parseFromPath(config, "Warn Message",
-                                Template.template("player", punishedName), Template.template("reason", reason),
-                                Template.template("offence", String.valueOf(userWarns))));
+                                Placeholder.parsed("player", punishedName), Placeholder.parsed("reason", reason),
+                                Placeholder.parsed("offense", String.valueOf(userWarns))));
                     } else {
                         //recursive call to ban
                         addPunishmentToDB(sender, Punishment.BAN, punisherUUID, "", punished, currentTime, currentTime.plus(1, ChronoUnit.WEEKS), "Gaining Three Warnings");
@@ -300,21 +300,21 @@ public class PunishmentTools {
             }
             //mute no reason
             player.sendMessage(MessageTools.parseFromPath(config, "Muted No Reason",
-                    Template.template("time", getPunishmentEndString(record.get(Tables.PUNISHMENTS.PUNISHMENTEND)))));
+                    Placeholder.parsed("time", getPunishmentEndString(record.get(Tables.PUNISHMENTS.PUNISHMENTEND)))));
             return true;
         }
 
         //perm with reason
         if (record.get(Tables.PUNISHMENTS.PUNISHMENTEND) == null) {
             player.sendMessage(MessageTools.parseFromPath(config, "Permanent Mute With Reason",
-                    Template.template("reason", record.get(Tables.PUNISHMENTS.PUNISHMENTREASON))));
+                    Placeholder.parsed("reason", record.get(Tables.PUNISHMENTS.PUNISHMENTREASON))));
             return true;
         }
 
         //muted with reason
         player.sendMessage(MessageTools.parseFromPath(config, "Muted With Reason",
-                Template.template("reason", record.get(Tables.PUNISHMENTS.PUNISHMENTREASON)),
-                Template.template("time", getPunishmentEndString(record.get(Tables.PUNISHMENTS.PUNISHMENTEND)))));
+                Placeholder.parsed("reason", record.get(Tables.PUNISHMENTS.PUNISHMENTREASON)),
+                Placeholder.parsed("time", getPunishmentEndString(record.get(Tables.PUNISHMENTS.PUNISHMENTEND)))));
         return true;
     }
 

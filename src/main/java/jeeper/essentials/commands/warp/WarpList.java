@@ -5,14 +5,14 @@ import jeeper.essentials.Main;
 import jeeper.essentials.commands.PluginCommand;
 import jeeper.essentials.database.DatabaseTools;
 import jeeper.utils.MessageTools;
-import jeeper.utils.config.ConfigSetup;
-import net.kyori.adventure.text.minimessage.Template;
+import jeeper.utils.config.Config;
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jooq.DSLContext;
 
 public class WarpList extends PluginCommand {
-    private static final ConfigSetup config = Main.getPlugin().config();
+    private static final Config config = Main.getPlugin().config();
     static DSLContext dslContext = Main.getPlugin().getDslContext();
 
     @Override
@@ -57,7 +57,7 @@ public class WarpList extends PluginCommand {
                     }
                 }
             }
-            sender.sendMessage(MessageTools.parseFromPath(config, "Warp List", Template.template("warps", commaSeperatedWarps.toString())));
+            sender.sendMessage(MessageTools.parseFromPath(config, "Warp List", Placeholder.parsed("warps", commaSeperatedWarps.toString())));
         } else {
             sender.sendMessage(MessageTools.parseFromPath(config, "No Warps"));
         }

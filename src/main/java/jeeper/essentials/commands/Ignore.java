@@ -5,14 +5,14 @@ import jeeper.essentials.Main;
 import jeeper.essentials.database.DatabaseTools;
 import jeeper.essentials.tools.UUIDTools;
 import jeeper.utils.MessageTools;
-import jeeper.utils.config.ConfigSetup;
-import net.kyori.adventure.text.minimessage.Template;
+import jeeper.utils.config.Config;
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.jooq.DSLContext;
 
 public class Ignore extends PluginCommand {
-    private static final ConfigSetup config = Main.getPlugin().config();
+    private static final Config config = Main.getPlugin().config();
     private static final DSLContext dslContext = Main.getPlugin().getDslContext();
 
     @Override
@@ -33,9 +33,9 @@ public class Ignore extends PluginCommand {
 
             dslContext.insertInto(Tables.IGNOREDPLAYERS, Tables.IGNOREDPLAYERS.USERID, Tables.IGNOREDPLAYERS.IGNOREDPLAYERID)
                     .values(userID, targetID).execute();
-            player.sendMessage(MessageTools.parseFromPath(config, "Ignore Success", Template.template("player", args[0])));
+            player.sendMessage(MessageTools.parseFromPath(config, "Ignore Success", Placeholder.parsed("player", args[0])));
         } else {
-            player.sendMessage(MessageTools.parseFromPath(config, "Correct Usage", Template.template("command", "/ignore {player}")));
+            player.sendMessage(MessageTools.parseFromPath(config, "Correct Usage", Placeholder.parsed("command", "/ignore {player}")));
         }
     }
 
@@ -48,7 +48,7 @@ public class Ignore extends PluginCommand {
 
         int targetID = DatabaseTools.getUserID(target.getUniqueId());
         if (targetID == -1) {
-            player.sendMessage(MessageTools.parseFromPath(config, "Player Hasnt Logged In", Template.template("player", name)));
+            player.sendMessage(MessageTools.parseFromPath(config, "Player Hasnt Logged In", Placeholder.parsed("player", name)));
         }
 
         int userID = DatabaseTools.getUserID(player.getUniqueId());

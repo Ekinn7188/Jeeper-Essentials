@@ -4,15 +4,15 @@ import essentials.db.Tables;
 import jeeper.essentials.Main;
 import jeeper.essentials.database.DatabaseTools;
 import jeeper.utils.MessageTools;
-import jeeper.utils.config.ConfigSetup;
+import jeeper.utils.config.Config;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.minimessage.Template;
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.entity.Player;
 import org.jooq.DSLContext;
 
 public class ChatColor extends PluginCommand {
     DSLContext dslContext = Main.getPlugin().getDslContext();
-    private static final ConfigSetup config = Main.getPlugin().config();
+    private static final Config config = Main.getPlugin().config();
 
     @Override
     public String getName() {
@@ -46,7 +46,7 @@ public class ChatColor extends PluginCommand {
             return;
         }
 
-        player.sendMessage(MessageTools.parseFromPath(config, "Correct Usage", Template.template("command", "/chatcolor {color}")));
+        player.sendMessage(MessageTools.parseFromPath(config, "Correct Usage", Placeholder.parsed("command", "/chatcolor {color}")));
 
     }
 }

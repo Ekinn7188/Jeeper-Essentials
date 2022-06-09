@@ -4,10 +4,10 @@ import essentials.db.Tables;
 import jeeper.essentials.Main;
 import jeeper.essentials.database.DatabaseTools;
 import jeeper.utils.MessageTools;
-import jeeper.utils.config.ConfigSetup;
+import jeeper.utils.config.Config;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
-import net.kyori.adventure.text.minimessage.Template;
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
@@ -20,7 +20,7 @@ import java.util.Objects;
 public class PreventJoin implements Listener {
 
     static DSLContext dslContext = Main.getPlugin().getDslContext();
-    static ConfigSetup config = Main.getPlugin().config();
+    static Config config = Main.getPlugin().config();
 
     @EventHandler
     public void onBanJoin(AsyncPlayerPreLoginEvent e) {
@@ -111,7 +111,7 @@ public class PreventJoin implements Listener {
     public static Component permBanNoReasonMessage() {
         String discordLink = MessageTools.getString(config, "Discord Link");
         return MessageTools.parseFromPath(config, "Punishment Header").append(Component.newline())
-                .append(MessageTools.parseFromPath(config, "Perm Ban Message", Template.template("discord",
+                .append(MessageTools.parseFromPath(config, "Perm Ban Message", Placeholder.component("discord",
                         Component.text(discordLink).clickEvent(ClickEvent.openUrl(discordLink)))));
     }
 
@@ -121,9 +121,9 @@ public class PreventJoin implements Listener {
     public static Component permBanMessage(String reason) {
         String discordLink = MessageTools.getString(config, "Discord Link");
         return MessageTools.parseFromPath(config, "Punishment Header").append(Component.newline())
-                .append(MessageTools.parseFromPath(config, "Perm Ban With Reason", Template.template("discord",
+                .append(MessageTools.parseFromPath(config, "Perm Ban With Reason", Placeholder.component("discord",
                         Component.text(discordLink).clickEvent(ClickEvent.openUrl(discordLink))),
-                        Template.template("reason", MessageTools.parseText(reason))));
+                        Placeholder.component("reason", MessageTools.parseText(reason))));
     }
 
     /**
@@ -133,8 +133,8 @@ public class PreventJoin implements Listener {
         String discordLink = MessageTools.getString(config, "Discord Link");
 
         return MessageTools.parseFromPath(config, "Punishment Header").append(Component.newline())
-                .append(MessageTools.parseFromPath(config, "Ban Message", Template.template("time", PunishmentTools.getPunishmentEndString(banEnd)),
-                        Template.template("discord", Component.text(discordLink).clickEvent(ClickEvent.openUrl(discordLink)))));
+                .append(MessageTools.parseFromPath(config, "Ban Message", Placeholder.parsed("time", PunishmentTools.getPunishmentEndString(banEnd)),
+                        Placeholder.component("discord", Component.text(discordLink).clickEvent(ClickEvent.openUrl(discordLink)))));
     }
 
     /**
@@ -144,9 +144,9 @@ public class PreventJoin implements Listener {
         String discordLink = MessageTools.getString(config, "Discord Link");
 
         return MessageTools.parseFromPath(config, "Punishment Header").append(Component.newline())
-                .append(MessageTools.parseFromPath(config, "Ban With Reason", Template.template("reason", reason),
-                        Template.template("time", PunishmentTools.getPunishmentEndString(banEnd)),
-                        Template.template("discord", Component.text(discordLink).clickEvent(ClickEvent.openUrl(discordLink)))));
+                .append(MessageTools.parseFromPath(config, "Ban With Reason", Placeholder.parsed("reason", reason),
+                        Placeholder.parsed("time", PunishmentTools.getPunishmentEndString(banEnd)),
+                        Placeholder.component("discord", Component.text(discordLink).clickEvent(ClickEvent.openUrl(discordLink)))));
     }
 
 
