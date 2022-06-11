@@ -7,7 +7,6 @@ import jeeper.essentials.lag.ClearLag;
 import jeeper.essentials.log.LogFilter;
 import jeeper.essentials.tabscoreboard.TabMenu;
 import jeeper.utils.config.Config;
-import jeeper.utils.config.Config;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.requests.GatewayIntent;
@@ -66,7 +65,7 @@ public class Main extends JavaPlugin {
                     .enableIntents(GatewayIntent.GUILD_MEMBERS)
                     .build().awaitReady();
         } catch (LoginException | InterruptedException e) {
-            Bukkit.getLogger().info("Failed to connect to Discord. Try checking your bot token in config.yml");
+            Bukkit.getLogger().warning("Failed to connect to Discord. Try checking your bot token in config.yml");
         }
 
     }

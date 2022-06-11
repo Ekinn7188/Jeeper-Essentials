@@ -33,17 +33,17 @@ repositories {
 dependencies {
 
     //minecraft
-    paperDevBundle("1.18.2-R0.1-SNAPSHOT")
-    compileOnly ("net.luckperms:api:5.3")
+    paperDevBundle("1.19-R0.1-SNAPSHOT")
+    compileOnly ("net.luckperms:api:5.4")
     implementation ("org.reflections:reflections:0.10.2")
     implementation ("jeeper.utils:PaperPluginUtils:1.2")
     implementation ("net.wesjd:anvilgui:1.5.3-SNAPSHOT")
 
     //database
-    implementation ("org.jooq:jooq:3.16.2")
+    implementation ("org.jooq:jooq:3.16.6")
     compileOnly ("org.xerial:sqlite-jdbc:3.36.0.3")
-    implementation ("org.flywaydb:flyway-core:8.4.1")
-    implementation ("ch.qos.logback:logback-classic:1.2.10")
+    implementation ("org.flywaydb:flyway-core:8.5.11")
+    implementation ("ch.qos.logback:logback-classic:1.2.11")
     jooqGenerator ("org.xerial:sqlite-jdbc:3.36.0.3")
 
     //discord
@@ -79,10 +79,11 @@ jooq {
 
 tasks {
     runServer {
+        serverJar(file ("${projectDir}/run/server.jar"))
         // Configure the Minecraft version for our task.
         // This is the only required configuration besides applying the plugin.
         // Your plugin's jar (or shadowJar if present) will be used automatically.
-        minecraftVersion("1.18.2")
+        //minecraftVersion("1.18.2")
     }
 }
 
