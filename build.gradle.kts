@@ -36,7 +36,9 @@ dependencies {
     paperDevBundle("1.19-R0.1-SNAPSHOT")
     compileOnly ("net.luckperms:api:5.4")
     implementation ("org.reflections:reflections:0.10.2")
-    implementation ("jeeper.utils:PaperPluginUtils:1.2")
+    implementation ("jeeper.utils:PaperPluginUtils:1.3")
+    implementation ("net.kyori:adventure-text-minimessage:4.11.0")
+    implementation ("net.kyori:adventure-text-serializer-plain:4.11.0")
     implementation ("net.wesjd:anvilgui:1.5.3-SNAPSHOT")
 
     //database

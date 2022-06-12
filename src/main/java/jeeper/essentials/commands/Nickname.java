@@ -37,7 +37,7 @@ public class Nickname extends PluginCommand {
                 player.sendMessage(MessageTools.parseFromPath(config, "Nickname Change", Placeholder.parsed("name", player.getName())));
                 return;
             }
-            if (PlainTextComponentSerializer.plainText().serialize(MessageTools.parseText(args[0])).equals("")) {
+            if(PlainTextComponentSerializer.plainText().serialize(MessageTools.parseText(args[0])).equals("")) {
                 player.sendMessage(MessageTools.parseFromPath(config, "Invalid Nickname"));
                 return;
             }

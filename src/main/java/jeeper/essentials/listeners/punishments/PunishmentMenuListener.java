@@ -99,8 +99,7 @@ public class PunishmentMenuListener implements Listener {
                     .where(Tables.PUNISHMENTS.USERID.eq(DatabaseTools.getUserID(uuid))
                             .and(Tables.PUNISHMENTS.PUNISHMENTTYPE.eq(punishmentType))
                             .and(Tables.PUNISHMENTS.PUNISHMENTSTART
-                                    .startsWith(DatabaseTools.stringToLocalDateTime(PlainTextComponentSerializer.plainText()
-                                            .serialize(lore.get(3)).substring(7))))
+                                    .startsWith(DatabaseTools.stringToLocalDateTime(PlainTextComponentSerializer.plainText().serialize(lore.get(3)).substring(7))))
                     ).execute();
             try {
                 Main.getPlugin().getJDA().getGuilds().forEach(guild -> {

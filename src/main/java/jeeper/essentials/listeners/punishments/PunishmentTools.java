@@ -18,6 +18,7 @@ import org.jooq.impl.DSL;
 
 import java.awt.*;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 import java.util.UUID;
@@ -157,12 +158,12 @@ public class PunishmentTools {
             Bukkit.getLogger().warning(punisherName + " has " + pastTensePunishment + " " + punishedName + " for " + reason + ipString);
         }
 
-        String currentTimeString = DatabaseTools.localDateTimeToString(currentTime).replaceAll(":\\d\\d\\.\\d\\d\\d", "");
-        final String endTimeString;
+        long currentTimeEpoch = currentTime.toEpochSecond(ZoneOffset.ofHours(-7));
+        final long endTimeEpoch;
         if (endTime != null) {
-            endTimeString = DatabaseTools.localDateTimeToString(endTime).replaceAll(":\\d\\d\\.\\d\\d\\d", "");
+            endTimeEpoch = endTime.toEpochSecond(ZoneOffset.ofHours(-7));
         } else {
-            endTimeString = null;
+            endTimeEpoch = -1;
         }
 
         try {
@@ -172,9 +173,9 @@ public class PunishmentTools {
                 embedBuilder.addField("**Player**", punishedName, true);
                 embedBuilder.addField("**Punished By**", punisherName, true);
                 embedBuilder.addField("Reason: ", reason == null ? "none" : reason, false);
-                if (endTimeString != null) {
-                    embedBuilder.addField("**Start Time:**", currentTimeString, true);
-                    embedBuilder.addField("**End Time:**", endTimeString, true);
+                if (endTimeEpoch != -1) {
+                    embedBuilder.addField("**Start Time:**", "<t:" + currentTimeEpoch + ">", true);
+                    embedBuilder.addField("**End Time:**", "<t:" + endTimeEpoch + ">", true);
                 }
                 embedBuilder.setColor(punishmentColor);
                 embedBuilder.setThumbnail("https://minotar.net/helm/" + punishedName + "/64");
