@@ -27,7 +27,7 @@ public class Countdown {
 
     public static void startCountdown(Player player, Location destination, String destinationName, Main plugin, int duration) {
         String locationString = LocationParser.locationToString(destination);
-        startCountdown(player, locationString, destinationName, plugin, 5);
+        startCountdown(player, locationString, destinationName, plugin, duration);
     }
 
     public static void startCountdown(Player player, String destinationString, String destinationName, Main plugin, int duration){

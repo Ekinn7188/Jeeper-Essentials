@@ -34,7 +34,7 @@ public class Home extends PluginCommand {
                 return;
             }
 
-            Countdown.startCountdown(player, locationString, args[0], Main.getPlugin(), 5);
+            Countdown.startCountdown(player, locationString, args[0], Main.getPlugin(), 3);
 
         } else {
             var locationString = DatabaseTools.firstString(dslContext.select(Tables.HOMES.HOMELOCATION).from(Tables.HOMES)
@@ -45,7 +45,7 @@ public class Home extends PluginCommand {
                 return;
             }
 
-            Countdown.startCountdown(player, locationString, "home", Main.getPlugin(), 5);
+            Countdown.startCountdown(player, locationString, "home", Main.getPlugin(), 3);
         }
     }
 

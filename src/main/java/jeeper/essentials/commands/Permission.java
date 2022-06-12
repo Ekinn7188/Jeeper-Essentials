@@ -20,6 +20,7 @@ public enum Permission {
     MUTECHAT("jeeper.chat.mute"),
     NICKNAME("jeeper.nickname"),
     PLUGIN("jeeper.plugin"),
+    POWERTOOL("jeeper.powertool"),
     SETHOME("jeeper.sethome"),
     SETSPAWN("jeeper.setspawn"),
     SETWARP("jeeper.warps.set"),

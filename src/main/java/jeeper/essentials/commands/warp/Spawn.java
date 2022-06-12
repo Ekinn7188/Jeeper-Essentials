@@ -27,7 +27,7 @@ public class Spawn extends PluginCommand {
             player.sendMessage(MessageTools.parseFromPath(Main.getPlugin().config(), "Spawn Doesnt Exist"));
             return;
         }
-        Countdown.startCountdown(player, spawn, "spawn", Main.getPlugin(), 5);
+        Countdown.startCountdown(player, spawn, "spawn", Main.getPlugin(), 3);
     }
 
 }
