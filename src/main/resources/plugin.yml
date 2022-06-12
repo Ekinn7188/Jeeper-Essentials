@@ -130,6 +130,9 @@ commands:
   tpdeny:
     description: denies a teleport request
     permission: jeeper.tpa
+  powertool:
+    description: adds a command to an item when it's left clicked
+    permission: jeeper.powertool
 permissions:
   jeeper.setspawn:
     description: allows use of the setspawn command
@@ -209,3 +212,6 @@ permissions:
   jeeper.tpa:
     description: used to request a teleport to a player
     default: true
+  jeeper.powertool:
+    description: used to add a command to an item when it's left clicked
+    default: op

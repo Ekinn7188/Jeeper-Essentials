@@ -112,6 +112,9 @@ Player Tab Style: '<prefix><#7c3e12><player> '
 Player AFK: '<#b8a567><player><#d1c59f> is now AFK'
 Player Not AFK: '<#b8a567><player><#d1c59f> is no longer AFK'
 
+#powertool
+Powertool Created: '<#856f2d>Powertool created with command <#856f2d><command></#856f2d>'
+
 #tpa
 Tpa Request Received: |-
   <#b8a567><player><#d1c59f><#d1c59f> has requested to teleport to you
