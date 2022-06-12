@@ -24,7 +24,9 @@ public enum Permission {
     SETSPAWN("jeeper.setspawn"),
     SETWARP("jeeper.warps.set"),
     SUDO("jeeper.sudo"),
+    TPA("jeeper.tpa"),
     TPS("jeeper.tps"),
+    VANILLA_TELEPORT("minecraft.command.tp"),
     VIEW_REPORT("jeeper.reports.view"),
     WARN("jeeper.warn");
 

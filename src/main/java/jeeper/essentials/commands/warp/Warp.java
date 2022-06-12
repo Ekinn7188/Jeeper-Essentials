@@ -32,7 +32,7 @@ public class Warp extends PluginCommand {
                 player.sendMessage(MessageTools.parseFromPath(config, "Warp Doesnt Exist", Placeholder.parsed("name", args[0])));
                 return;
             }
-            Countdown.startCountdown(player, warpLocation, args[0], Main.getPlugin());
+            Countdown.startCountdown(player, warpLocation, args[0], Main.getPlugin(), 5);
         } else {
             WarpList.getWarps(player);
         }

@@ -9,6 +9,7 @@ import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import net.kyori.adventure.title.Title;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 import java.time.Duration;
@@ -24,11 +25,16 @@ public class Countdown {
         return tasks;
     }
 
-    public static void startCountdown(Player player, String coordsLocation, String destination, Main plugin){
+    public static void startCountdown(Player player, Location destination, String destinationName, Main plugin, int duration) {
+        String locationString = LocationParser.locationToString(destination);
+        startCountdown(player, locationString, destinationName, plugin, 5);
+    }
+
+    public static void startCountdown(Player player, String destinationString, String destinationName, Main plugin, int duration){
 
         if (player.getGameMode().equals(GameMode.CREATIVE)) {
-            player.teleport(LocationParser.stringToLocation(coordsLocation));
-            player.sendMessage(MessageTools.parseFromPath(config, "Teleport Success", Placeholder.parsed("location", destination)));
+            player.teleport(LocationParser.stringToLocation(destinationString));
+            player.sendMessage(MessageTools.parseFromPath(config, "Teleport Success", Placeholder.parsed("location", destinationName)));
             return;
         }
 
@@ -37,22 +43,22 @@ public class Countdown {
         }
 
         tasks.put(player.getUniqueId(), Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, new Runnable() {
-            int time = 5;
+            int time = duration;
             @Override
             public void run() {
                 if(time == 5){
                     player.sendMessage(MessageTools.parseFromPath(config, "Dont Move Message"));
                 }
                 if (time == 0){
-                    player.teleport(LocationParser.stringToLocation(coordsLocation));
-                    player.sendMessage(MessageTools.parseFromPath(config, "Teleport Success", Placeholder.parsed("location", destination)));
+                    player.teleport(LocationParser.stringToLocation(destinationString));
+                    player.sendMessage(MessageTools.parseFromPath(config, "Teleport Success", Placeholder.parsed("location", destinationName)));
                     Bukkit.getScheduler().cancelTask(tasks.get(player.getUniqueId()));
                     tasks.remove(player.getUniqueId());
                 }
                 else{
                     final Title.Times times = Title.Times.times(Duration.ofMillis(500), Duration.ofMillis(500), Duration.ofMillis(500));
                     final Title title = Title.title(MessageTools.parseFromPath(config, "Teleport Countdown", Placeholder.parsed("time", String.valueOf(time)),
-                            Placeholder.parsed("location", destination)), Component.empty(), times);
+                            Placeholder.parsed("location", destinationName)), Component.empty(), times);
                     player.showTitle(title);
                     time--;
                 }

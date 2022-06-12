@@ -95,7 +95,10 @@ Unignored: '<#b8a567>You have successfully unignored <#856f2d><player>'
 Lag Time: '<#b8a567>Some entities will be cleared in <#856f2d><time></#856f2d>!'
 Lag Cleared: '<#856f2d>Entities cleared!'
 
-#tab
+#teleport
+Tphere Success: '<#b8a567>Successfully teleported <#856f2d><player></#856f2d> to your position'
+Teleported to Player: '<#b8a567>You were teleported to <#856f2d><player></#856f2d>'
+
 #tab
 Tablist Header:
   First Line: <#b8a567>&l⛏ &r<#b8a567>[&r<#7c3e12>&lDirtlands&r<#b8a567>] &l■
@@ -108,6 +111,15 @@ Player Tab Style: '<prefix><#7c3e12><player> '
 #afk
 Player AFK: '<#b8a567><player><#d1c59f> is now AFK'
 Player Not AFK: '<#b8a567><player><#d1c59f> is no longer AFK'
+
+#tpa
+Tpa Request Received: |-
+  <#b8a567><player><#d1c59f><#d1c59f> has requested to teleport to you
+  [<#b8a567><accept></#b8a567>] | [<#b8a567><deny></#b8a567>]
+Tpa Request Sent: '<#b8a567><player><#d1c59f><#d1c59f> has been sent a teleport request'
+No Tpa Request: '<#b8a567>You do not have a pending teleport request from <#856f2d><player></#856f2d>'
+Tpa Request Denied: '<#b8a567><player><#d1c59f><#d1c59f> has denied your teleport request'
+Tpa Successfully Denied: '<#d1c59f>You have successfully denied <#856f2d><player></#856f2d>''s teleport request'
 
 #rules
 Rules:

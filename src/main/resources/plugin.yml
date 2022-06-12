@@ -117,6 +117,19 @@ commands:
   reports:
     description: shows the reports
     aliases: [report-list, view-reports, viewreports, reportlist]
+  tphere:
+    description: teleports a player to you
+    permission: minecraft.command.tp
+    aliases: [tph]
+  tpa:
+    description: requests a teleport to a player
+    permission: jeeper.tpa
+  tpaccept:
+    description: accepts a teleport request
+    permission: jeeper.tpa
+  tpdeny:
+    description: denies a teleport request
+    permission: jeeper.tpa
 permissions:
   jeeper.setspawn:
     description: allows use of the setspawn command
@@ -193,3 +206,6 @@ permissions:
   jeeper.reports.view:
     description: used to view reports
     default: op
+  jeeper.tpa:
+    description: used to request a teleport to a player
+    default: true
