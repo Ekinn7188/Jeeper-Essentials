@@ -82,6 +82,7 @@ Player Doesnt Exist: '<#856f2d><player><#b8a567> doesn''t exist!'
 Player Hasnt Logged In: '<#856f2d><player><#b8a567> has never logged in before!'
 Player Is Offline: '<#856f2d><player><#b8a567> is offline!'
 Correct Usage: '<#b8a567>Usage: <#856f2d><command>'
+No Item In Hand: '<#b8a567>You must be holding an item to use this command!'
 Command Cooldown: '<#b8a567>You can''t type this command for another <#856f2d><time></#856f2d>!'
 
 #ignore

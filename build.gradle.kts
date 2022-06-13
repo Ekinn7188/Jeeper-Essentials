@@ -44,7 +44,7 @@ dependencies {
     //database
     implementation ("org.jooq:jooq:3.16.6")
     compileOnly ("org.xerial:sqlite-jdbc:3.36.0.3")
-    implementation ("org.flywaydb:flyway-core:8.5.11")
+    implementation ("org.flywaydb:flyway-core:8.5.12")
     implementation ("ch.qos.logback:logback-classic:1.2.11")
     jooqGenerator ("org.xerial:sqlite-jdbc:3.36.0.3")
 
@@ -79,16 +79,6 @@ jooq {
     }
 }
 
-tasks {
-    runServer {
-        serverJar(file ("${projectDir}/run/server.jar"))
-        // Configure the Minecraft version for our task.
-        // This is the only required configuration besides applying the plugin.
-        // Your plugin's jar (or shadowJar if present) will be used automatically.
-        //minecraftVersion("1.18.2")
-    }
-}
-
 val cleanGenerateSourceDB by tasks.registering {
     delete(file("${buildDir}/generate-source.db"))
 }
@@ -110,16 +100,16 @@ val emptyConfig by tasks.registering {
 
 tasks {
 
-    assemble {
-        dependsOn(reobfJar)
-    }
-
     runServer {
-        //serverJar(file ("${projectDir}/run/server.jar"))
+        serverJar(file ("${projectDir}/run/server.jar"))
         // Configure the Minecraft version for our task.
         // This is the only required configuration besides applying the plugin.
         // Your plugin's jar (or shadowJar if present) will be used automatically.
-        minecraftVersion("1.18.2")
+        //minecraftVersion("1.18.2")
+    }
+
+    assemble {
+        dependsOn(reobfJar)
     }
 
     compileJava {

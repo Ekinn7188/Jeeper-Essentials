@@ -12,6 +12,7 @@ public enum Permission {
     CLEARLAG("jeeper.clearlag"),
     COOLDOWN("jeeper.cooldown"),
     DELETEWARP("jeeper.warps.delete"),
+    ENCHANT("minecraft.command.enchant"),
     ESSENTIALS("jeeper.essentials"),
     HISTORY("jeeper.history"),
     KICK("jeeper.kick"),

@@ -133,6 +133,9 @@ commands:
   powertool:
     description: adds a command to an item when it's left clicked
     permission: jeeper.powertool
+  enchant:
+    description: adds an enchantment to an item
+    permission: minecraft.command.enchant
 permissions:
   jeeper.setspawn:
     description: allows use of the setspawn command
