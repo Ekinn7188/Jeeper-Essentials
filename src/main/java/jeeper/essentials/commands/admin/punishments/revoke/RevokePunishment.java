@@ -98,7 +98,7 @@ public class RevokePunishment {
                 Objects.requireNonNull(guild.getTextChannelById(config.get().getLong("Punishment Channel ID"))).sendMessage(" ").setEmbeds(embedBuilder.build()).queue();
             });
         } catch (NullPointerException e) {
-            Bukkit.getLogger().info("The punishment channel or bot has not been set up yet correctly. Check config.yml");
+            Bukkit.getLogger().warning("The punishment channel or bot has not been set up yet correctly. Check config.yml");
         }
     }
 }
