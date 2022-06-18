@@ -9,6 +9,7 @@ import jeeper.utils.config.Config;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 
 import java.util.Objects;
 
@@ -39,7 +40,10 @@ public class Warn extends PluginCommand {
 
         if (sender instanceof Player p) {
             try{
-                p.openInventory(Objects.requireNonNull(Punishments.getPunishmentsMenu(Punishment.WARN, p, args[0])));
+                Inventory menu = Punishments.getPunishmentsMenu(Punishment.WARN, p, args[0]);
+                p.openInventory(Objects.requireNonNull(menu));
+                // menu is added to map if it's not null
+                Punishments.openMenus.add(p.getUniqueId());
                 return;
             } catch (NullPointerException e) {
                 //go on to console command

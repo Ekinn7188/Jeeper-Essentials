@@ -9,6 +9,7 @@ import jeeper.utils.config.Config;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 
 import java.util.Objects;
 
@@ -39,7 +40,10 @@ public class Mute extends PluginCommand {
 
         if (sender instanceof Player p) {
             try{
-                p.openInventory(Objects.requireNonNull(Punishments.getPunishmentsMenu(Punishment.MUTE, p, args[0])));
+                Inventory inventory = Punishments.getPunishmentsMenu(Punishment.MUTE, p, args[0]);
+                p.openInventory(Objects.requireNonNull(inventory));
+                // menu is added to map if it's not null
+                Punishments.openMenus.add(p.getUniqueId());
                 return;
             } catch (NullPointerException e) {
                 //if there's an exception, then try to run the console-friendly command

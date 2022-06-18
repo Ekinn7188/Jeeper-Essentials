@@ -27,6 +27,8 @@ import static java.lang.Integer.parseInt;
 
 public class Punishments {
 
+    public static ArrayList<UUID> openMenus = new ArrayList<>();
+
     /**
      * Creates an Inventory for the punishment of the specified player.
      * @param punishment Kick, Warn, Ban, or Mute

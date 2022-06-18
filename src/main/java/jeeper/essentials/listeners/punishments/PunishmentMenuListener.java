@@ -3,6 +3,7 @@ package jeeper.essentials.listeners.punishments;
 import essentials.db.Tables;
 import jeeper.essentials.Main;
 import jeeper.essentials.commands.admin.punishments.PunishmentHistory;
+import jeeper.essentials.commands.admin.punishments.Punishments;
 import jeeper.essentials.database.DatabaseTools;
 import jeeper.essentials.tools.UUIDTools;
 import jeeper.utils.config.Config;
@@ -16,6 +17,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.jooq.DSLContext;
@@ -38,16 +40,21 @@ public class PunishmentMenuListener implements Listener {
 
     @EventHandler
     public void onMenuClick(InventoryClickEvent e) {
-        String inventoryName = PlainTextComponentSerializer.plainText().serialize(e.getView().title());
         for (Punishment punishment : Punishment.values()) {
-            if (inventoryName.contains(punishment.getPunishment() + " Player ")){
+            if (Punishments.openMenus.contains(e.getWhoClicked().getUniqueId())) {
                 punishmentMenu(e, punishment);
                 return;
             }
         }
-        if (inventoryName.contains("'s Punishment History")){
+        if (PunishmentHistory.openMenus.contains(e.getWhoClicked().getUniqueId())) {
             punishmentHistoryMenu(e);
         }
+    }
+
+    @EventHandler
+    public void onMenuClose(InventoryCloseEvent e) {
+        Punishments.openMenus.remove(e.getPlayer().getUniqueId());
+        PunishmentHistory.openMenus.remove(e.getPlayer().getUniqueId());
     }
 
     private void punishmentHistoryMenu(InventoryClickEvent e) {

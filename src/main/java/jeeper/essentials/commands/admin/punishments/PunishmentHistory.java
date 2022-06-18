@@ -34,6 +34,7 @@ import java.util.UUID;
 public class PunishmentHistory extends PluginCommand {
     static DSLContext dslContext = Main.getPlugin().getDslContext();
     static Config config = Main.getPlugin().config();
+    public static ArrayList<UUID> openMenus = new ArrayList<>();
 
     @Override
     public String getName() {
@@ -63,7 +64,9 @@ public class PunishmentHistory extends PluginCommand {
         }
 
         if (sender instanceof Player p) {
-            p.openInventory(makeHistoryMenu(punished, p));
+            Inventory menu = makeHistoryMenu(punished, p);
+            p.openInventory(menu);
+            openMenus.add(p.getUniqueId());
         }
 
     }
