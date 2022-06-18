@@ -4,8 +4,7 @@ public enum Punishment {
     BAN("Ban"),
     MUTE("Mute"),
     KICK("Kick"),
-    WARN("Warn"),
-    IP_BAN("Ip Ban");
+    WARN("Warn");
 
     private final String punishment;
 

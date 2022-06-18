@@ -142,7 +142,7 @@ Rules:
   - "<#856f2d>9.  <#b8a567>Do not join just to say <#856f2d>disrespectful</#856f2d> things."
   - "<#856f2d>10. <#b8a567>Do not ask for operator or staff positions."
   - "<#856f2d>11. <#b8a567>Nothing too explicit. (<#856f2d>NSFW</#856f2d> Skins, Builds, etc.)"
-  - "<#856f2d>12. <#b8a567>Do not <#856f2d>evade</#856f2d> a ban. This will result in an <#856f2d>IP Ban</#856f2d>."
+  - "<#856f2d>12. <#b8a567>Do not <#856f2d>evade</#856f2d> a ban. This will result in an <#856f2d>Ban</#856f2d>."
   - "<#856f2d>13. <#b8a567>Most importantly, <#856f2d>enjoy your time</#856f2d> here!"
   - "<#856f2d>&m-------------------------------------------------"
 
@@ -165,15 +165,10 @@ Current Reports Join Message: '<#b8a567>There are <#856f2d><number></#856f2d> un
 Punishment Header: '<#b8a567>[&r<#7c3e12>&lDirtlands&r<#b8a567>]'
 Ban Broadcast: '<#856f2d><player><#b8a567> has been banned for <#856f2d><reason></#856f2d>. (<time>)'
 Ban No Reason Broadcast: '<#856f2d><player><#b8a567> has been banned. (<time>)'
-IP Ban Broadcast: '<#856f2d><player><#b8a567> has been ip banned for <#856f2d><reason><#b8a567>.'
-IP Ban No Reason Broadcast: '<#856f2d><player><#b8a567> has been ip banned.'
 Unban Not Banned: '<#856f2d><player><#b8a567> is not banned.'
 Player Unbanned: '<#856f2d><player><#b8a567> has been <#856f2d>unbanned</#856f2d>.'
 Unmute Not Muted: '<#856f2d><player><#b8a567> is not muted.'
 Player Unmuted: '<#856f2d><player><#b8a567> has been <#856f2d>unmuted</#856f2d>.'
-Player Not IP Banned: '<#856f2d><player><#b8a567> is not ip unbanned.'
-Player Un IP Banned: '<#856f2d><player><#b8a567> has had their <#856f2d>ip unbanned</#856f2d>.'
-Issue Getting IP: '<#856f2d>There was an issue getting <#856f2d><player></#856f2d>''s IP address.'
 Player Warned: '<#856f2d><player><#b8a567> has been <#856f2d>warned</#856f2d>.'
 Warn Message No Reason: |-
   <#d1c59f>You have been warned. (Offense <#b8a567>#<offense></#b8a567>).
@@ -189,20 +184,6 @@ Ban Message: |
   &r<#b8a567>Appeal here: &r&n<#856f2d><discord>
 Ban With Reason: |
   <#b8a567>You have been banned.
-
-
-  Reason: &r<#856f2d><reason>
-  &r<#b8a567>Time: &r<#856f2d><time>
-
-  &r<#b8a567>Appeal here: &r&n<#856f2d><discord>
-IP Ban Message: |
-  <#b8a567>You have been Ip banned.
-
-  Time: &r<#856f2d><time>
-
-  &r<#b8a567>Appeal here: &r&n<#856f2d><discord>
-IP Ban With Reason: |
-  <#b8a567>You have been Ip banned.
 
 
   Reason: &r<#856f2d><reason>

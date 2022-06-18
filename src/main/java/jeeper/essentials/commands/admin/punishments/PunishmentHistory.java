@@ -115,7 +115,6 @@ public class PunishmentHistory extends PluginCommand {
         String end = DatabaseTools.localDateTimeToString(punishment.getPunishmentend());
 
         Map<List<String>, Material> punishmentInfo = switch(Punishment.valueOf(punishmentType.toUpperCase().replace(" ", "_"))) {
-            case IP_BAN -> Map.of(List.of("<gray>", "<dark_gray>"), Material.GRAY_CONCRETE);
             case BAN -> Map.of(List.of("<red>", "<dark_red>"), Material.RED_CONCRETE);
             case MUTE -> Map.of(List.of("<#ff8c00>", "<#cc5500>"), Material.ORANGE_CONCRETE);
             case KICK -> Map.of(List.of("<#ffe205>", "<gold>"), Material.YELLOW_CONCRETE);

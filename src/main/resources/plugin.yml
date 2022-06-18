@@ -82,17 +82,10 @@ commands:
   unmute:
     description: unmutes a player
     permission: jeeper.mute
-  ip-ban:
-    description: bans an IP address
-    permission: jeeper.ipban
-    aliases: [ipban, banip, ban-ip]
-  unban-ip:
-    description: unbans an IP address
-    permission: jeeper.ipban
-    aliases: [unbanip, ip-unban, un-ipban, pardon-ip, unipban]
   history:
     description: shows the punishment history of a player
     permission: jeeper.history
+    aliases: [pistory]
   discord:
     description: gives an invite to the discord server
     aliases: disc
@@ -196,9 +189,6 @@ permissions:
     default: op
   jeeper.memory:
     description: used to view memory usage
-    default: op
-  jeeper.ipban:
-    description: used to ban an IP address
     default: op
   jeeper.history:
     description: used to view punishment history

@@ -61,8 +61,6 @@ public class RevokePunishment {
                 sender.sendMessage(MessageTools.parseFromPath(config, "Unban Not Banned", Placeholder.parsed("player", playerName)));
             } else if (punishment.equals(Punishment.MUTE)) {
                 sender.sendMessage(MessageTools.parseFromPath(config, "Unmute Not Muted", Placeholder.parsed("player", playerName)));
-            } else if (punishment.equals(Punishment.IP_BAN)) {
-                sender.sendMessage(MessageTools.parseFromPath(config, "Player Not IP Banned", Placeholder.parsed("player", playerName)));
             }
             return;
         }
@@ -76,15 +74,12 @@ public class RevokePunishment {
 
         if (punishment.equals(Punishment.BAN)) {
             sender.sendMessage(MessageTools.parseFromPath(config, "Player Unbanned", Placeholder.parsed("player", playerName)));
-        } else if (punishment.equals(Punishment.IP_BAN)) {
-            sender.sendMessage(MessageTools.parseFromPath(config, "Player Un IP Banned", Placeholder.parsed("player", playerName)));
-        }else {
+        } else {
             sender.sendMessage(MessageTools.parseFromPath(config, "Player Unmuted", Placeholder.parsed("player", playerName)));
         }
 
         //a switch to get all string values of punishments
         String punishmentString = switch(punishment) {
-            case IP_BAN -> "Unbanned Ip";
             case BAN -> "Unbanned";
             case MUTE -> "Unmuted";
             case KICK -> "Kick Revoked";

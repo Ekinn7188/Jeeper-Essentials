@@ -39,7 +39,7 @@ public class Punishments {
         //key reason, value time in hours
         //-1 means permanent
         Map<String, Integer> reasons = new LinkedHashMap<>();
-        if (punishment.equals(Punishment.BAN) || punishment.equals(Punishment.IP_BAN)) {
+        if (punishment.equals(Punishment.BAN)) {
             reasons.put("Hacking / Exploiting", -1);//perm
             reasons.put("Explicit Content", 72);//3 days
             reasons.put("Duping", -1);//perm
@@ -172,6 +172,15 @@ public class Punishments {
         }
         assert punished.getName() != null; //checked in checkNameAndUUID
 
+        String ip = "";
+
+        if (punished.isOnline()) {
+            Player player = (Player) punished;
+            if (player.getAddress() != null) {
+                ip = player.getAddress().getAddress().getHostAddress();
+            }
+        }
+
         Matcher matcher = timePattern.matcher(args[1]);
         if (matcher.find() || punishment.equals(Punishment.WARN)) {
             try {
@@ -190,18 +199,18 @@ public class Punishments {
                 }
 
                 if (reason.length == 0) {
-                    PunishmentTools.addPunishmentToDB(sender, punishment, "Console", "", punished, LocalDateTime.now(), endTime,
+                    PunishmentTools.addPunishmentToDB(sender, punishment, "Console", ip, punished, LocalDateTime.now(), endTime,
                             String.join(" ", ""));
                     return;
                 }
-                PunishmentTools.addPunishmentToDB(sender, punishment, "Console", "",punished, LocalDateTime.now(), endTime,
+                PunishmentTools.addPunishmentToDB(sender, punishment, "Console", ip,punished, LocalDateTime.now(), endTime,
                         String.join(" ", String.join(" ", reason)));
             } catch (NumberFormatException e) {
                 sender.sendMessage(MessageTools.parseFromPath(config, "Punishment Time Invalid"));
             }
         } else {
             String[] reason = Arrays.copyOfRange(args, 1, args.length);
-            PunishmentTools.addPunishmentToDB(sender, punishment,"Console", "", punished, LocalDateTime.now(), null,
+            PunishmentTools.addPunishmentToDB(sender, punishment,"Console", ip, punished, LocalDateTime.now(), null,
                     String.join(" ", String.join(" ", reason)));
         }
     }

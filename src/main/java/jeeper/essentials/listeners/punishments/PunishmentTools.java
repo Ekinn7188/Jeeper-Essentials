@@ -36,6 +36,16 @@ public class PunishmentTools {
 
         punisher.sendMessage(MessageTools.parseFromPath(config, "Punishment Time"));
 
+        final String ip;
+
+        if (punished.isOnline()) {
+            Player player = (Player) punished;
+            if (player.getAddress() != null) ip = player.getAddress().getAddress().getHostAddress();
+            else ip = "";
+        } else {
+            ip = "";
+        }
+
         new AnvilGUI.Builder()
                 .onComplete((player, text) -> {
                     Matcher matcher = anvilTimePattern.matcher(text);
@@ -45,7 +55,7 @@ public class PunishmentTools {
                             LocalDateTime endTime = currentTime.plus(parseInt(matcher.group(1)), ChronoUnit.DAYS);
                             endTime = endTime.plus(parseInt(matcher.group(2)), ChronoUnit.HOURS);
                             endTime = endTime.plus(parseInt(matcher.group(3)), ChronoUnit.MINUTES);
-                            addPunishmentToDB(player, punishment, punisher.getUniqueId().toString(), "", punished, currentTime, endTime, reason);
+                            addPunishmentToDB(player, punishment, punisher.getUniqueId().toString(), ip, punished, currentTime, endTime, reason);
                             return AnvilGUI.Response.close();
                         } catch (NumberFormatException exception) {
                             player.sendMessage(MessageTools.parseFromPath(config, "Punishment Time Invalid"));
@@ -53,7 +63,7 @@ public class PunishmentTools {
                         }
                     } else {
                         if (text.equalsIgnoreCase("permanent")) {
-                            addPunishmentToDB(player, punishment, punisher.getUniqueId().toString(), "", punished, LocalDateTime.now(), null, reason);
+                            addPunishmentToDB(player, punishment, punisher.getUniqueId().toString(), ip, punished, LocalDateTime.now(), null, reason);
                             return AnvilGUI.Response.close();
                         }
 
@@ -68,10 +78,21 @@ public class PunishmentTools {
     }
 
     protected static void customPunishment(Punishment punishment, OfflinePlayer punished, HumanEntity punisher) {
+
+        final String ip;
+
+        if (punished.isOnline()) {
+            Player player = (Player) punished;
+            if (player.getAddress() != null) ip = player.getAddress().getAddress().getHostAddress();
+            else ip = "";
+        } else {
+            ip = "";
+        }
+
         new AnvilGUI.Builder()
                 .onComplete((player, text) -> {
                     if (punishment.equals(Punishment.WARN)) {
-                        addPunishmentToDB(player, punishment, punisher.getUniqueId().toString(), "", punished, LocalDateTime.now(), null, text);
+                        addPunishmentToDB(player, punishment, punisher.getUniqueId().toString(), ip, punished, LocalDateTime.now(), null, text);
                     }
                     else {
                         timeMenu(punishment, punished, punisher, text);
@@ -90,15 +111,7 @@ public class PunishmentTools {
             return;
         }
 
-        if (punishment.equals(Punishment.IP_BAN)) {
-            if (reason == null) {
-                Bukkit.broadcast(MessageTools.parseFromPath(config, "IP Ban No Reason Broadcast",
-                        Placeholder.parsed("player", punishedName), Placeholder.parsed("time", getPunishmentEndString(endTime))));
-            } else {
-                Bukkit.broadcast(MessageTools.parseFromPath(config, "IP Ban Broadcast",
-                        Placeholder.parsed("player", punishedName), Placeholder.parsed("reason", reason), Placeholder.parsed("time", getPunishmentEndString(endTime))));
-            }
-        }if (punishment.equals(Punishment.BAN)) {
+        if (punishment.equals(Punishment.BAN)) {
             if (reason == null) {
                 Bukkit.broadcast(MessageTools.parseFromPath(config, "Ban No Reason Broadcast",
                         Placeholder.parsed("player", punishedName), Placeholder.parsed("time", getPunishmentEndString(endTime))));
@@ -120,7 +133,7 @@ public class PunishmentTools {
         int punishedID = DatabaseTools.getUserID(punished.getUniqueId());
         int punisherID = DatabaseTools.getUserID(punisherUUID);
 
-        if (!punishment.equals(Punishment.IP_BAN)) {
+        if (!punishment.equals(Punishment.BAN)) {
             dslContext.insertInto(Tables.PUNISHMENTS,
                             Tables.PUNISHMENTS.USERID, Tables.PUNISHMENTS.PUNISHERID,
                             Tables.PUNISHMENTS.PUNISHMENTTYPE, Tables.PUNISHMENTS.PUNISHMENTREASON,
@@ -140,10 +153,8 @@ public class PunishmentTools {
             case MUTE -> "muted";
             case WARN -> "warned";
             case KICK -> "kicked";
-            case IP_BAN -> "ip banned";
         };
         Color punishmentColor = switch(punishment) {
-            case IP_BAN -> Color.DARK_GRAY;
             case BAN -> Color.RED;
             case MUTE -> new Color(255, 140, 0);
             case KICK -> Color.ORANGE;
@@ -151,7 +162,7 @@ public class PunishmentTools {
         };
 
         String punisherName = (punisherID == -1 ? "Console" : Bukkit.getOfflinePlayer(UUID.fromString(punisherUUID)).getName());
-        String ipString = (punishment.equals(Punishment.IP_BAN) ? " (" + punishedIP + ")" : "");
+        String ipString = (punishment.equals(Punishment.BAN) ? " (" + punishedIP + ")" : "");
         if (reason == null) {
             Bukkit.getLogger().warning(punisherName + " has " + pastTensePunishment + " " + punishedName + ipString);
         } else {
@@ -191,7 +202,7 @@ public class PunishmentTools {
         if (punished.isOnline()) {
             Player player = punished.getPlayer();
             if (player != null) {
-                if (punishment.equals(Punishment.IP_BAN)) {
+                if (punishment.equals(Punishment.BAN)) {
                     for (Player online : Bukkit.getOnlinePlayers()) {
                         var address = online.getAddress();
                         if (address == null) {
@@ -228,7 +239,7 @@ public class PunishmentTools {
                                 Placeholder.parsed("offense", String.valueOf(userWarns))));
                     } else {
                         //recursive call to ban
-                        addPunishmentToDB(sender, Punishment.BAN, punisherUUID, "", punished, currentTime, currentTime.plus(1, ChronoUnit.WEEKS), "Gaining Three Warnings");
+                        addPunishmentToDB(sender, Punishment.BAN, punisherUUID, punishedIP, punished, currentTime, currentTime.plus(1, ChronoUnit.WEEKS), "Gaining Three Warnings");
 
                         dslContext.update(Tables.PUNISHMENTS).set(Tables.PUNISHMENTS.PUNISHMENTEND, LocalDateTime.now())
                                 .where(condition).execute();

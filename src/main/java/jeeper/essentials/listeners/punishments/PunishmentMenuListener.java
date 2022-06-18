@@ -12,6 +12,7 @@ import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -135,6 +136,15 @@ public class PunishmentMenuListener implements Listener {
             return;
         }
 
+        String ip = "";
+
+        if (punished.isOnline()) {
+            Player player = (Player) punished;
+            if (player.getAddress() != null) {
+                ip = (player.getAddress().getAddress().getHostAddress());
+            }
+        }
+
         List<Material> buttons = List.of(Material.RED_CONCRETE, Material.ORANGE_CONCRETE, Material.YELLOW_CONCRETE, Material.LIME_CONCRETE, Material.GREEN_CONCRETE);
         for (Material button : buttons) {
             //custom time
@@ -181,7 +191,7 @@ public class PunishmentMenuListener implements Listener {
                         endTime = LocalDateTime.now().plus(timeNumber, ChronoUnit.MINUTES);
                     }
                 }
-                PunishmentTools.addPunishmentToDB(e.getWhoClicked(), punishment, e.getWhoClicked().getUniqueId().toString(), "", punished, LocalDateTime.now(), endTime, reason);
+                PunishmentTools.addPunishmentToDB(e.getWhoClicked(), punishment, e.getWhoClicked().getUniqueId().toString(), ip, punished, LocalDateTime.now(), endTime, reason);
             }
         }
         e.getWhoClicked().closeInventory();
