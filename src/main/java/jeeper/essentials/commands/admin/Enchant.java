@@ -32,7 +32,11 @@ public class Enchant extends PluginCommand {
 
         int level;
         try {
-            level = Integer.parseInt(args[1]);
+            if (args.length == 1) {
+                level = 1;
+            } else {
+                level = Integer.parseInt(args[1]);
+            }
         } catch (NumberFormatException e) {
             level = 1;
         }
