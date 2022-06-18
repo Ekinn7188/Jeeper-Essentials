@@ -136,6 +136,9 @@ commands:
   enchant:
     description: adds an enchantment to an item
     permission: minecraft.command.enchant
+  hat:
+    description: gives a player a hat
+    permission: jeeper.hat
 permissions:
   jeeper.setspawn:
     description: allows use of the setspawn command

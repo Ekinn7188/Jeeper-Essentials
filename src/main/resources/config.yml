@@ -109,6 +109,9 @@ Tablist Footer:
   Second Line: <#d1c59f>⚔ <onlineplayers>/<maxplayers> Online ☠
 Player Tab Style: '<prefix><#7c3e12><player> '
 
+#hat set
+Hat Set: '<#b8a567>Hat set!'
+
 #afk
 Player AFK: '<#b8a567><player><#d1c59f> is now AFK'
 Player Not AFK: '<#b8a567><player><#d1c59f> is no longer AFK'

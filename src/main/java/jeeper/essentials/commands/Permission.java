@@ -14,6 +14,7 @@ public enum Permission {
     DELETEWARP("jeeper.warps.delete"),
     ENCHANT("minecraft.command.enchant"),
     ESSENTIALS("jeeper.essentials"),
+    HAT("jeeper.hat"),
     HISTORY("jeeper.history"),
     KICK("jeeper.kick"),
     MEMORY("jeeper.memory"),
