@@ -1,6 +1,8 @@
 package jeeper.essentials.listeners;
 
+import net.minecraft.server.level.ServerPlayer;
 import org.bukkit.Location;
+import org.bukkit.craftbukkit.v1_19_R1.entity.CraftPlayer;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -14,7 +16,11 @@ public class TeleportBack implements Listener {
 
     @EventHandler
     public void onPlayerTeleport(PlayerTeleportEvent e) {
-        lastLocation.put(e.getPlayer().getUniqueId(), e.getFrom());
+        CraftPlayer craftPlayer = (CraftPlayer) e.getPlayer();
+        ServerPlayer serverPlayer = craftPlayer.getHandle();
+        if (serverPlayer.isRealPlayer) {
+            lastLocation.put(e.getPlayer().getUniqueId(), e.getFrom());
+        }
     }
 
     @EventHandler
