@@ -53,6 +53,7 @@ public class JoinAndLeave implements Listener {
     @EventHandler
     public void onLeave(PlayerQuitEvent e){
         e.quitMessage(MessageTools.parseFromPath(config,"Leave Message", Placeholder.component("player", e.getPlayer().displayName())));
+        TabMenu.updateTab();
     }
 
 }
