@@ -35,9 +35,6 @@ public class Main extends JavaPlugin {
 
         initializeClasses();
 
-        org.apache.logging.log4j.core.Logger coreLogger = (org.apache.logging.log4j.core.Logger) LogManager.getRootLogger();
-        coreLogger.addFilter(new LogFilter());
-
         runBot();
         TabMenu.updateTabLoop();
 
@@ -47,6 +44,10 @@ public class Main extends JavaPlugin {
     @Override
     public void onLoad() {
         plugin = this;
+
+        org.apache.logging.log4j.core.Logger coreLogger = (org.apache.logging.log4j.core.Logger) LogManager.getRootLogger();
+        coreLogger.addFilter(new LogFilter());
+
         startFileSetup();
         try {
            dslContext = SQLite.databaseSetup(getPlugin().getDataFolder().getCanonicalPath());
