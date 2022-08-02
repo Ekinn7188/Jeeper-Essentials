@@ -37,10 +37,6 @@ public class PreventJoin implements Listener {
 
         if (banRecord != null) {
 
-            //print ban record
-            System.out.println(banRecord);
-
-
             var address = e.getAddress().getHostAddress();
 
             if (address.equals(banRecord.get(Tables.PUNISHMENTS.IPADDRESS))) {
