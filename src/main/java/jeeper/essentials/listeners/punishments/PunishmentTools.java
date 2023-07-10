@@ -20,6 +20,8 @@ import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.time.temporal.ChronoUnit;
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 import java.util.regex.Matcher;
@@ -47,7 +49,13 @@ public class PunishmentTools {
         }
 
         new AnvilGUI.Builder()
-                .onComplete((player, text) -> {
+                .onClick((slot, stateSnapshot) -> {
+                    if (slot != AnvilGUI.Slot.OUTPUT) {
+                        return Collections.emptyList();
+                    }
+                    Player player = stateSnapshot.getPlayer();
+                    String text = stateSnapshot.getText();
+                    
                     Matcher matcher = anvilTimePattern.matcher(text);
                     if (matcher.find()) {
                         try {
@@ -56,19 +64,19 @@ public class PunishmentTools {
                             endTime = endTime.plus(parseInt(matcher.group(2)), ChronoUnit.HOURS);
                             endTime = endTime.plus(parseInt(matcher.group(3)), ChronoUnit.MINUTES);
                             addPunishmentToDB(player, punishment, punisher.getUniqueId().toString(), ip, punished, currentTime, endTime, reason);
-                            return AnvilGUI.Response.close();
+                            return List.of(AnvilGUI.ResponseAction.close());
                         } catch (NumberFormatException exception) {
                             player.sendMessage(MessageTools.parseFromPath(config, "Punishment Time Invalid"));
-                            return AnvilGUI.Response.close();
+                            return List.of(AnvilGUI.ResponseAction.close());
                         }
                     } else {
                         if (text.equalsIgnoreCase("permanent")) {
                             addPunishmentToDB(player, punishment, punisher.getUniqueId().toString(), ip, punished, LocalDateTime.now(), null, reason);
-                            return AnvilGUI.Response.close();
+                            return List.of(AnvilGUI.ResponseAction.close());
                         }
 
                         player.sendMessage(MessageTools.parseFromPath(config, "Punishment Time Invalid"));
-                        return AnvilGUI.Response.close();
+                        return List.of(AnvilGUI.ResponseAction.close());
                     }
                 })
                 .text("0d 0h 0m")
@@ -90,14 +98,21 @@ public class PunishmentTools {
         }
 
         new AnvilGUI.Builder()
-                .onComplete((player, text) -> {
+                .onClick((slot, stateSnapshot) -> {
+                    if (slot != AnvilGUI.Slot.OUTPUT) {
+                        return Collections.emptyList();
+                    }
+                    
+                    Player player = stateSnapshot.getPlayer();
+                    String text = stateSnapshot.getText();
+                    
                     if (punishment.equals(Punishment.WARN)) {
                         addPunishmentToDB(player, punishment, punisher.getUniqueId().toString(), ip, punished, LocalDateTime.now(), null, text);
                     }
                     else {
                         timeMenu(punishment, punished, punisher, text);
                     }
-                    return AnvilGUI.Response.close();
+                    return List.of(AnvilGUI.ResponseAction.close());
                 })
                 .text("Reason")
                 .title(punishment.getPunishment() + " Reason Editor")

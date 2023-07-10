@@ -59,7 +59,7 @@ public class Punishments {
         }
 
         try {
-            OfflinePlayer punished = UUIDTools.checkNameAndUUID(viewer, punishedName);
+            OfflinePlayer punished = UUIDTools.getOfflinePlayer(viewer, punishedName);
             if (punished == null) {
                 return null;
             }
@@ -168,7 +168,7 @@ public class Punishments {
      * @param args the command arguments
      */
     public static void consolePunishment(Punishment punishment, CommandSender sender, String[] args) {
-        OfflinePlayer punished = UUIDTools.checkNameAndUUID(sender, args[0]);
+        OfflinePlayer punished = UUIDTools.getOfflinePlayer(sender, args[0]);
         if (punished == null) {
             return;
         }

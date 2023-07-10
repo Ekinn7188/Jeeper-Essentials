@@ -30,6 +30,7 @@ public class Essentials extends PluginCommand {
         if (args.length > 0) {
             if (args[0].equalsIgnoreCase("reload")) {
                 Main.getPlugin().config().reload();
+                Main.getPlugin().customMiniMessage();
                 TabMenu.updateTab();
 
                 sender.sendMessage(MessageTools.parseFromPath(config, "Essentials Reloaded"));

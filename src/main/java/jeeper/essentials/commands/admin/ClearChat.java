@@ -31,8 +31,10 @@ public class ClearChat extends PluginCommand {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
-        for(int i = 0; i < 300; i++){
-            Bukkit.broadcast(Component.text(""));
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            for(int i = 0; i < 300; i++){
+                player.sendMessage(Component.text(""));
+            }
         }
         if (sender instanceof Player){
             Bukkit.broadcast(MessageTools.parseFromPath(config, "Chat Cleared By Message", Placeholder.component("player", ((Player) sender).displayName())));

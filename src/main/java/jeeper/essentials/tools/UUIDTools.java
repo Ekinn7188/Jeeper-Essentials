@@ -37,37 +37,20 @@ public class UUIDTools {
                 return null;
             }
             JSONObject UUIDObject = (JSONObject) JSONValue.parseWithException(UUIDJson);
-            return UUID_FIX.matcher(UUIDObject.get("id").toString().replace("-", "")).replaceAll("$1-$2-$3-$4-$5");
+            return UUIDObject.get("id").toString().replaceFirst(UUID_FIX.pattern(), "$1-$2-$3-$4-$5");
         } catch (IOException | ParseException e) {
             //not a valid name, will return null
+            return null;
         }
-        return null;
     }
 
     /**
-     * Gets the name of an offline player and checks if it's a real name
+     * Gets an offline player and checks if it exists or has logged into the server
      * @param name the name to check
      * @param sender the sender to send error messages to
      * @return the name of the player or null if it's not a real name
      */
-    public static String getNameIfExists(String name, CommandSender sender) {
-        String UUID = getUuid(name);
-
-        if (UUID == null) {
-            sender.sendMessage(MessageTools.parseFromPath(config,"Player Doesnt Exist", Placeholder.parsed("player", name)));
-            return null;
-        }
-        OfflinePlayer playerArg = Bukkit.getOfflinePlayer(java.util.UUID.fromString(UUID));
-        String username = playerArg.getName();
-        if (username == null) {
-            sender.sendMessage(MessageTools.parseFromPath(config,"Player Hasnt Logged In", Placeholder.parsed("player", name)));
-            return null;
-        }
-
-        return username;
-    }
-
-    public static @Nullable OfflinePlayer checkNameAndUUID(CommandSender sender, String name) {
+    public static @Nullable OfflinePlayer getOfflinePlayer(CommandSender sender, String name) {
         String playerUUID = UUIDTools.getUuid(name);
 
         if (playerUUID == null) {

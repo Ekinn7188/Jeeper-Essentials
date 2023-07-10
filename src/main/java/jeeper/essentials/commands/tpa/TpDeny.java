@@ -27,7 +27,7 @@ public class TpDeny extends PluginCommand {
             return;
         }
 
-        OfflinePlayer target = UUIDTools.checkNameAndUUID(player, args[0]);
+        OfflinePlayer target = UUIDTools.getOfflinePlayer(player, args[0]);
         if (target == null || !target.isOnline()) {
             player.sendMessage(MessageTools.parseFromPath(Main.getPlugin().config(), "Player Is Offline"));
             return;

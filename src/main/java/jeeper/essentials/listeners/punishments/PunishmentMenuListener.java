@@ -40,11 +40,10 @@ public class PunishmentMenuListener implements Listener {
 
     @EventHandler
     public void onMenuClick(InventoryClickEvent e) {
-        for (Punishment punishment : Punishment.values()) {
-            if (Punishments.openMenus.contains(e.getWhoClicked().getUniqueId())) {
-                punishmentMenu(e, punishment);
-                return;
-            }
+        if (Punishments.openMenus.contains(e.getWhoClicked().getUniqueId())) {
+            String punishment = PlainTextComponentSerializer.plainText().serialize(e.getView().title());
+            punishment = punishment.substring(0, punishment.indexOf(' '));
+            punishmentMenu(e, Punishment.valueOf(punishment.toUpperCase()));
         }
         if (PunishmentHistory.openMenus.contains(e.getWhoClicked().getUniqueId())) {
             punishmentHistoryMenu(e);
@@ -90,7 +89,7 @@ public class PunishmentMenuListener implements Listener {
 
             String uuid = UUIDTools.getUuid(playerName);
 
-            OfflinePlayer player = UUIDTools.checkNameAndUUID(e.getWhoClicked(), playerName);
+            OfflinePlayer player = UUIDTools.getOfflinePlayer(e.getWhoClicked(), playerName);
             if (player == null) {
                 return;
             }
@@ -128,7 +127,7 @@ public class PunishmentMenuListener implements Listener {
             Bukkit.getLogger().warning(e.getWhoClicked().getName() + " has removed a " + PlainTextComponentSerializer.plainText().serialize(itemName).toLowerCase() + " from " + playerName + "'s punishment history.");
 
             e.getWhoClicked().openInventory(PunishmentHistory.makeHistoryMenu(player, e.getWhoClicked()));
-
+            PunishmentHistory.openMenus.add(e.getWhoClicked().getUniqueId());
 
         }
     }
@@ -137,7 +136,7 @@ public class PunishmentMenuListener implements Listener {
         e.setCancelled(true);
         String playerName = PlainTextComponentSerializer.plainText().serialize(e.getView().title()).replace(punishment.getPunishment() + " Player ", "");
 
-        OfflinePlayer punished = UUIDTools.checkNameAndUUID(e.getWhoClicked(), playerName);
+        OfflinePlayer punished = UUIDTools.getOfflinePlayer(e.getWhoClicked(), playerName);
         ItemStack clicked = e.getCurrentItem();
         if (punished == null || punished.getName() == null || clicked == null) {
             return;
@@ -151,55 +150,57 @@ public class PunishmentMenuListener implements Listener {
                 ip = (player.getAddress().getAddress().getHostAddress());
             }
         }
-
+        
+        //custom time
+        if (clicked.getType().equals(Material.NAME_TAG)) {
+            PunishmentTools.customPunishment(punishment, punished, e.getWhoClicked());
+            return;
+        }
+        
         List<Material> buttons = List.of(Material.RED_CONCRETE, Material.ORANGE_CONCRETE, Material.YELLOW_CONCRETE, Material.LIME_CONCRETE, Material.GREEN_CONCRETE);
         for (Material button : buttons) {
-            //custom time
-            if (clicked.getType().equals(Material.NAME_TAG)) {
-                PunishmentTools.customPunishment(punishment, punished, e.getWhoClicked());
+            if (!clicked.getType().equals(button)) {
+                continue;
+            }
+            
+            List<Component> lore = clicked.lore();
+
+            if (lore == null || lore.size() < 2) {
                 return;
             }
 
-            if (clicked.getType().equals(button)) {
-                List<Component> lore = clicked.lore();
+            String reason = PlainTextComponentSerializer.plainText().serialize(lore.get(1)).replace(punishment.getPunishment() + " Reason: ", "");
 
-                if (lore == null || lore.size() < 2) {
-                    return;
-                }
-
-                String reason = PlainTextComponentSerializer.plainText().serialize(lore.get(1)).replace(punishment.getPunishment() + " Reason: ", "");
-
-                //if right click, edit time
-                if (e.getClick().isRightClick()) {
-                    PunishmentTools.timeMenu(punishment, punished, e.getWhoClicked(), reason);
-                    return;
-                }
-                int timeNumber = -1; //if these values aren't changed set and player is muted/banned, its permanent
-                String timeUnit = "";
-                //get the time as a number
-                if (lore.size() >= 3) {
-                    String secondLine = PlainTextComponentSerializer.plainText().serialize(lore.get(2));
-                    Matcher matcher = timePattern.matcher(secondLine);
-                    if (matcher.find()) {
-                        timeNumber = Integer.parseInt(matcher.group().replace(" ", ""));
-                        timeUnit = secondLine.substring(matcher.end());
-                    }
-                }
-
-                //null if permanent
-                LocalDateTime endTime = null;
-
-                if (timeNumber != -1 && !timeUnit.equals("")) {
-                    if (timeUnit.equalsIgnoreCase("Days")) {
-                        endTime = LocalDateTime.now().plus(timeNumber, ChronoUnit.DAYS);
-                    } else if (timeUnit.equalsIgnoreCase("Hours")) {
-                        endTime = LocalDateTime.now().plus(timeNumber, ChronoUnit.HOURS);
-                    } else if (timeUnit.equalsIgnoreCase("Minutes")) {
-                        endTime = LocalDateTime.now().plus(timeNumber, ChronoUnit.MINUTES);
-                    }
-                }
-                PunishmentTools.addPunishmentToDB(e.getWhoClicked(), punishment, e.getWhoClicked().getUniqueId().toString(), ip, punished, LocalDateTime.now(), endTime, reason);
+            //if right click, edit time
+            if (e.getClick().isRightClick()) {
+                PunishmentTools.timeMenu(punishment, punished, e.getWhoClicked(), reason);
+                return;
             }
+            int timeNumber = -1; //if these values aren't changed set and player is muted/banned, its permanent
+            String timeUnit = "";
+            //get the time as a number
+            if (lore.size() >= 3) {
+                String secondLine = PlainTextComponentSerializer.plainText().serialize(lore.get(2));
+                Matcher matcher = timePattern.matcher(secondLine);
+                if (matcher.find()) {
+                    timeNumber = Integer.parseInt(matcher.group().replace(" ", ""));
+                    timeUnit = secondLine.substring(matcher.end());
+                }
+            }
+
+            //null if permanent
+            LocalDateTime endTime = null;
+
+            if (timeNumber != -1 && !timeUnit.equals("")) {
+                if (timeUnit.equalsIgnoreCase("Days")) {
+                    endTime = LocalDateTime.now().plus(timeNumber, ChronoUnit.DAYS);
+                } else if (timeUnit.equalsIgnoreCase("Hours")) {
+                    endTime = LocalDateTime.now().plus(timeNumber, ChronoUnit.HOURS);
+                } else if (timeUnit.equalsIgnoreCase("Minutes")) {
+                    endTime = LocalDateTime.now().plus(timeNumber, ChronoUnit.MINUTES);
+                }
+            }
+                PunishmentTools.addPunishmentToDB(e.getWhoClicked(), punishment, e.getWhoClicked().getUniqueId().toString(), ip, punished, LocalDateTime.now(), endTime, reason);
         }
         e.getWhoClicked().closeInventory();
     }

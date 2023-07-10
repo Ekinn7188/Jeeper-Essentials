@@ -1,6 +1,6 @@
 name: Jeeper-Essentials
 version: 1.0
-api-version: 1.19
+api-version: 1.20
 description: A plugin similar to the well-known Essentials plugin
 depend: [LuckPerms]
 author: Jeeper_
@@ -12,10 +12,10 @@ commands:
   spawn:
     description: Teleports you to spawn!
   essentials:
-    description: essentials command that branches out to other plugin-related commands
+    description: Essentials command that branches out to other plugin-related commands
     permission: jeeper.essentials
   nickname:
-    description: gives the player a nickname!
+    description: Gives the player a nickname!
     permission: jeeper.nickname
     aliases: nick
   warp:
@@ -47,167 +47,178 @@ commands:
     description: Mutes the chat!
     permission: jeeper.chat.mute
   chatcolor:
-    description: sets the default color of the player's chat!
+    description: Sets the default color of the player's chat!
     permission: jeeper.chat.color
     aliases: color
   afk:
-    description: puts a player in AFK mode
+    description: Puts a player in AFK mode
     permission: jeeper.afk
   realname:
-    description: gets a player's real name
+    description: Gets a player's real name
   sudo:
-    description: allows the user to run commands as another player
+    description: Allows the user to run commands as another player
     permission: jeeper.sudo
   rules:
-    description: shows the rules of the server
+    description: Shows the rules of the server
   ban:
-    description: bans a player
+    description: Bans a player
     permission: jeeper.ban
   kick:
-    description: kicks a player
+    description: Kicks a player
     permission: jeeper.kick
   mute:
-    description: mutes a player
+    description: Mutes a player
     permission: jeeper.mute
   warn:
-    description: warns a player
+    description: Warns a player
     permission: jeeper.warn
   memory:
-    description: shows the memory usage of the server
+    description: Shows the memory usage of the server
     permission: jeeper.memory
   unban:
-    description: unbans a player
+    description: Unbans a player
     permission: jeeper.ban
     aliases: pardon
   unmute:
-    description: unmutes a player
+    description: Unmutes a player
     permission: jeeper.mute
   history:
-    description: shows the punishment history of a player
+    description: Shows the punishment history of a player
     permission: jeeper.history
-    aliases: [pistory]
+  gmc:
+    description: Sets a player's gamemode to creative
+    permission: minecraft.command.gamerule
+  gms:
+    description: Sets a player's gamemode to survival
+    permission: minecraft.command.gamerule
+  gmsp:
+    description: Sets a player's gamemode to spectator
+    permission: minecraft.command.gamerule
+  gma:
+    description: Sets a player's gamemode to adventure
+    permission: minecraft.command.gamerule
   discord:
-    description: gives an invite to the discord server
+    description: Gives an invite to the discord server
     aliases: disc
   back:
-    description: teleports a player back to their last location
+    description: Teleports a player back to their last location
     permission: jeeper.back
   tps:
-    description: shows the current tps of the server
+    description: Shows the current tps of the server
     permission: jeeper.tps
   clearlag:
-    description: clears the entities off the server
+    description: Clears some of the entities off the server
     permission: jeeper.clearlag
   ignore:
-    description: ignores a player
+    description: Ignores a player
   unignore:
-    description: unignores a player
+    description: Unignores a player
   ignorelist:
-    description: shows the players that are ignored
+    description: Shows the players that are ignored
     aliases: [ignored, ignore-list]
   report:
-    description: reports a player
+    description: Reports a player
   reports:
-    description: shows the reports
+    description: Shows the reports
     aliases: [report-list, view-reports, viewreports, reportlist]
   tphere:
-    description: teleports a player to you
+    description: Teleports a player to you
     permission: minecraft.command.tp
     aliases: [tph]
   tpa:
-    description: requests a teleport to a player
+    description: Requests a teleport to a player
     permission: jeeper.tpa
   tpaccept:
-    description: accepts a teleport request
+    description: Accepts a teleport request
     permission: jeeper.tpa
   tpdeny:
-    description: denies a teleport request
+    description: Denies a teleport request
     permission: jeeper.tpa
   powertool:
-    description: adds a command to an item when it's left clicked
+    description: Adds a command to an item when it's left clicked
     permission: jeeper.powertool
   enchant:
-    description: adds an enchantment to an item
+    description: Adds an enchantment to an item
     permission: minecraft.command.enchant
   hat:
-    description: gives a player a hat
+    description: Gives a player a hat
     permission: jeeper.hat
 permissions:
   jeeper.setspawn:
-    description: allows use of the setspawn command
+    description: Allows use of the setspawn command
     default: op
   jeeper.essentials:
-    description: gives access to server-related commands
+    description: Gives access to server-related commands
     default: op
   jeeper.nickname:
-    description: gives the player access to change their nickanme!
+    description: Gives the player access to change their nickname!
     default: op
   jeeper.warps.set:
-    description: gives the player permission to create a warp
+    description: Gives the player permission to create a warp
     default: op
   jeeper.warps.delete:
-    description: deletes a warp!
+    description: Deletes a warp!
     default: op
   jeeper.sethome:
-    description: gives the player access to set a home. jeeper.sethome.# will give the player access to creating multiple homes
+    description: Gives the player access to set a home. jeeper.sethome.# will give the player access to creating multiple homes
     default: true
   jeeper.chat.color:
-    description: lets the player use colored text
+    description: Lets the player use colored text
     default: op
   jeeper.broadcast:
-    description: gives access to the broadcast command
+    description: Gives access to the broadcast command
     default: op
   jeeper.chat.clear:
-    description: gives access to the clearchat command
+    description: Gives access to the clearchat command
     default: op
   jeeper.chat.mute:
-    description: gives access to the mutechat command
+    description: Gives access to the mutechat command
     default: op
   jeeper.chat.bypass:
-    description: bypasses muted chat!
+    description: Bypasses muted chat!
     default: op
   jeeper.afk:
-    description: used to make a player go afk
+    description: Used to make a player go afk
     default: op
   jeeper.cooldown:
-    description: used to bypass the chat cooldown
+    description: Used to bypass the chat cooldown
     default: op
   jeeper.sudo:
-    description: used to type commands as another player
+    description: Used to type commands as another player
     default: op
   jeeper.ban:
-    description: used to ban a player
+    description: Used to ban a player
     default: op
   jeeper.mute:
-    description: used to mute a player
+    description: Used to mute a player
     default: op
   jeeper.warn:
-    description: used to warn a player
+    description: Used to warn a player
     default: op
   jeeper.kick:
-    description: used to kick a player
+    description: Used to kick a player
     default: op
   jeeper.memory:
-    description: used to view memory usage
+    description: Used to view memory usage
     default: op
   jeeper.history:
-    description: used to view punishment history
+    description: Used to view punishment history
     default: op
   jeeper.back:
-    description: used to teleport a player back to their last location
+    description: Used to teleport a player back to their last location
     default: op
   jeeper.tps:
-    description: used to view the tps of the server
+    description: Used to view the tps of the server
     default: op
   jeeper.clearlag:
-    description: used to clear the entities off the server
+    description: Used to clear the entities off the server
     default: op
   jeeper.reports.view:
-    description: used to view reports
+    description: Used to view reports
     default: op
   jeeper.tpa:
-    description: used to request a teleport to a player
+    description: Used to request a teleport to a player
     default: true
   jeeper.powertool:
-    description: used to add a command to an item when it's left clicked
+    description: Used to add a command to an item when it's left clicked
     default: op

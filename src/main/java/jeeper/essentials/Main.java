@@ -6,22 +6,30 @@ import jeeper.essentials.database.SQLite;
 import jeeper.essentials.lag.ClearLag;
 import jeeper.essentials.log.LogFilter;
 import jeeper.essentials.tabscoreboard.TabMenu;
+import jeeper.utils.MessageTools;
 import jeeper.utils.config.Config;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.exceptions.InvalidTokenException;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.ChunkingFilter;
 import net.dv8tion.jda.api.utils.MemberCachePolicy;
+import net.kyori.adventure.text.minimessage.MiniMessage;
+import net.kyori.adventure.text.minimessage.tag.ParserDirective;
+import net.kyori.adventure.text.minimessage.tag.Tag;
+import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
 import org.apache.logging.log4j.LogManager;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.intellij.lang.annotations.Subst;
 import org.jooq.DSLContext;
 import org.reflections.Reflections;
 
 import javax.security.auth.login.LoginException;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Main extends JavaPlugin {
@@ -35,6 +43,8 @@ public class Main extends JavaPlugin {
 
         initializeClasses();
 
+        customMiniMessage();
+        
         runBot();
         TabMenu.updateTabLoop();
 
@@ -55,6 +65,32 @@ public class Main extends JavaPlugin {
             throw new RuntimeException(e);
         }
     }
+    
+    public void customMiniMessage() {
+        
+        var configSection = config.get().getConfigurationSection("variables");
+        
+        if (Objects.isNull(configSection)) {
+            // No custom variables
+            return;
+        }
+        
+        ArrayList<TagResolver.Single> tags = new ArrayList<>();
+        for (String key : configSection.getKeys(false)) {
+            String value = configSection.getString(key);
+            if (Objects.isNull(value)) {
+                // config is written wrong
+                continue;
+            }
+            tags.add(TagResolver.resolver(key, Tag.inserting(MessageTools.parseText(value))));
+        }
+
+        MiniMessage parser = MiniMessage.builder()
+                .editTags(t -> t.resolvers(tags))
+                .build();
+        
+        MessageTools.setMiniMessage(parser);
+    }
 
     private void runBot() {
         String token = config.get().getString("Discord Bot Token");
@@ -65,7 +101,7 @@ public class Main extends JavaPlugin {
                     .setMemberCachePolicy(MemberCachePolicy.ALL)
                     .enableIntents(GatewayIntent.GUILD_MEMBERS)
                     .build().awaitReady();
-        } catch (LoginException | InterruptedException e) {
+        } catch (InvalidTokenException | InterruptedException e) {
             Bukkit.getLogger().warning("Failed to connect to Discord. Try checking your bot token in config.yml");
         }
 
@@ -73,7 +109,7 @@ public class Main extends JavaPlugin {
 
     private void initializeClasses(){
         String packageName = Main.getPlugin().getClass().getPackage().getName();
-        //load Listeners in net.dirtlands.listeners
+        //load Listeners in jeeper.essentials.listeners
         for(Class<?> listenerClass :new Reflections(packageName +".listeners").getSubTypesOf(Listener.class)) {
             try {
                 Listener listener = (Listener) listenerClass.getDeclaredConstructor().newInstance(); //must have empty constructor
@@ -84,7 +120,7 @@ public class Main extends JavaPlugin {
         }
 
 
-        //load PluginCommands in net.dirtlands.commands
+        //load PluginCommands in jeeper.essentials.commands
         for(Class<? extends PluginCommand> commandClass :new Reflections(packageName +".commands").getSubTypesOf(PluginCommand.class)) {
             try {
                 PluginCommand pluginCommand = commandClass.getDeclaredConstructor().newInstance();
@@ -94,7 +130,7 @@ public class Main extends JavaPlugin {
             }
         }
 
-        //load PluginTabCompleters in net.dirtlands.commands.tab
+        //load PluginTabCompleters in jeeper.essentials.commands.tab
         for(Class<? extends PluginTabCompleter> completerClass :new Reflections(packageName +".commands.tab").getSubTypesOf(PluginTabCompleter .class)) {
             try {
                 PluginTabCompleter tabCompleter = completerClass.getDeclaredConstructor().newInstance();

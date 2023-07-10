@@ -43,7 +43,7 @@ public class Tpa extends PluginCommand {
             return;
         }
 
-        OfflinePlayer recipient = UUIDTools.checkNameAndUUID(player, args[0]);
+        OfflinePlayer recipient = UUIDTools.getOfflinePlayer(player, args[0]);
 
         if (recipient == null) {
             return;

@@ -65,7 +65,9 @@ public class Kick extends PluginCommand {
             }
 
             int punisherID = DatabaseTools.getUserID(sender instanceof Player ? String.valueOf(((Player) sender).getUniqueId()) : "Console");
-
+            
+            assert Tables.PUNISHMENTS != null;
+            
             dslContext.insertInto(Tables.PUNISHMENTS)
                     .set(Tables.PUNISHMENTS.USERID, DatabaseTools.getUserID(player.getUniqueId()))
                     .set(Tables.PUNISHMENTS.PUNISHERID, punisherID == -1 ? null : punisherID)
@@ -74,6 +76,7 @@ public class Kick extends PluginCommand {
                     .set(Tables.PUNISHMENTS.PUNISHMENTSTART, LocalDateTime.now())
                     .set(Tables.PUNISHMENTS.PUNISHMENTEND, LocalDateTime.now())
                     .execute();
+
             Bukkit.getLogger().warning(player.getName() + " has been kicked by " +
                     (sender.getName().equals("CONSOLE") ? sender.getName().toLowerCase() : sender.getName()) + (reason == null ? "" : " for " + reason));
             try{

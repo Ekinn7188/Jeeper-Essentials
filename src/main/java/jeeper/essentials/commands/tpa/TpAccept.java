@@ -28,7 +28,7 @@ public class TpAccept extends PluginCommand {
             return;
         }
 
-        OfflinePlayer offlineTarget = UUIDTools.checkNameAndUUID(player, args[0]);
+        OfflinePlayer offlineTarget = UUIDTools.getOfflinePlayer(player, args[0]);
 
         if (offlineTarget == null) {
             player.sendMessage(MessageTools.parseFromPath(Main.getPlugin().config(), "Player Is Offline"));

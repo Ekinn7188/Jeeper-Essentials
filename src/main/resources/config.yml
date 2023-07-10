@@ -4,7 +4,7 @@
 #  # +------------------------------------------------------+ #
 #  ############################################################
 #
-#  Developed by: Jeeper_ (Jeeper#6808)
+#  Developed by: Jeeper_ (On minecraft and discord)
 #
 #  Color Choices:
 #    Hex Code Example: <#FFFFFF>text</#FFFFFF>
@@ -18,91 +18,99 @@
 #
 #    ******* /essentials reload to reload files *******
 
+# Color variables, formatted in form <color_xxx> must be in lowercase. can start with ! or ?. can have numbers. Can include - or _
+variables:
+  color_light: <#b8a567>
+  color_dark: <#856f2d>
 
 #discord
 Discord Link: https://discord.gg/tHfGcDQQQC
-Discord Message: <#b8a567>Join our discord server! <#856f2d><discord>
+Discord Message: <color_light>Join our discord server! <color_dark><discord>
 Discord Bot Token: Classified
 Punishment Channel ID: 0
 Report Channel ID: 0
 
 #chat
-Chat Style: <prefix><#b8a567><player></#b8a567><suffix> <#856f2d>»</#856f2d> &7<message>
-Join Message: '<#b8a567>[<#856f2d>+</#856f2d>] <player>'
+Chat Style: <prefix><color_light><player></color_light><suffix> <color_dark>»</color_dark> &7<message>
+Join Message: '<color_light>[<color_dark>+</color_dark>] <player>'
 First Join Message: '<#d1c59f><player> has joined for the first time! (#<number>)'
-Leave Message: '<#b8a567>[<#856f2d>-</#856f2d>] <player>'
-Broadcast Prefix: '<#856f2d>[<#7c3e12>Dirtlands</#7c3e12><#856f2d>] '
-Player Death: '<#856f2d>☠ <message>'
-Chat Cleared By Message: '<#b8a567>Chat cleared by <#b8a567><player></#b8a567>!'
-Chat Muted By Message: '<#b8a567>Chat muted by <#b8a567><player></#b8a567>!'
-Chat Unmuted By Message: '<#b8a567>Chat unmuted by <#b8a567><player></#b8a567>!'
-Chat Is Muted: '<#b8a567>The chat is currently <#b8a567>muted</#b8a567>!'
-Chat Color Set: '<#b8a567>Default chat color set'
-Invalid Chat Color: '<#b8a567>That is not a valid chat color!'
-Sending Messages Too Fast: '<#b8a567>You are sending "<#856f2d><message></#856f2d>" too fast! Slow down!'
+Leave Message: '<color_light>[<color_dark>-</color_dark>] <player>'
+Broadcast Prefix: '<color_dark>[<#7c3e12>Dirtlands</#7c3e12><color_dark>] '
+Player Death: '<color_dark>☠ <message>'
+Chat Cleared By Message: '<color_light>Chat cleared by <color_light><player></color_light>!'
+Chat Muted By Message: '<color_light>Chat muted by <color_light><player></color_light>!'
+Chat Unmuted By Message: '<color_light>Chat unmuted by <color_light><player></color_light>!'
+Chat Is Muted: '<color_light>The chat is currently <color_light>muted</color_light>!'
+Chat Color Set: '<color_light>Default chat color set'
+Invalid Chat Color: '<color_light>That is not a valid chat color!'
+Sending Messages Too Fast: '<color_light>You are sending "<color_dark><message></color_dark>" too fast! Slow down!'
 
 #teleporting
-Dont Move Message: '<#b8a567>Dont move or teleportation is <#856f2d>canceled'
-Teleport Countdown: '<#b8a567>Teleporting to <location> in: <#856f2d><time>'
-Teleport Canceled: '<#b8a567>Teleport <#856f2d>canceled</#856f2d>!'
-Teleport Success: '<#b8a567>Successfully teleported to <#856f2d><location></#856f2d>!'
+Dont Move Message: '<color_light>Dont move or teleportation is <color_dark>canceled'
+Teleport Countdown: '<color_light>Teleporting to <location> in: <color_dark><time>'
+Teleport Canceled: '<color_light>Teleport <color_dark>canceled</color_dark>!'
+Teleport Success: '<color_light>Successfully teleported to <color_dark><location></color_dark>!'
 
 #spawn
-Spawn Set: '<#856f2d>Spawn point set!'
-Spawn Doesnt Exist: '<#b8a567>Spawn doesn''t exist yet! Make sure to set it with <#856f2d>/setspawn</#856f2d>!'
+Spawn Set: '<color_dark>Spawn point set!'
+Spawn Doesnt Exist: '<color_light>Spawn doesn''t exist yet! Make sure to set it with <color_dark>/setspawn</color_dark>!'
 
 #warps
-Warp Created: '<#856f2d>/warp <name> <#b8a567>was successfully created!'
-Warp Deleted: '<#856f2d>/warp <name> <#b8a567>was successfully deleted!'
-Warp List: '<#b8a567>Your current warps: <#856f2d><warps>'
-Warp Doesnt Exist: '<#856f2d>/warp <name> <#b8a567>does not exist!'
-No Warps: '<#b8a567>There are no warps!'
+Warp Created: '<color_dark>/warp <name> <color_light>was successfully created!'
+Warp Deleted: '<color_dark>/warp <name> <color_light>was successfully deleted!'
+Warp List: '<color_light>Your current warps: <color_dark><warps>'
+Warp Doesnt Exist: '<color_dark>/warp <name> <color_light>does not exist!'
+No Warps: '<color_light>There are no warps!'
 
 #homes
-Home Created: '<#856f2d>/home <name> <#b8a567>was successfully created!'
-Home Deleted: '<#856f2d>/home <name> <#b8a567>was successfully deleted!'
-Home Doesnt Exist: '<#856f2d>/home <name> <#b8a567>does not exist!'
-Too Many Homes: '<#b8a567>You''ve created too many homes! You can make up to <#856f2d><number>'
-Home List: '<#b8a567>Your current homes: <#856f2d><homes>'
-No Homes: '<#b8a567>You dont have any homes! Create one with <#856f2d>/sethome {name}</#856f2d>!'
+Home Created: '<color_dark>/home <name> <color_light>was successfully created!'
+Home Deleted: '<color_dark>/home <name> <color_light>was successfully deleted!'
+Home Doesnt Exist: '<color_light>Your home <color_dark><name> <color_light>does not exist!'
+Too Many Homes: '<color_light>You''ve created too many homes! You can make up to <color_dark><number>'
+Home List: '<color_light>Your current homes: <color_dark><homes>'
+No Homes: '<color_light>You dont have any homes! Create one with <color_dark>/sethome {name}</color_dark>!'
 
 #config
-Essentials Reloaded: '<#856f2d>Essentials Reloaded!'
+Essentials Reloaded: '<color_dark>Essentials Reloaded!'
 
 #nickname
-Nickname Change: '<#b8a567>Your nickname has been set to <#856f2d><name><#b8a567>!'
-Invalid Nickname: '<#856f2d>That is an invalid nickname!'
-Nickname Not In Use: '<#b8a567>There are no players with the nickname <#856f2d><nickname>'
-Players With Name: '<#b8a567>Players with the nickname <#856f2d><nickname></#856f2d>: <#856f2d><players>'
+Nickname Change: '<color_light>Your nickname has been set to <color_dark><name><color_light>!'
+Invalid Nickname: '<color_dark>That is an invalid nickname!'
+Nickname Not In Use: '<color_light>There are no players with the nickname <color_dark><nickname>'
+Players With Name: '<color_light>Players with the nickname <color_dark><nickname></color_dark>: <color_dark><players>'
 
 #commands
 No Command Permission: '&cYou dont have permission to use this command!'
-Player Only Command: '<#856f2d>You must be a player to execute this command!'
-Player Doesnt Exist: '<#856f2d><player><#b8a567> doesn''t exist!'
-Player Hasnt Logged In: '<#856f2d><player><#b8a567> has never logged in before!'
-Player Is Offline: '<#856f2d><player><#b8a567> is offline!'
-Correct Usage: '<#b8a567>Usage: <#856f2d><command>'
-No Item In Hand: '<#b8a567>You must be holding an item to use this command!'
-Command Cooldown: '<#b8a567>You can''t type this command for another <#856f2d><time></#856f2d>!'
+Player Only Command: '<color_dark>You must be a player to execute this command!'
+Player Doesnt Exist: '<color_dark><player><color_light> doesn''t exist!'
+Player Hasnt Logged In: '<color_dark><player><color_light> has never logged in before!'
+Player Is Offline: '<color_dark><player><color_light> is offline!'
+Correct Usage: '<color_light>Usage: <color_dark><command>'
+No Item In Hand: '<color_light>You must be holding an item to use this command!'
+Command Cooldown: '<color_light>You can''t type this command for another <color_dark><time></color_dark>!'
 
 #ignore
-Ignore Success: '<#b8a567>You have successfully ignored <#856f2d><player></#856f2d>!'
-Ignore List: '<#b8a567>Your current ignored players: <#856f2d><ignored>'
-Ignoring Nobody: '<#b8a567>You are not ignoring anyone!'
-Player Not Ignored: '<#b8a567>You are not ignoring <#856f2d><player></#856f2d>!'
-Unignored: '<#b8a567>You have successfully unignored <#856f2d><player>'
+Ignore Success: '<color_light>You have successfully ignored <color_dark><player></color_dark>!'
+Ignore List: '<color_light>Your current ignored players: <color_dark><ignored>'
+Ignoring Nobody: '<color_light>You are not ignoring anyone!'
+Player Not Ignored: '<color_light>You are not ignoring <color_dark><player></color_dark>!'
+Unignored: '<color_light>You have successfully unignored <color_dark><player>'
+
+#gamemode
+Updated Gamemode for Player: '<color_light>Set <color_dark><player>''s</color_dark> gamemode to <color_dark><gamemode>'
+Updated Gamemode for Self: '<color_light>Set <color_dark>your</color_dark> gamemode to <color_dark><gamemode>'
 
 #clear lag
-Lag Time: '<#b8a567>Some entities will be cleared in <#856f2d><time></#856f2d>!'
-Lag Cleared: '<#856f2d>Entities cleared!'
+Lag Time: '<color_light>Some entities will be cleared in <color_dark><time></color_dark>!'
+Lag Cleared: '<color_dark>Entities cleared!'
 
 #teleport
-Tphere Success: '<#b8a567>Successfully teleported <#856f2d><player></#856f2d> to your position'
-Teleported to Player: '<#b8a567>You were teleported to <#856f2d><player></#856f2d>'
+Tphere Success: '<color_light>Successfully teleported <color_dark><player></color_dark> to your position'
+Teleported to Player: '<color_light>You were teleported to <color_dark><player></color_dark>'
 
 #tab
 Tablist Header:
-  First Line: <#b8a567>&l⛏ &r<#b8a567>[&r<#7c3e12>&lDirtlands&r<#b8a567>] &l■
+  First Line: <color_light>&l⛏ &r<color_light>[&r<#7c3e12>&lDirtlands&r<color_light>] &l■
   Second Line: ''
 Tablist Footer:
   First Line: ''
@@ -110,109 +118,110 @@ Tablist Footer:
 Player Tab Style: '<prefix><#7c3e12><player> '
 
 #hat set
-Hat Set: '<#b8a567>Hat set!'
+Hat Set: '<color_light>Hat set!'
 
 #afk
-Player AFK: '<#b8a567><player><#d1c59f> is now AFK'
-Player Not AFK: '<#b8a567><player><#d1c59f> is no longer AFK'
+Player AFK: '<color_light><player><#d1c59f> is now AFK'
+Player Not AFK: '<color_light><player><#d1c59f> is no longer AFK'
 
 #powertool
-Powertool Created: '<#856f2d>Powertool created with command <#856f2d><command></#856f2d>'
+Powertool Created: '<color_dark>Powertool created with command <color_dark><command></color_dark>'
+Powertool Removed: '<color_light>Powertool successfully <color_dark>removed</color_dark>'
 
 #tpa
 Tpa Request Received: |-
-  <#b8a567><player><#d1c59f><#d1c59f> has requested to teleport to you
-  [<#b8a567><accept></#b8a567>] | [<#b8a567><deny></#b8a567>]
-Tpa Request Sent: '<#b8a567><player><#d1c59f><#d1c59f> has been sent a teleport request'
-No Tpa Request: '<#b8a567>You do not have a pending teleport request from <#856f2d><player></#856f2d>'
-Tpa Request Denied: '<#b8a567><player><#d1c59f><#d1c59f> has denied your teleport request'
-Tpa Successfully Denied: '<#d1c59f>You have successfully denied <#856f2d><player></#856f2d>''s teleport request'
+  <color_light><player><#d1c59f><#d1c59f> has requested to teleport to you
+  [<color_light><accept></color_light>] | [<color_light><deny></color_light>]
+Tpa Request Sent: '<color_light><player><#d1c59f><#d1c59f> has been sent a teleport request'
+No Tpa Request: '<color_light>You do not have a pending teleport request from <color_dark><player></color_dark>'
+Tpa Request Denied: '<color_light><player><#d1c59f><#d1c59f> has denied your teleport request'
+Tpa Successfully Denied: '<#d1c59f>You have successfully denied <color_dark><player></color_dark>''s teleport request'
 
 #rules
 Rules:
   - "<#169406>&m-----<#246b1a>--</#246b1a>-------<#47c945>-</#47c945>-----<#246b1a>--</#246b1a>&r <#7c3e12>Rules<#169406> &m-----<#47c945>---</#47c945>-------<#246b1a>--</#246b1a>----"
-  - "<#856f2d>1.  <#b8a567>Racial <#856f2d>slurs</#856f2d> or any slurs in general are NOT allowed."
-  - "<#856f2d>2.  <#b8a567>Harassing other players is not tolerated."
-  - "<#856f2d>3.  <#b8a567>Any form of <#856f2d>exploit</#856f2d> will result in severe punishment."
-  - "<#856f2d>4.  <#b8a567><#856f2d>Spamming</#856f2d> or bypassing <#856f2d>chat filters</#856f2d> is not allowed."
-  - "<#856f2d>5.  <#b8a567>Joking about real world tragedies is not allowed."
-  - "<#856f2d>6.  <#b8a567>Offensive jokes are <#856f2d>not allowed</#856f2d>."
-  - "<#856f2d>7.  <#b8a567><#856f2d>Be respectful</#856f2d> towards staff and other Dirtlads."
-  - "<#856f2d>8.  <#b8a567><#856f2d>Do not advertise</#856f2d> other servers here."
-  - "<#856f2d>9.  <#b8a567>Do not join just to say <#856f2d>disrespectful</#856f2d> things."
-  - "<#856f2d>10. <#b8a567>Do not ask for operator or staff positions."
-  - "<#856f2d>11. <#b8a567>Nothing too explicit. (<#856f2d>NSFW</#856f2d> Skins, Builds, etc.)"
-  - "<#856f2d>12. <#b8a567>Do not <#856f2d>evade</#856f2d> a ban. This will result in an <#856f2d>Ban</#856f2d>."
-  - "<#856f2d>13. <#b8a567>Most importantly, <#856f2d>enjoy your time</#856f2d> here!"
-  - "<#856f2d>&m-------------------------------------------------"
+  - "<color_dark>1.  <color_light>Racial <color_dark>slurs</color_dark> or any slurs in general are NOT allowed."
+  - "<color_dark>2.  <color_light>Harassing other players is not tolerated."
+  - "<color_dark>3.  <color_light>Any form of <color_dark>exploit</color_dark> will result in severe punishment."
+  - "<color_dark>4.  <color_light><color_dark>Spamming</color_dark> or bypassing <color_dark>chat filters</color_dark> is not allowed."
+  - "<color_dark>5.  <color_light>Joking about real world tragedies is not allowed."
+  - "<color_dark>6.  <color_light>Offensive jokes are <color_dark>not allowed</color_dark>."
+  - "<color_dark>7.  <color_light><color_dark>Be respectful</color_dark> towards staff and other Dirtlads."
+  - "<color_dark>8.  <color_light><color_dark>Do not advertise</color_dark> other servers here."
+  - "<color_dark>9.  <color_light>Do not join just to say <color_dark>disrespectful</color_dark> things."
+  - "<color_dark>10. <color_light>Do not ask for operator or staff positions."
+  - "<color_dark>11. <color_light>Nothing too explicit. (<color_dark>NSFW</color_dark> Skins, Builds, etc.)"
+  - "<color_dark>12. <color_light>Do not <color_dark>evade</color_dark> a ban. This will result in an <color_dark>Ban</color_dark>."
+  - "<color_dark>13. <color_light>Most importantly, <color_dark>enjoy your time</color_dark> here!"
+  - "<color_dark>&m-------------------------------------------------"
 
 #memory
-Memory Usage: '<#b8a567>Memory Usage: <#856f2d><memory> mb <#b8a567>/ <#856f2d><max> gb'
+Memory Usage: '<color_light>Memory Usage: <color_dark><memory> mb <color_light>/ <color_dark><max> gb'
 #tps
-Tps Message: '<#b8a567>Server TPS from last 1m, 5m, 15m: [<#856f2d><1m><#b8a567>,</#b8a567> <5m><#b8a567>,</#b8a567> <15m><#b8a567>]'
+Tps Message: '<color_light>Server TPS from last 1m, 5m, 15m: [<color_dark><1m><color_light>,</color_light> <5m><color_light>,</color_light> <15m><color_light>]'
 
 #back
-Back Message: '<#b8a567>Teleported to previous location!'
-Cant Back: '<#b8a567>Previous location not found'
+Back Message: '<color_light>Teleported to previous location!'
+Cant Back: '<color_light>Previous location not found'
 
 #report
-Report Message: '<#b8a567>Thanks for the help, we will investigate the problem as soon as possible'
-New Report: '<#b8a567><#856f2d>(#<number>) <reporter></#856f2d> has reported <#856f2d><reported></#856f2d> for <#856f2d><reason>'
-Report Yourself: '<#b8a567>You can''t report yourself!'
-Current Reports Join Message: '<#b8a567>There are <#856f2d><number></#856f2d> uninvestigated reports'
+Report Message: '<color_light>Thanks for the help, we will investigate the problem as soon as possible'
+New Report: '<color_light><color_dark>(#<number>) <reporter></color_dark> has reported <color_dark><reported></color_dark> for <color_dark><reason>'
+Report Yourself: '<color_light>You can''t report yourself!'
+Current Reports Join Message: '<color_light>There are <color_dark><number></color_dark> uninvestigated reports'
 
 #punishments
-Punishment Header: '<#b8a567>[&r<#7c3e12>&lDirtlands&r<#b8a567>]'
-Ban Broadcast: '<#856f2d><player><#b8a567> has been banned for <#856f2d><reason></#856f2d>. (<time>)'
-Ban No Reason Broadcast: '<#856f2d><player><#b8a567> has been banned. (<time>)'
-Unban Not Banned: '<#856f2d><player><#b8a567> is not banned.'
-Player Unbanned: '<#856f2d><player><#b8a567> has been <#856f2d>unbanned</#856f2d>.'
-Unmute Not Muted: '<#856f2d><player><#b8a567> is not muted.'
-Player Unmuted: '<#856f2d><player><#b8a567> has been <#856f2d>unmuted</#856f2d>.'
-Player Warned: '<#856f2d><player><#b8a567> has been <#856f2d>warned</#856f2d>.'
+Punishment Header: '<color_light>[&r<#7c3e12>&lDirtlands&r<color_light>]'
+Ban Broadcast: '<color_dark><player><color_light> has been banned for <color_dark><reason></color_dark>. (<time>)'
+Ban No Reason Broadcast: '<color_dark><player><color_light> has been banned. (<time>)'
+Unban Not Banned: '<color_dark><player><color_light> is not banned.'
+Player Unbanned: '<color_dark><player><color_light> has been <color_dark>unbanned</color_dark>.'
+Unmute Not Muted: '<color_dark><player><color_light> is not muted.'
+Player Unmuted: '<color_dark><player><color_light> has been <color_dark>unmuted</color_dark>.'
+Player Warned: '<color_dark><player><color_light> has been <color_dark>warned</color_dark>.'
 Warn Message No Reason: |-
-  <#d1c59f>You have been warned. (Offense <#b8a567>#<offense></#b8a567>).
-  On your <#b8a567>3rd</#b8a567> warning, you will be banned.
+  <#d1c59f>You have been warned. (Offense <color_light>#<offense></color_light>).
+  On your <color_light>3rd</color_light> warning, you will be banned.
 Warn Message: |-
-  <#d1c59f>You have been warned for <#b8a567><reason></#b8a567>. (Offence <#b8a567>#<offense></#b8a567>).
-  On your <#b8a567>3rd</#b8a567> warning, you will be banned.
+  <#d1c59f>You have been warned for <color_light><reason></color_light>. (Offence <color_light>#<offense></color_light>).
+  On your <color_light>3rd</color_light> warning, you will be banned.
 Ban Message: |
-  <#b8a567>You have been banned.
+  <color_light>You have been banned.
 
-  Time: &r<#856f2d><time>
+  Time: &r<color_dark><time>
 
-  &r<#b8a567>Appeal here: &r&n<#856f2d><discord>
+  &r<color_light>Appeal here: &r&n<color_dark><discord>
 Ban With Reason: |
-  <#b8a567>You have been banned.
+  <color_light>You have been banned.
 
 
-  Reason: &r<#856f2d><reason>
-  &r<#b8a567>Time: &r<#856f2d><time>
+  Reason: &r<color_dark><reason>
+  &r<color_light>Time: &r<color_dark><time>
 
-  &r<#b8a567>Appeal here: &r&n<#856f2d><discord>
+  &r<color_light>Appeal here: &r&n<color_dark><discord>
 Perm Ban Message: |
-  <#b8a567>You have been banned <#856f2d>Permanently.
+  <color_light>You have been banned <color_dark>Permanently.
 
 
-  &r<#b8a567>Appeal here: &r&n<#856f2d><discord>
+  &r<color_light>Appeal here: &r&n<color_dark><discord>
 Perm Ban With Reason: |
-  <#b8a567>You have been banned <#856f2d>Permanently.
+  <color_light>You have been banned <color_dark>Permanently.
 
-  <#b8a567>Reason: &r<#856f2d><reason>
+  <color_light>Reason: &r<color_dark><reason>
 
-  &r<#b8a567>Appeal here: &r&n<#856f2d><discord>
-Punishment Time: '<#b8a567>Enter a time for the punishment. enter in format <#856f2d>0d 0h 0m<#b8a567>. Type "<#856f2d>Permanent<#b8a567>" for the punishment to last forever'
-Punishment Reason: '<#b8a567>Enter a reason for the punishment'
-Punishment Time Invalid: '<#b8a567>You entered an invalid time. Use the format <#856f2d>0d 0h 0m'
-Permanent Mute No Reason: <#b8a567>You are currently muted <#b8a567>permanently
-Permanent Mute With Reason: <#b8a567>You are currently muted for <#856f2d><reason><#b8a567>. You are muted <#856f2d>permanently<#b8a567>.
-Muted No Reason: <#b8a567>You are currently muted for <#856f2d><time>
-Muted With Reason: <#b8a567>You are currently muted for <#856f2d><reason><#b8a567>. (<#856f2d><time><#b8a567>)
-Mute Successful No Reason: <#856f2d><player> <#b8a567>successfully muted for <#856f2d><time>
-Mute Successful: <#856f2d><player> <#b8a567>successfully muted for <#856f2d><reason><#b8a567>. (<#856f2d><time><#b8a567>)
-Kick Message: '<#b8a567>You have been kicked.'
+  &r<color_light>Appeal here: &r&n<color_dark><discord>
+Punishment Time: '<color_light>Enter a time for the punishment. enter in format <color_dark>0d 0h 0m<color_light>. Type "<color_dark>Permanent<color_light>" for the punishment to last forever'
+Punishment Reason: '<color_light>Enter a reason for the punishment'
+Punishment Time Invalid: '<color_light>You entered an invalid time. Use the format <color_dark>0d 0h 0m'
+Permanent Mute No Reason: <color_light>You are currently muted <color_light>permanently
+Permanent Mute With Reason: <color_light>You are currently muted for <color_dark><reason><color_light>. You are muted <color_dark>permanently<color_light>.
+Muted No Reason: <color_light>You are currently muted for <color_dark><time>
+Muted With Reason: <color_light>You are currently muted for <color_dark><reason><color_light>. (<color_dark><time><color_light>)
+Mute Successful No Reason: <color_dark><player> <color_light>successfully muted for <color_dark><time>
+Mute Successful: <color_dark><player> <color_light>successfully muted for <color_dark><reason><color_light>. (<color_dark><time><color_light>)
+Kick Message: '<color_light>You have been kicked.'
 Kick With Reason: |
-  <#b8a567>You have been kicked.
+  <color_light>You have been kicked.
 
 
-  Reason: &r<#856f2d><reason>
+  Reason: &r<color_dark><reason>

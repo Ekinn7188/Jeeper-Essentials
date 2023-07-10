@@ -1,26 +1,27 @@
 import java.net.URI
+import org.gradle.process.internal.ExecException
 
 plugins {
     `java-library`
     java
 
     id("com.github.johnrengelman.shadow") version "7.0.0"
-    id("nu.studer.jooq") version "6.0.1"
-    id("org.flywaydb.flyway") version "8.0.5"
-    id("io.papermc.paperweight.userdev") version "1.3.6"
-    id("xyz.jpenilla.run-paper") version "1.0.6"
+    id("nu.studer.jooq") version "7.2"
+    id("org.flywaydb.flyway") version "9.20.0"
+    id("io.papermc.paperweight.userdev") version "1.5.5"
+    id("xyz.jpenilla.run-paper") version "2.1.0"
 }
 
 group = "jeeper.essentials"
 version = 1.0
 
-java {
-    toolchain.languageVersion.set(JavaLanguageVersion.of(17))
+java.toolchain {
+    languageVersion.set(JavaLanguageVersion.of(17))
 }
 
 repositories {
-    mavenCentral()
     mavenLocal()
+    mavenCentral()
     maven ("https://papermc.io/repo/repository/maven-public/")
     maven {
         name = "sonatype-oss-snapshots"
@@ -33,23 +34,22 @@ repositories {
 dependencies {
 
     //minecraft
-    paperDevBundle("1.19-R0.1-SNAPSHOT")
+    paperDevBundle("1.20.1-R0.1-SNAPSHOT")
     compileOnly ("net.luckperms:api:5.4")
     implementation ("org.reflections:reflections:0.10.2")
-    implementation ("jeeper.utils:PaperPluginUtils:1.3")
-    implementation ("net.kyori:adventure-text-minimessage:4.11.0")
-    implementation ("net.kyori:adventure-text-serializer-plain:4.11.0")
-    implementation ("net.wesjd:anvilgui:1.5.3-SNAPSHOT")
+    implementation ("jeeper.utils:PaperPluginUtils:1.4")
+    implementation ("net.kyori:adventure-text-serializer-plain:4.14.0")
+    implementation ("net.wesjd:anvilgui:1.7.0-SNAPSHOT")
 
     //database
     implementation ("org.jooq:jooq:3.16.6")
-    compileOnly ("org.xerial:sqlite-jdbc:3.36.0.3")
     implementation ("org.flywaydb:flyway-core:8.5.12")
     implementation ("ch.qos.logback:logback-classic:1.2.11")
-    jooqGenerator ("org.xerial:sqlite-jdbc:3.36.0.3")
+    compileOnly   ("org.xerial:sqlite-jdbc:3.42.0.0")
+    jooqGenerator ("org.xerial:sqlite-jdbc:3.42.0.0")
 
     //discord
-    implementation ("net.dv8tion:JDA:5.0.0-alpha.2")
+    implementation ("net.dv8tion:JDA:5.0.0-beta.12")
 }
 
 flyway {
@@ -105,7 +105,12 @@ tasks {
         // Configure the Minecraft version for our task.
         // This is the only required configuration besides applying the plugin.
         // Your plugin's jar (or shadowJar if present) will be used automatically.
-        minecraftVersion("1.19")
+        setExecutable("C:/Program Files/Java/jbr_dcevm-17_0_1-windows-x64-b164.8/")
+        println(executable)
+        jvmArgs = listOf("-Xmx5G", "-XX:+AllowEnhancedClassRedefinition", "-XX:+AllowRedefinitionToAddDeleteMethods")
+        println(runDirectory.asFile)
+        minecraftVersion("1.20.1")
+
     }
 
     assemble {

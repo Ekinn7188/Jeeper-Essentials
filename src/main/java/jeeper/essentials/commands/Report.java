@@ -44,7 +44,7 @@ public class Report extends PluginCommand {
                 reporterID = DatabaseTools.getUserID(player.getUniqueId());
             }
 
-            OfflinePlayer reported = UUIDTools.checkNameAndUUID(player, args[0]);
+            OfflinePlayer reported = UUIDTools.getOfflinePlayer(player, args[0]);
             if (reported == null) {
                 return;
             }

@@ -32,16 +32,14 @@ public class RevokePunishment {
      * @param playerName The arguments of the command (should be the player name)
      */
     public static void revoke(Punishment punishment, CommandSender sender, String playerName) {
-        OfflinePlayer player = UUIDTools.checkNameAndUUID(sender, playerName);
+        OfflinePlayer player = UUIDTools.getOfflinePlayer(sender, playerName);
         if (player == null) {
-            sender.sendMessage(MessageTools.parseFromPath(config, "Player Doesnt Exist", Placeholder.parsed("player", playerName)));
             return;
         }
 
         String uuid = player.getUniqueId().toString();
-
-
-
+        
+        // Get punishments of type punishment that are still going on
         var punishmentCondition =
                 DSL.condition(dslContext.select(Tables.PUNISHMENTS.PUNISHMENTEND)
                                 .from(Tables.PUNISHMENTS)

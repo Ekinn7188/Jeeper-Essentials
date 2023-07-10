@@ -58,7 +58,7 @@ public class PunishmentHistory extends PluginCommand {
             return;
         }
 
-        OfflinePlayer punished = UUIDTools.checkNameAndUUID(sender, args[0]);
+        OfflinePlayer punished = UUIDTools.getOfflinePlayer(sender, args[0]);
         if (punished == null) {
             return;
         }

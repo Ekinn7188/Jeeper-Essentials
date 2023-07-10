@@ -6,8 +6,8 @@ import jeeper.essentials.Main;
 import jeeper.essentials.commands.admin.ViewReports;
 import jeeper.utils.config.Config;
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.entities.MessageHistory;
+import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.Bukkit;
@@ -70,7 +70,7 @@ public class ReportListener implements Listener {
 
             try {
                 Main.getPlugin().getJDA().getGuilds().forEach(guild -> {
-                    MessageChannel channel = guild.getTextChannelById(config.get().getLong("Report Channel ID"));
+                    TextChannel channel = guild.getTextChannelById(config.get().getLong("Report Channel ID"));
 
                     MessageHistory.getHistoryFromBeginning(Objects.requireNonNull(channel)).queue(message -> message.getRetrievedHistory().forEach(msg -> msg.getEmbeds().forEach(embed -> {
                         String title = embed.getTitle();

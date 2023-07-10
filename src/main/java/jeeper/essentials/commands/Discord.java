@@ -25,4 +25,5 @@ public class Discord extends PluginCommand{
         String discordLink = MessageTools.getString(config, "Discord Link");
         sender.sendMessage(MessageTools.parseFromPath(config, "Discord Message", Placeholder.component("discord", MessageTools.parseText(discordLink).clickEvent(ClickEvent.openUrl(discordLink)))));
     }
+
 }

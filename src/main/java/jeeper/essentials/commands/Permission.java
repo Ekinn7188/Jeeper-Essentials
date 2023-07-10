@@ -12,8 +12,10 @@ public enum Permission {
     CLEARLAG("jeeper.clearlag"),
     COOLDOWN("jeeper.cooldown"),
     DELETEWARP("jeeper.warps.delete"),
+    
     ENCHANT("minecraft.command.enchant"),
     ESSENTIALS("jeeper.essentials"),
+    GAMEMODE("minecraft.command.gamerule"),
     HAT("jeeper.hat"),
     HISTORY("jeeper.history"),
     KICK("jeeper.kick"),
@@ -21,6 +23,7 @@ public enum Permission {
     MUTE("jeeper.mute"),
     MUTECHAT("jeeper.chat.mute"),
     NICKNAME("jeeper.nickname"),
+    
     PLUGIN("jeeper.plugin"),
     POWERTOOL("jeeper.powertool"),
     SETHOME("jeeper.sethome"),
@@ -32,13 +35,13 @@ public enum Permission {
     VANILLA_TELEPORT("minecraft.command.tp"),
     VIEW_REPORT("jeeper.reports.view"),
     WARN("jeeper.warn");
-
+    
     private final String name;
-
+    
     Permission(String name) {
         this.name = name;
     }
-
+    
     public String getName() {
         return name;
     }

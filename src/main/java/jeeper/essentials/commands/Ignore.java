@@ -41,7 +41,7 @@ public class Ignore extends PluginCommand {
 
     public static int[] getTargetAndPlayerID(String name, Player player) {
 
-        OfflinePlayer target = UUIDTools.checkNameAndUUID(player, name);
+        OfflinePlayer target = UUIDTools.getOfflinePlayer(player, name);
         if (target == null) {
             return null;
         }

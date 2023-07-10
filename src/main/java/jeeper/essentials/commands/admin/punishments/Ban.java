@@ -45,14 +45,12 @@ public class Ban extends PluginCommand {
                 p.openInventory(Objects.requireNonNull(menu));
                 // menu is added to map if it's not null
                 Punishments.openMenus.add(p.getUniqueId());
-                return;
             } catch (NullPointerException e) {
                 //try console command below
             }
         }
-
         //ban {player} 0d0h0m {reason}
-        if (args.length >= 2) {
+        else if (args.length >= 2) {
             Punishments.consolePunishment(Punishment.BAN, sender, args);
         } else {
             sender.sendMessage(MessageTools.parseFromPath(config, "Correct Usage", Placeholder.parsed("command", "/ban {player} {time | 0d0h0m} {reason}")));
